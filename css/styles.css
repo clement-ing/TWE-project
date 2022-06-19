@@ -57,14 +57,14 @@ body{
     font-weight: 500;
     font-size: 24px;
 }
-/* sélecteur pour un html suivant:
+/* selecteur pour un html suivant:
 <div class="select">
         <select name="slct" id="slct">
             <option></option>
         </select>
     </div>*/
 select {
-    outline: 0;
+    outline-width: 0;
     background: white;
     border:none;
     width: 100%;
@@ -112,7 +112,7 @@ select {
     max-height: 90%;
 }
 
-/*champs d'entrée*/
+/*champs d'entree*/
 .PopupInput{
     background: #FFFFFF;
     border-radius: 28px;
@@ -142,7 +142,7 @@ select {
     color:black;
 }
 
-/*peut être pas utile*/
+/*peut etre pas utile*/
 .ConnectButton{
     background: #116688;
     border-radius: 20px;
