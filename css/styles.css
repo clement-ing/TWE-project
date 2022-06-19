@@ -1,28 +1,114 @@
-.DarkBlue{
-	color: #031325;
+body{
+    font-family: 'Poppins';
+
 }
 
-.LightBlue{
-	color: #21B9CA;
+.button{
+    border-radius: 23px;
+    font-style:normal;
+    font-weight: 500;
+    font-size: 32px;
+    text-align: center;
+    border:none;
+    padding:5px;
 }
 
-.DarkBlue2{
-	color: #116688;
+.Popup{
+    background-color: #21B9CA;
+    border-radius: 40px;
+    color:white;
+    width: 845px;
+    height: 689px;
 }
 
-.Wight{
-	color : #FFFFFF;
+.notification{
+    border-radius:50%;
+    background-color: red;
+    color:#FFFFFF;
+    font-weight: 700;
+    width:55px;
+    height:55px;
+    display: flex;
+    align-items: center;
+    text-align: center;
 }
+
+/*Photo de profil (pas sur que ca marche)*/
+.Profil{
+    background: #21B9CA;
+    border-radius: 149px;
+    width:226px;
+    Height:94px;
+    color:white;
+    font-family: 'Poppins';
+    font-weight: 700px;
+    font-size:24px;
+
+}
+.ProfilPicture{
+    border-radius:50%;
+    position:absolute;
+    max-height: 90%;
+}
+
+/*champs d'entrée*/
+.PopupInput{
+    background: #FFFFFF;
+    border-radius: 28px;
+    width: 779px;
+    height: 77px;
+    color:black;
+}
+
+/*peut être pas utile*/
+.ConnectButton{
+    background: #116688;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+/*couleur de fond*/
 
 .DarkBluebckg{
-	background-color: #031325;
+    background-color: #031325;
 }
-
 .LightBluebckg{
-	background-color: #21B9CA;
+    background-color: #21B9CA;
+}
+.DarkBlue2bckg{
+    background-color: #116688;
 }
 
-.DarkBlue2bckg{
-	background-color: #116688;
+/*couleur de police*/
+
+.DarkBlue{
+    color:#031325;
+}
+.LightBlue{
+    color:#21B9CA;
+}
+.DarkBlue2{
+    color:#116688;
+}
+.Black{
+    color:black;
+}
+.White{
+    color:white;
+}
+
+/* style de police */
+
+.SemiBold{
+    font-weight:600px;
+}
+.Regular{
+    font-weight:400px;
+}
+.Bold{
+    font-weight:700px;
 }
 
