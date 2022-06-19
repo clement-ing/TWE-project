@@ -33,6 +33,67 @@ body{
     text-align: center;
 }
 
+.RectangleCompet{
+    background: #116688;
+    border-radius: 5px;
+    width:1276px;
+    height:63px;
+}
+
+.Equipe{
+    background: #116688;
+    border-radius: 23px;
+    width: 261px;
+    height: 59px;
+    font-size: 36px;
+    text-align: center;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+.Alert{
+    display:block;
+    color:red;
+    font-weight: 500;
+    font-size: 24px;
+}
+/* selecteur pour un html suivant:
+<div class="select">
+        <select name="slct" id="slct">
+            <option></option>
+        </select>
+    </div>*/
+select {
+    outline-width: 0;
+    background: white;
+    border:none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0 0 0 .5em;
+    color: black;
+    cursor: pointer;
+}
+.select {
+    position: relative;
+    display: block;
+    width: 261px; 
+    height: 40px; 
+    line-height: 3;
+    background:#21B9CA;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 1em;
+    background:#21B9CA;
+    pointer-events: none;
+}
 /*Photo de profil (pas sur que ca marche)*/
 .Profil{
     background: #21B9CA;
@@ -51,7 +112,7 @@ body{
     max-height: 90%;
 }
 
-/*champs d'entrée*/
+/*champs d'entree*/
 .PopupInput{
     background: #FFFFFF;
     border-radius: 28px;
@@ -59,8 +120,29 @@ body{
     height: 77px;
     color:black;
 }
+.Inscriptioninput{
+    background: #FFFFFF;
+    border-radius: 28px;
+    width:1224px;
+    height:53px;
+    color:black;
+}
+.Popupinput{
+    background: #FFFFFF;
+    border-radius: 28px;
+    width:779px;
+    height:77px;
+    color:black;
+}
+.Settingsinput{
+    background: #FFFFFF;
+    border-radius: 28px;
+    width:438px;
+    height: 34px;
+    color:black;
+}
 
-/*peut être pas utile*/
+/*peut etre pas utile*/
 .ConnectButton{
     background: #116688;
     border-radius: 20px;
