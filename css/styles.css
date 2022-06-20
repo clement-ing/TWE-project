@@ -57,6 +57,53 @@ body{
     font-weight: 500;
     font-size: 24px;
 }
+
+.header{
+	position:fixed;
+	width:100%;
+	z-index:1;
+	top: 0;
+	height: 75px;
+	vertical-align: middle;	
+}
+
+.logo{
+	position: absolute;
+	padding: 10px 0px 0px 5px;
+	height: 80%;
+	max-width: 70px;
+	left : 15 px;
+	margin-right: 10px;
+}
+
+.menu{
+	position: absolute;
+	width: 60%;
+	height : 100%;
+	text-align: left;
+	left: 70px;
+	vertical-align: middle;
+	margin-left: 15px;
+}
+
+.menuBox{
+	position: relative;
+	float: left;
+	width: 20%;
+	height: 100%;
+	clear: right;
+	text-align: center;
+	border-bottom: 2px solid #21B9CA;
+}
+
+.menuBox a{
+/*	padding: 25%;
+*/	text-decoration: none;
+	display: block;
+	text-align: middle;
+	vertical-align: middle;
+	line-height: 75px;
+}
 /* selecteur pour un html suivant:
 <div class="select">
         <select name="slct" id="slct">
@@ -185,12 +232,12 @@ select {
 /* style de police */
 
 .SemiBold{
-    font-weight:600px;
+    font-weight:600;
 }
 .Regular{
-    font-weight:400px;
+    font-weight:400;
 }
 .Bold{
-    font-weight:700px;
+    font-weight:700;
 }
 
