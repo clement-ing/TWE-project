@@ -99,7 +99,6 @@ body{
 /* Menu header */
 .menu{
   width: 20em;
-  margin-left: 1em;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #21B9CA ;
@@ -339,15 +338,13 @@ body{
   position: absolute;
   clip-path:ellipse(40% 50%);
   width: 7em;
-  left: 45%;
-  bottom: -10%;
+  bottom: 0.75em;
   filter: drop-shadow(5em 5em 1 #1E1824);
 }
 
 .cerclePdp{
   background-color: #031325;
-  width: 10em;
-  
+  width: 10em;  
 }
 
 .profilStandard{
@@ -368,8 +365,8 @@ body{
   height: 9em;
   border-radius: 50%;
   background-image: conic-gradient(
-      RED 70deg,  
-      green 0);
+      #21B9CA 70deg,  
+      #116688 0);
   display:flex;
   align-items: center;
   justify-content: center;
@@ -382,6 +379,7 @@ width: 4em;
 height: 4em;
 border-radius: 50%;
 background-color: #031325;
+
 }
 
 .profilReglage{
@@ -441,8 +439,8 @@ background-color: #031325;
 }*/
 .admin {
   display: grid;
-  width: 65%;
-  grid-template-columns:25% 30% 10%;
+  width: 50%;
+  grid-template-columns: 20% 20% 10%;
   align-items: start;
   justify-content: space-between;
 }
@@ -456,3 +454,30 @@ background-color: #031325;
   display:flex;
   position:relative
 }
+
+.centre{
+  margin-left:auto;
+  margin-right:auto
+}
+
+.centretitre{
+  display:flex;
+  justify-content: center;
+}
+
+.cerclep{
+  background-color:#031325;
+  width: 7em;
+  height:7em;
+  z-index: 4;
+  position: absolute;
+  clip-path:ellipse(50% 50%);
+  left: 45%;
+  bottom: -10%;
+}
+
+.legend{
+  width:5em;
+  text-align: center;
+}
+
