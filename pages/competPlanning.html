@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/stylev1mel.css">
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+
+<!-- header -->
+<header class="flex-container header">
+    <div class="flex-container">
+        <img src="../images/logo.png" alt="Logo du site" width="10%">
+        <div class="menu">
+            <li><a href="../index.html" class="lien">Accueil</a></li>
+            <li><a href="planning.html" class="lien lightBlue">Planning</a></li>
+            <li><a href="resultats.html" class="lien">Résultats</a></li>
+        </div>
+    </div>
+    <a href="pages/planning.html" class="profil lien">
+        <p>Profil</p>
+        <img src="../images/pdp.webp" alt="photo de profil" class="pdp">
+    </a>
+</header>
+
+<!-- banniere + photo de profil tournoi - rajouter css -->
+<span>
+        <img src="../images/lg.jpg" class="banniere">
+</span>
+
+<img src="../images/pdp.webp">
+<h2>Nom compétition</h2>
+
+<!-- barre nav -->
+<div class="menu">
+    <li><a href="#" class="lien">Résumé</a></li>
+    <li><a href="#" class="lien">Résultats</a></li>
+    <li><a href="#" class="lien">Règlement</a></li>
+    <li><a href="#" class="lien">Gestion</a></li>
+</div>
+
+<!-- si résumé -->
+<div>
+    <p>Date du tournoi</p>
+    <p>Heure du début</p>
+    <p>Nombre de place équipe</p>
+    <p>Place restante</p>
+    <p>Type de tournoi</p>
+    <p>statut</p>
+    <input type="button" value="inscrire/annuler inscription">
+</div>
+
+<!-- si résultats -->
+<div>
+    <li class="compet-jour">
+        <p class="jour">Mercredi 22 juin</p>
+        <a href="#" class="compet lien">
+            <p>Phase 1 - équipe 1 - équipe 2 - BO1 - Heure approximative du début : 20h</p>
+        </a>
+        <a href="#" class="compet lien">
+            <p>Phase 1 - équipe 1 - équipe 2 - BO1 - Heure approximative du début : 20h</p>
+        </a>
+        <a href="#" class="compet lien">
+            <p>Phase 1 - équipe 1 - équipe 2 - BO1 - Heure approximative du début : 20h</p>
+        </a>
+        <a href="#" class="compet lien">
+            <p>Phase 1 - équipe 1 - équipe 2 - BO1 - Heure approximative du début : 20h</p>
+        </a>
+    </li>
+</div>
+
+<!-- si règlement -->
+<div>
+    <h1>Reglement</h1>
+    <p>a completer</p>
+</div>
+
+<!-- gestion - non admin -->
+<div>
+    <div><p>Match en cours : quart de finale</p>
+        <p>Equipe adverse : équipe 2</p>
+        <p>Heure début : 22h</p>
+        <p>discord (obligatoire) :</p></div>
+    <div><p>Match en cours : quart de finale</p>
+        <p>Equipe adverse : équipe 2</p>
+        <p>Heure début : 22h</p>
+    <p>discord (obligatoire) :</p></div>
+    <div><p>vous avez perdu,</p>
+        <p>dommage :’(</p>
+        <p>n’hésitez pas à retenter votre chance sur un autre tournoi et à revenir plut tard pour découvrir le grand gagnant !</p></div>
+</div>
+
+<!-- gestion - admin - validation tournoi -->
+<div>
+    <p>Date du tournoi</p>
+    <p>Heure du début</p>
+    <p>Nombre de place équipe</p>
+    <p>Place restante</p>
+    <p>Type de tournoi</p>
+    <p>statut</p>
+    <input type="button" value="valider">
+    <input type="button" value="annuler">
+</div>
+
+<!-- gestion - admin - validation score -->
+<div>
+    <li class="compet-jour">
+        <a href="#" class="compet lien">
+            <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
+        </a>
+        <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
+        <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
+        <input type="button" value="ok">
+        <a href="#" class="compet lien">
+            <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
+        </a>
+        <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
+        <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
+        <input type="button" value="ok">
+        <a href="#" class="compet lien">
+            <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
+        </a>
+        <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
+        <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
+        <input type="button" value="ok">
+    </li>
+</div>
+
+<!-- inscription -->
+<div>
+    <p>Equipe existante</p><select><option value="equipe1"></option></select>
+    <h3>ou</h3>
+    <p>Nom equipe</p><input type="text">
+    <p>Joueur 1</p><input type="text">
+    <p>Joueur 2</p><input type="text">
+    <p>Joueur 3</p><input type="text">
+    <p>Joueur 4</p><input type="text">
+    <p>Joueur 5</p><input type="text">
+    <input type="button" value="Inscrire mon equipe">
+    <input type="button" value="Annuler">
+    <p>erreur ! le nom d’équipe est déjà pris - joueur 4 et 5 n’existe pas</p>
+    <p>attention chaque joueur devra valider sur son profil sa participation- si un joueur refuse ou ne valide pas l’inscription sera supprimée</p>
+</div>
+
+<!-- Pop up de annulation -->
+<div id="" title="">
+    <h2>Es-tu sûr ?</h2>
+    <p>cette annulation est définitive, ton équipe sera supprimé du tournoi et devra se
+        ré inscrire si elle veut participer de nouveau</p>
+    <input type="button" id="btnFermeInscription" value="Fermer">
+</div>
+<!-- Fin pop up de connexion -->
+
+</body>
+</html>

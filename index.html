@@ -1,20 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="css/styles.css">
-</head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-<body class="DarkBluebckg">
-	<div class="header">
-		<img src="images/logo.jpeg" class="logo">
-		<div class="menu">
-			<div class="menuBox">
-			<a class="white Bold" href="index.html"> Accueil </a>
-			</div>
-			<div class="menuBox">
-			<a class="white Bold" href="pages/planning.html"> Planning </a>
-			</div>
-			<div class="menuBox">
-			<a class="white Bold" href="pages/resultats.html"> Resultats </a>
-			</div>
-		</div>
-	</div>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/script.js"></script>
+</head>
+<body>
+
+<!-- header -->
+    <header class="header flex-container">
+        <div class="flex-container">
+            <img src="images/logo.png" alt="Logo du site" width="10%">
+            <div class="menu">
+              <li><a href="index.html" class="lienActif">Accueil</a></li>
+              <li><a href="pages/planning.html" class="lien">Planning</a></li>
+              <li><a href="pages/resultats.html" class="lien">Résultats</a></li>
+            </div>   
+        </div> 
+
+        <!-- btn connexion si pas connecté -->
+        <input type="button" id="btnConnexion" class="button darkBlue2bckg" value="S'inscrire/Se connecter"/>
+        
+        <!-- onglet profil si connecté -->
+        <a href="pages/planning.html" class="profil lien">
+            <p>Profil</p>
+            <img src="../images/pdp.webp" alt="photo de profil" class="pdp">
+        </a>
+    </header>
+<!-- fin header -->
+
+<!-- Pop up de connexion -->
+    <div id="popupConnexion" title="">
+        <h2 class="bold">Connexion</h2>
+        <!--<input type="button" id="btnFermeInscription" value="Fermer">-->
+        <img src="./images/cross.jpg" class="croix">
+        <form action="">
+            <input type="text" class="textInputModif" placeholder="Email"><br/>
+            <input type="text" class="textInputModif" placeholder="Mot de passe"><br/>
+            <input type="submit" class="button darkBluebckg" value="Se connecter">
+        </form>
+        <div class="creation-compte">
+            <p>Pas encore de compte ?</p>
+            <a href="pages/inscription.html" class="lien">
+                <input type="button" id="btnCreerCompte" class="button darkBlue2bckg" value="Créer mon compte">
+            </a>
+        </div>
+        <div class="paratext flex-container">
+            <p>Mentions légales</p><p>Politique de confidentialité</p>
+        </div>
+    </div>
+
+<!-- Fin pop up de connexion -->
+
+    <div class="texte-accueil lightBlue">
+        <div>
+            <h2>NOM DU SITE</h2>
+            <h2> Organize, Compete & Progress</h2>
+            <h4> Plateforme de compétition E-sport</h4>
+            <p> NOM DU SITE est une toute nouvelle plateforme qui te permet de jouer à League of Legends, participer à diverses compétitions et même créer tes propres compétitions pour jouer avec tes amis! 
+            </p>
+        </div>
+        <input type="button" id="btnRejoindre" class="button lightBluebckg" value="Rejoins nous !">
+    </div>
+
+    <img src="images/gwen.png" alt="image de gwen" class="gwen">
+    <div class="gwen"></div>
 </body>
+</html>
