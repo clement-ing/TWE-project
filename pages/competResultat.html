@@ -33,15 +33,22 @@
 </header>
 
 <!-- banniere + photo de profil tournoi - rajouter css -->
-<span>
-        <img src="../images/lg.jpg" class="banniere" >
-</span>
+<div class="ensembleBanniere">
+    <img src="../images/lg.jpg" class="banniere" alt="baniere de joueur">
 
-<img src="../images/pdp.webp">
-<h2>Nom compétition</h2>
+   
+    <div class="cerclePdp">
+        <div class="cerclep"> 
+        <img src="../images/pdp.webp" class="pdpBanniere" alt="photo de profil de joueur">
+    </div>
+    </div>
+
+</div>
+
+<div class="centretitre"><h2>Nom compétition</h2></div>
 
 <!-- barre nav -->
-<div class="menu">
+<div class="menu centre">
     <li><a href="#" class="lien">Résumé</a></li>
     <li><a href="#" class="lien">Résultats</a></li>
     <li><a href="#" class="lien">Règlement</a></li>
@@ -49,28 +56,28 @@
 
 <!-- si résumé -->
 <div>
-    <p>Equipe gagnante</p>
-    <p>Date du tournoi</p>
-    <p>Heure du début</p>
-    <p>Nombre d'équpe inscrite</p>
-    <p>Type de tournoi</p>
-    <p>statut</p>
+    <p class="centretitre">Equipe gagnante: </p>
+    <p class="centretitre">Date du tournoi:</p>
+    <p class="centretitre">Heure du début:</p>
+    <p class="centretitre">Nombre d'équpe inscrite:</p>
+    <p class="centretitre">Type de tournoi:</p>
+    <p class="centretitre">Statut:</p>
 </div>
 
 <!-- si résultats -->
 <div>
     <li class="compet-jour">
         <p class="jour">Mercredi 22 juin</p>
-        <a href="#" class="compet lien">
+        <a href="#" class="rectangleCompet lien">
             <p>Phase 4 - équipe 1: 3 - équipe 2: 2 - BO5 </p>
         </a>
-        <a href="#" class="compet lien">
+        <a href="#" class="rectangleCompet lien">
             <p>Phase 3 - équipe 1: 1 - équipe 2: 2 - BO3</p>
         </a>
-        <a href="#" class="compet lien">
+        <a href="#" class="rectangleCompet lien">
             <p>Phase 3 - équipe 1: 2 - équipe 2: 0 - BO3</p>
         </a>
-        <a href="#" class="compet lien">
+        <a href="#" class="rectangleCompet lien">
             <p>Phase 2  - équipe 1: 1 - équipe 2: 0 - BO1</p>
         </a>
     </li>
@@ -78,8 +85,9 @@
 
 <!-- si règlement -->
 <div>
-    <h1>Reglement</h1>
-    <p>a completer</p>
+    <h4 class="centretitre">Règle 1: tous les membres de chaque équipe doivent posséder discord</h4>
+    <h4 class="centretitre">Règle 2: les équipes sont composées de 5 membres</h4>
+    <h4 class="centretitre">Règle 3: ...</h4>
 </div>
 
 </body>
