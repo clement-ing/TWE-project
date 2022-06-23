@@ -1,0 +1,548 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+body{
+  z-index: 10;
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  list-style-type: none;
+  color: white;
+  background-color: #1E1824;
+  padding-bottom: 2em;
+}
+
+.flex-container{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 60%;
+}
+
+
+.lien{
+  text-decoration: none;
+  color: white;
+}
+
+.lienActif{
+  text-decoration: none;
+  color: #21B9CA;
+}
+
+.button{
+  border-radius: 23px;
+  font-style:normal;
+  font-size: 100%;
+  text-align: center;
+  border:none;
+  padding:5px 10px 5px 10px;
+  color: white;
+  margin-top: 10px;
+}
+
+.textInputModif{
+  background: #FFFFFF;
+  border-radius: 28px;
+  height: 2em;
+  width:90%;
+  color:black;
+  padding-left: 10px;
+  padding-right: 10px;
+  border:none;
+}
+
+.relative{
+  position:relative;
+}
+
+.mrgLeft{
+  margin-left: 2em;
+}
+
+/*couleur de fond*/
+
+.darkBluebckg{
+  background-color: #031325;
+}
+.lightBluebckg{
+  background-color: #21B9CA;
+}
+.darkBlue2bckg{
+  background-color: #116688;
+}
+
+/*couleur de police*/
+
+.darkBlue{
+  color:#031325;
+}
+
+.lightBlue{
+  color:#21B9CA;
+}
+
+.darkBlue2{
+  color:#116688;
+}
+
+.black{
+  color:black;
+}
+
+.green{
+  color:green;
+}
+
+.red{
+  color:red;
+}
+/* style de police */
+
+.semiBold{
+  font-weight:600px;
+}
+.regular{
+  font-weight:400px;
+}
+.bold{
+  font-weight:700px;
+}
+
+/* Menu header */
+.menu{
+  width: 20em;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #21B9CA ;
+}
+
+
+.header{
+  margin: 1em 2em 1em 1em;
+  justify-content: space-between;
+  width:95%;
+}
+
+.texte-accueil{
+  position: absolute;
+  width:40%;
+  text-align: center;
+  padding-bottom: 2em;
+  margin: 3em;
+  margin-top: 1em;
+}
+
+/* partie profil/pdp */
+.profil{
+  background-color: #21B9CA;
+  width: 7em;
+  height: fit-content;
+  border-radius: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1em;
+}
+
+.pdp{
+  width: 50%;
+  clip-path:ellipse(40% 50%);
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+/* fin partie pdp */
+
+.gwen{
+  position: absolute;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 70%;
+  z-index: -1;
+}
+
+.compet-jour{
+  margin: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.jour{
+  width: 100%;
+  border-bottom: 1px solid #21B9CA;
+  padding: 0px;
+  margin: 0px;
+  text-align: left;
+}
+
+.rectangleCompet{
+  background-color: #116688 ;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1em;
+  padding: 0 1em 0 1em;
+}
+
+
+.en-cours{
+  color: #29FF06;
+}
+
+.filtre{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin:3em;
+}
+
+#filtreCompet{
+  height: fit-content;
+  margin-left: 1em;  
+  font-size: 20px;
+}
+
+
+/* popup connexion */
+
+/* popup général */
+
+
+.popup{
+  font-size: 30px;
+  background-color: #21B9CA;
+  border-radius: 40px;
+  padding:1em;
+  padding-top: 0em;
+}
+
+.popup h2, .creation-compte{
+  text-align: center;
+}
+
+
+.creation-compte p{
+  margin-bottom: 0;
+}
+
+.popup form{
+  position: relative;
+  margin-left: 1em;
+  margin-right: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid white;
+}
+
+.paratext{
+  font-size: 10px;
+  justify-content: center;
+  margin-top: 2em;
+  width: 100%;
+}
+.paratext p{
+  margin: 1em;
+}
+
+.no-close .ui-dialog-titlebar {
+  display: none;
+}
+
+#btnFermeInscription{
+  position: absolute;
+  right: 2em;
+  top: 2em;
+}
+
+.croix{
+  width:6%;
+  height:8%;
+  position: absolute;
+  top:5%;
+  left:88%
+}
+/* fin popup connexion */
+/* fin popup général */
+
+
+/* formulaire inscription */
+.formulaire{
+  font-size: 25px;
+  margin: 2em;
+}
+
+.formulaire p{
+  margin-bottom: 0em;
+}
+
+.formulaire label{
+  font-size: 20px;
+}
+/* fin formulaire inscription */
+
+
+
+.notification{
+  border-radius:50%;
+  background-color: red;
+  color:#FFFFFF;
+  font-weight: 700;
+  width:2em;
+  height:2em;
+  align-items: center;
+  text-align: center;
+  z-index:10;
+  top:1.5em;
+  position:absolute;
+}
+
+
+
+.alerte{
+  display:block;
+  color:red;
+  font-weight: 500;
+  font-size: 19px;
+}
+
+/* sélecteur pour un html suivant:
+<div class="select">
+      <select name="slct" id="slct">
+          <option></option>
+      </select>
+  </div>*/
+  select {
+    outline: 0;
+    background: white;
+    border:none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0 0 0 .5em;
+    color: black;
+    cursor: pointer;
+}
+.select {
+    position: relative;
+    display: block;
+    width: 261px; 
+    height: 40px; 
+    line-height: 3;
+    background:white;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 1em;
+  background:#21B9CA;
+  pointer-events: none;
+}
+
+.banniere{
+  object-fit: cover;
+  width: 100%;
+  height: 8em;
+}
+
+.ensembleBanniere{
+  position: relative;
+}
+
+.pdpBanniere{
+  z-index: 5;
+  position: absolute;
+  clip-path:ellipse(40% 50%);
+  width: 7em;
+  bottom: 0.75em;
+  filter: drop-shadow(5em 5em 1 #1E1824);
+}
+
+.cerclePdp{
+  background-color: #1E1824;
+  width: 10em;  
+}
+
+.profilStandard{
+  display: flex;
+  justify-content: left;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.palmares{
+  width: 50%;
+  position: relative;
+}
+
+.piechartmatchs {
+  display: block;
+  width: 9em;
+  height: 9em;
+  border-radius: 50%;
+  background-image: conic-gradient(
+      #21B9CA 70deg,  
+      #116688 0);
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 25%;
+}
+
+.cercle{
+width: 4em;
+height: 4em;
+border-radius: 50%;
+background-color: #1E1824;
+
+}
+
+.profilReglage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#btnConfirmerTournoi{
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  vertical-align: top;
+}
+
+#confirmer{
+  margin-left:2em
+}
+
+/*.textInputModif{
+  background: #FFFFFF;
+  border-radius: 28px;
+  width: 50%;
+  height: 2em;
+  color:black;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 1em;
+  border:none;
+}*/
+
+.btnChoix{
+  width: 90%;
+  display: flex;
+}
+
+.marge{
+  margin-right:1em;
+}
+
+.equipe{
+  background: #116688;
+  border-radius: 23px;
+  width:  9em;
+  font-size: 25px;
+  text-align: center;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+
+
+/*.admin{
+  vertical-align:sub;
+  display:grid;
+  width: 100%;
+  grid-template-columns: 8em 5em 3em;
+  align-items: start;
+}*/
+.admin {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.profilNotif{
+  display:flex;
+  position:relative
+}
+
+.centre{
+  margin-left:auto;
+  margin-right:auto
+}
+
+.centretitre{
+  display:flex;
+  justify-content: center;
+}
+
+.cerclep{
+  background-color:#1E1824;
+  width: 7em;
+  height:7em;
+  position: absolute;
+  clip-path:ellipse(50% 50%);
+  left: 45%;
+  bottom: -10%;
+}
+
+.legend{
+  width:5em;
+  text-align: center;
+}
+
+.profilReglage{
+  display:none;
+}
+.profilValidationTournoi{
+  display:none;
+}
+
+#creationTournoi{
+  display:none;
+}
+
+#administrateur{
+  display:none;
+}
+
+.cache{
+  display:none;
+}
+
+.partieResultats{
+  display: none;
+}
+
+.partieReglement{
+  display: none;
+}
+
+#gestion{
+  display: none
+}
+
+#validationCreationTournoi{
+  display: none;
+}
+
+#validationScore{
+  display: none;
+}
+
+#inscrireEquipe{
+  display: none;
+}
+
+.pointer:hover{
+  cursor: pointer;
+}
+
+.profil + .lien{
+  display: none;
+}

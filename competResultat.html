@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+
+<!-- header -->
+<header class="flex-container header">
+    <div class="flex-container">
+        <img src="images/logo.png" alt="Logo du site" width="10%" class="logo"> 
+        <div class="menu">
+            <li><a href="index.html" class="lien">Accueil</a></li>
+            <li><a href="planning.html" class="lien">Planning</a></li>
+            <li><a href="resultats.html" class="lien lightBlue">Résultats</a></li>
+        </div>
+    </div>
+    <!-- onglet profil si connecté -->
+    <div class="profilNotif">
+        <a href="./profil.html" class="profil lien" id="btnProfil">
+            <p>Profil</p>
+            <img src="images/pdp.webp" alt="photo de profil" class="pdp">
+
+        </a>
+        <p id="notifHautNombre" class="notification"></p>
+    </div>
+    <input type="button" id="btnConnexion" class="button darkBlue2bckg" value="S'inscrire/Se connecter"/>
+</header>
+
+<!-- banniere + photo de profil tournoi - rajouter css -->
+<div class="ensembleBanniere">
+    <img src="images/lg.jpg" class="banniere" alt="baniere de joueur">
+
+   
+    <div class="cerclePdp">
+        <div class="cerclep"> 
+        <img src="images/essai.jpg" class="pdpBanniere" alt="photo de profil de joueur">
+    </div>
+    </div>
+
+</div>
+
+<div class="centretitre"><h2>Nom compétition</h2></div>
+
+<!-- barre nav -->
+<div class="menu centre">
+    <li><p class="lienResume pointer">Résumé</p></li>
+    <li><p class="lienResultats pointer">Résultats</p></li>
+    <li><p class="lienReglement pointer">Règlement</p></li>
+</div>
+
+<!-- si résumé -->
+<div class="partieResume">
+    <p class="centretitre">Equipe gagnante: </p>
+    <p class="centretitre">Date du tournoi:</p>
+    <p class="centretitre">Heure du début:</p>
+    <p class="centretitre">Nombre d'équpe inscrite:</p>
+    <p class="centretitre">Type de tournoi:</p>
+    <p class="centretitre">Statut:</p>
+</div>
+
+<!-- si résultats -->
+<div class="partieResultats">
+    <li class="compet-jour">
+        <p class="jour">Mercredi 22 juin</p>
+        <a href="#" class="rectangleCompet lien">
+            <p>Phase 4 - équipe 1: 3 - équipe 2: 2 - BO5 </p>
+        </a>
+        <a href="#" class="rectangleCompet lien">
+            <p>Phase 3 - équipe 1: 1 - équipe 2: 2 - BO3</p>
+        </a>
+        <a href="#" class="rectangleCompet lien">
+            <p>Phase 3 - équipe 1: 2 - équipe 2: 0 - BO3</p>
+        </a>
+        <a href="#" class="rectangleCompet lien">
+            <p>Phase 2  - équipe 1: 1 - équipe 2: 0 - BO1</p>
+        </a>
+    </li>
+</div>
+
+<!-- si règlement -->
+<div class="partieReglement">
+    <h4 class="centretitre">Règle 1: tous les membres de chaque équipe doivent posséder discord</h4>
+    <h4 class="centretitre">Règle 2: les équipes sont composées de 5 membres</h4>
+    <h4 class="centretitre">Règle 3: ...</h4>
+</div>
+
+</body>
+</html>

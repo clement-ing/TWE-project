@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/stylev1mel.css">
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+
+<!-- header -->
+<header class="flex-container header">
+    <div class="flex-container">
+        <img src="images/logo.png" alt="Logo du site" width="10%">
+        <div class="menu">
+            <li><a href="index.html" class="lien">Accueil</a></li>
+            <li><a href="planning.html" class="lien lightBlue">Planning</a></li>
+            <li><a href="resultats.html" class="lien">Résultats</a></li>
+        </div>
+    </div>
+
+    <!-- onglet profil si connecté -->
+    <div class="profilNotif">
+        <a href="./profil.html" class="profil lien" id="btnProfil">
+            <p>Profil</p>
+            <img src="images/pdp.webp" alt="photo de profil" class="pdp">
+
+        </a>
+        <p id="notifHautNombre" class="notification"></p>
+    </div>
+    <input type="button" id="btnConnexion" class="button darkBlue2bckg" value="S'inscrire/Se connecter"/>
+</header>
+
+<!-- banniere + photo de profil tournoi - rajouter css -->
+
+<div class="ensembleBanniere">
+    <img src="images/lg.jpg" class="banniere" alt="baniere de joueur">
+
+   
+    <div class="cerclePdp">
+        <div class="cerclep"> 
+        <img src="images/pdp.webp" class="pdpBanniere" alt="photo de profil de joueur">
+    </div>
+    </div>
+
+</div>
+
+<div class="centretitre"><h2>Nom compétition</h2></div>
+
+
+<!-- barre nav -->
+<div class="menu centre">
+    <li><p class="lienResume pointer">Résumé</p></li>
+    <li><p class="lienResultats pointer">Planning</p></li>
+    <li><p class="lienReglement pointer">Règlement</p></li>
+    <li><p class="lienGestion pointer">Gestion</p></li>
+</div>
+
+<!-- si résumé -->
+<div class="partieResume">
+    <p class="centretitre">Date du tournoi : </p>
+    <p class="centretitre">Heure du début : </p>
+    <p class="centretitre">Nombre de place équipe : </p>
+    <p class="centretitre">Place restante : </p>
+    <p class="centretitre">Type de tournoi : </p>
+    <p class="centretitre">Statut : </p>
+    <div style = "text-align: center;">
+        <!-- choisir le bouton en fonction de l'utilisateur : est-il dans une équipe inscrite? -->
+        <input type="button" id="btnInscriptionEquipe" class="centre button darkBlue2bckg" value="Inscrire mon équipe">
+        <input type="button" id="btnDesisncription" class="centre button darkBlue2bckg" value="Annuler mon inscription"> 
+    </div>
+</div>
+
+<!-- si résultats -->
+<div class="partieResultats">
+    <li class="compet-jour">
+        <p class="jour">Mercredi 22 juin</p>
+        <a href="#" class="rectangleCompet lien">
+            <p>Phase 1 - équipe 1 - équipe 2 - BO1 - Heure approximative du début : 20h</p>
+        </a>
+        <a href="#" class="rectangleCompet lien">
+            <p>Phase 1 - équipe 1 - équipe 2 - BO1 - Heure approximative du début : 20h</p>
+        </a>
+        <a href="#" class="rectangleCompet lien">
+            <p>Phase 1 - équipe 1 - équipe 2 - BO1 - Heure approximative du début : 20h</p>
+        </a>
+        <a href="#" class="rectangleCompet lien">
+            <p>Phase 1 - équipe 1 - équipe 2 - BO1 - Heure approximative du début : 20h</p>
+        </a>
+    </li>
+</div>
+
+
+<!-- si règlement -->
+<div id="reglement" class="partieReglement">
+    <h1 class="centretitre">Reglement</h1>
+    <div>
+        <h4 class="centretitre">Règle 1: tous les membres de chaque équipe doivent posséder discord</h4>
+        <h4 class="centretitre">Règle 2: les équipes sont composées de 5 membres</h4>
+        <h4 class="centretitre">Règle 3: ...</h4>
+    </div>
+</div>
+
+<!-- gestion - non admin -->
+<div id="gestion">
+    <h1 class="centretitre bold">Gestion</h1>
+    <div class="mrgLeft">
+        <!-- badge si admin -->
+        <input type="button" id="btnAdmin2" class="button lightBluebckg black" value="Admin">
+    </div>
+    <div><p class="centretitre">Match en cours : quart de finale</p>
+        <p class="centretitre">Equipe adverse : équipe 2</p>
+        <p class="centretitre">Heure début : 22h</p>
+        <p class="centretitre">discord (obligatoire) :</p></div>
+    <div><p class="centretitre">Match en cours : quart de finale</p>
+        <p class="centretitre">Equipe adverse : équipe 2</p>
+        <p class="centretitre">Heure début : 22h</p>
+    <p class="centretitre">discord (obligatoire) :</p></div>
+    <div><p class="centretitre">vous avez perdu,</p>
+        <p class="centretitre">dommage :’(</p>
+        <p class="centretitre">N’hésitez pas à retenter votre chance sur un autre tournoi 
+        et à revenir plus tard pour découvrir le grand gagnant !</p></div>
+</div>
+
+<!-- gestion - admin - validation tournoi -->
+<div id="validationCreationTournoi">
+    <h1 class="centretitre bold">Gestion Admin</h1>
+
+    <h3 class="centretitre bold">Gestion des paramètres du tournoi</h3>
+
+    <div id="gestionAdmin">
+        <p class="centretitre">Date du tournoi : 
+            <input type="date" id="dateTournoi" class="mrgLeft">
+        </p>
+        <p class="centretitre">Heure du début :
+            <input type="time" id="heureDebutTournoi" class="mrgLeft">
+        </p>
+        <p class="centretitre">Nombre de place équipe :
+            <input type="number" class="mrgLeft"> 
+        </p>
+        <p class="centretitre">Type de tournoi : 
+            <input list="type" id="typeTournoi" class="mrgLeft">
+            <datalist id="type">
+                <option value="B01"></option>
+                <option value="B03"></option>
+                <option value="B05"></option>
+            </datalist>
+        </p>
+        <p class="centretitre">Statut : 
+            <input list="statut" id="statutTournoi" class="mrgLeft">
+            <datalist id="statut">
+                <option value="A venir"></option>
+                <option value="En cours"></option>
+                <option value="Termine"></option>
+            </datalist>
+        </p>
+        <div style="text-align: center;">
+            <input type="button" class="button darkBlue2bckg" value="Valider">
+            <input type="button" class="button darkBlue2bckg" value="Annuler">
+        </div>
+    </div>
+</div>
+   
+
+<!-- gestion - admin - validation score -->
+<div id="validationScore">
+    <h3 class="centretitre bold">Gestion des scores</h3>
+    <li class="compet-jour">
+        <a href="#" class="rectangleCompet lien">
+            <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
+        </a>
+        <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
+        <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
+        <input type="button" value="ok">
+        <a href="#" class="rectangleCompet lien">
+            <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
+        </a>
+        <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
+        <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
+        <input type="button" value="ok">
+        <a href="#" class="rectangleCompet lien">
+            <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
+        </a>
+        <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
+        <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
+        <input type="button" id="okScore" class="button lightBluebckg" value="ok">
+    </li>
+</div>
+
+<!-- inscription -->
+<div id="inscrireEquipe" class="mrgLeft">
+    <p>Equipe existante</p><select><option value="equipe1"></option></select>
+    <h3>ou</h3>
+    <p>Nom equipe</p><input type="text" class="textInputModif">
+    <p>Joueur 1</p><input type="text" class="textInputModif">
+    <p>Joueur 2</p><input type="text" class="textInputModif">
+    <p>Joueur 3</p><input type="text" class="textInputModif">
+    <p>Joueur 4</p><input type="text" class="textInputModif">
+    <p>Joueur 5</p><input type="text" class="textInputModif">
+    <input type="button" class="button darkBlue2bckg" value="Inscrire mon equipe">
+    <input type="button"  id="btnAnnulerInscription" class="button darkBlue2bckg" value="Annuler">
+    <p class="alerte">Erreur ! le nom d’équipe est déjà pris - joueur 4 et 5 n’existe pas</p>
+    <p>Attention chaque joueur devra valider sur son profil sa participation- si un joueur refuse ou ne valide pas l’inscription sera supprimée</p>
+</div>
+
+<!-- Pop up de annulation -->
+<div id="popupDesinscription" title="me désinscrire" class="popup blur-filter">
+    <h2>Es-tu sûr de te désincrire?</h2>
+    <img src="images/cross.jpg" class="croix">
+    <p>Cette annulation est définitive, ton équipe sera supprimée du tournoi et devra se
+        réinscrire si elle veut participer de nouveau</p>
+    <div style="text-align: center;">
+        <input type="button" id="confirmerDesinscription" class="button darkBlue2bckg" value="Confirmer la désinscription">
+    </div>
+</div>
+
+</body>
+</html>

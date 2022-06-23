@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <header class="flex-container header">
+        <div class="flex-container">
+            <img src="images/logo.png" alt="Logo du site" width="10%" class="logo">
+            <div class="menu">
+              <li><a href="index.html" class="lien">Accueil</a></li>
+              <li><a href="planning.html" class="lienActif">Planning</a></li>
+              <li><a href="resultats.html" class="lien">Résultats</a></li>
+            </div>    
+        </div>
+
+        <!-- btn connexion si pas connecté -->
+        <input type="button" id="btnConnexion" class="button darkBlue2bckg" value="S'inscrire/Se connecter"/>
+
+        <!-- onglet profil si connecté -->
+        <div class="profilNotif">
+            <a href="./profil.html" class="profil lien" id="btnProfil">
+                <p>Profil</p>
+                <img src="images/pdp.webp" alt="photo de profil" class="pdp">
+
+            </a>
+            <p id="notifHautNombre" class="notification"></p>
+        </div>
+    </header>
+ 
+<!-- debut bloc listing compet pour un jour donné -->
+    <!-- <li class="compet-jour">
+        <p class="jour">Lundi 20 juin</p>
+        <a href="competPlanning.html" class="rectangleCompet lien">
+            <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
+            <p class="en-cours">En cours</p>
+        </a>
+        <a href="competPlanning.html" class="rectangleCompet lien">
+            <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
+            <p class="en-cours">En cours</p>
+        </a>
+        <a href="competPlanning.html" class="rectangleCompet lien">
+            <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
+        </a>
+    </li> -->
+<!-- fin bloc listing compet pour un jour donné -->
+
+<!-- debut bloc listing compet pour un jour donné -->
+    <!-- <li class="compet-jour">
+        <p class="jour">Mardi 21 juin</p>
+        <a href="#" class="rectangleCompet lien">
+            <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
+        </a>
+        <a href="#" class="rectangleCompet lien">
+            <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
+        </a>
+    </li> -->
+<!-- fin bloc listing compet pour un jour donné -->
+
+<!-- debut bloc listing compet pour un jour donné -->
+    <!-- <li class="compet-jour">
+        <p class="jour">Mercredi 22 juin</p>
+        <a href="#" class="rectangleCompet lien">
+            <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
+        </a>
+        <a href="#" class="rectangleCompet lien">
+            <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
+        </a>
+        <a href="#" class="rectangleCompet lien">
+            <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
+        </a>
+    </li> -->
+<!-- fin bloc listing compet pour un jour donné -->
+
+
+    <img src="images/gwen.png" alt="" class="gwen">
+    <div class="gwen"></div>
+</body>
+</html>
