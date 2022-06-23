@@ -47,5 +47,4 @@ function toggle(refOrId){
             element.style.display = "none";
         }
     }
-
 }
