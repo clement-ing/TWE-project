@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <div class="flex-container header lightBlue">
+        <img src="images/logo.png" alt="Logo du site" width="5%">
+        <h2>Let the adventure begin !</h2>
+        <a href="index.html" class="lien">
+            <input type="button" class="button darkBlue2bckg" value="Annuler">
+        </a>
+    </div>
+
+    <div class="formulaire">
+        <form action="">
+            <div>
+                <p class="lightBlue">Comment souhaites-tu être appelé ?</p>
+                <input type="text" class="textInputModif" name="pseudo" placeholder="Pseudo">
+            </div>
+            <div>
+                <p class="lightBlue">Tes identifiants (à garder précieusement)</p>
+                <input type="text" class="textInputModif" name="Email" placeholder="Pseudo"> <br/>
+                <input type="text" class="textInputModif" name="mdp" placeholder="Mot de passe"> <br/>
+                <input type="text"  class="textInputModif" name="mdpConfirme" placeholder="Confirmer le mot de passe"> <br/>
+                <input type="checkbox" name="conditionsUtilisations" id="cdUtilisations">
+                <label for="conditionsUtilisations">J'ai lu et j'accepte les conditions générales d'utilisations</label>
+            </div> 
+            <p class="paratext">*Tu pourras compléter ton profil avec d'autres informations plus tard !</p>
+            <span style="display:flex; justify-content:center;"><input type="submit" class="button lightBluebckg" value="Créer mon compte"></span>
+        </form>
+    </div>
+
+
+    <img src="images/gwen.png" alt="image de gwen" class="gwen">
+    <div class="gwen"></div>
+</body>
+</html>
