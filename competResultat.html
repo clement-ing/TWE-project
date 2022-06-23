@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,21 +16,28 @@
 <body>
 
 <!-- header -->
-<header class="flex-container header">
+<header class="header flex-container">
     <div class="flex-container">
-        <img src="images/logo.png" alt="Logo du site" width="10%" class="logo"> 
+        <img src="images/logo.png" alt="Logo du site" width="10%" class="logo">
         <div class="menu">
             <li><a href="index.html" class="lien">Accueil</a></li>
             <li><a href="planning.html" class="lien">Planning</a></li>
             <li><a href="resultats.html" class="lien lightBlue">Résultats</a></li>
         </div>
     </div>
-    <a href="./profil.html" class="profil lien" id="btnProfil">
-        <p>Profil</p>
-        <img src="images/pdp.webp" alt="photo de profil" class="pdp">
-        
-    </a>
+
+    <!-- btn connexion si pas connecté -->
     <input type="button" id="btnConnexion" class="button darkBlue2bckg" value="S'inscrire/Se connecter"/>
+
+    <!-- onglet profil si connecté -->
+    <div class="profilNotif">
+        <a href="./profil.html" class="profil lien" id="btnProfil">
+            <p>Profil</p>
+            <img src="images/pdp.webp" alt="photo de profil" class="pdp">
+
+        </a>
+        <p id="notifHautNombre" class="notification"></p>
+    </div>
 </header>
 
 <!-- banniere + photo de profil tournoi - rajouter css -->
@@ -41,7 +47,7 @@
    
     <div class="cerclePdp">
         <div class="cerclep"> 
-        <img src="images/essai.jpg" class="pdpBanniere" alt="photo de profil de joueur">
+        <img src="images/pdp.webp" class="pdpBanniere" alt="photo de profil de joueur">
     </div>
     </div>
 

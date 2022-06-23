@@ -1,18 +1,28 @@
 var baseURL = "https://mini.tikroko.ovh/~webcent" // Florent
 
 $(document).ready(function(){
+
     if (sessionStorage.getItem('token')==undefined){
         $('#btnConnexion').show();
         $('#btnProfil').hide();
+        $('#notifHautNombre').hide();
     }
     else    {
         $('#btnConnexion').hide();
         $('#btnProfil').show();
+        if (sessionStorage.getItem('notifnombre')==0){
+            console.log("testnotifrouge2");
+            $('#notifHautNombre').hide();
+        }
+        else {
+            $('#notifhaut').text(sessionStorage.getItem('notifnombre'));
+            $('#notifhaut').show();
+        }
     }
 
         
     //page profil : rajout du pseudo de l'utilisateur et email emiliev2
-    if (window.location.pathname=="/profil.html"){ //adresse à modif en fonction de son serveur local
+    if (window.location.pathname=="/Applications/MAMP/htdocs/00h36/profil.html"){ //adresse à modif en fonction de son serveur local
         console.log("info profil");
         $("#pseudoProfilInfo").text("Pseudo : " + sessionStorage.getItem('pseudo'));
         $("#emailProfilInfo").text("Email : " + sessionStorage.getItem('email'));
@@ -39,7 +49,58 @@ $(document).ready(function(){
             },
             dataType: "json"
         });
+        if (sessionStorage.getItem('isAdmin')==0){
+            $('#btnAdmin1').hide();
+        }
 
+        //notif
+        $("notifbas").text(sessionStorage.getItem('notifnombre'))
+
+        //tous les users du site pour admin :
+        if (sessionStorage.getItem('isAdmin')==1){
+            $.ajax({
+                type: "GET",
+                url: "https://mini.tikroko.ovh/~webcent/api/liste_utilisateurs",
+                data: {"debutPseudo": ""},
+                success: function (oRep) {
+                    console.log("liste user");
+                    for (i = 1; i < oRep.length; i++) {
+                        //console.log(oRep[i].pseudo);
+                        $("#listeUser").append("<option value=" + i + ">" + oRep[i].pseudo + "</option>");
+                    }
+                },
+                error: function () {
+                    console.log("erreur liste user");
+                },
+                dataType: "json"
+            });
+
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "https://mini.tikroko.ovh/~webcent/api/utilisateur/stats",
+            data: {"idUtilisateur": sessionStorage.getItem('idUser')},
+            success: function (oRep) {
+                console.log("stat :" + oRep);
+                sessionStorage.setItem('nbMatch', oRep.nbMatch);
+                sessionStorage.setItem('nbMatchWin', oRep.nbMatchWin);
+                sessionStorage.setItem('nbCompet', oRep.nbCompet);
+                sessionStorage.setItem('nbCompetWin', oRep.nbCompetWin);
+                if (oRep==false){
+                    $("#competWinProfilInfo").text("Nombre compétition gagné : " + "aucune");
+                }
+                else {
+                    $("#competWinProfilInfo").text("Nombre compétition gagné : " + sessionStorage.getItem('nbCompetWin'));
+                }
+            },
+            error: function () {
+                console.log("erreur stat");
+            },
+            dataType: "json"
+        });
+
+        //pie chart <3
         //$("piechartMatch")
     }
 
@@ -55,7 +116,7 @@ $(document).ready(function(){
         + '<a href="inscription.html" class="lien">'
             +'<input type="button" id="btnCreerCompte" class="button darkBlue2bckg" value="Créer mon compte">'
             +'</a></div>'))
-    .append($('<span id="feedbackco"></span>'))
+        .append($('<span id="feedbackco"></span>'))
     .append($('<div class="paratext flex-container">'
         +'<p>Mentions légales</p><p>Politique de confidentialité</p></div>'))
     $('body').append(popup);
@@ -114,18 +175,17 @@ $(document).ready(function(){
         console.log("login: " + login + " passe: " + passe);
 
         if (login == "" || login == " ") {
-            console.log("pseudo vide"); //rajouter feedback erreur
-            //Melinav3
-            $('#feedbackco').append('<p class="alerte">*Pseudo maquant</p>');
-            return false;}
-        
+               console.log("pseudo vide"); //rajouter feedback erreur
+               //Melinav3
+               $('#feedbackco').append('<p class="alerte">*Pseudo maquant</p>');
+               return false;}
+
         else if (passe == "" || passe == " ") {
-            console.log("mdp vide"); //rajouter feedback erreur
-            //Melinav3
-            $('#feedbackco').append('<p class="alerte">*Mot de passe maquant</p>');                return false;
+               console.log("mdp vide"); //rajouter feedback erreur
+               //Melinav3
+               $('#feedbackco').append('<p class="alerte">*Mot de passe maquant</p>');                return false;
         }
-        
-        //$("#feedback").hide(); //A rajouter si on a le temps
+
         $.ajax({
             type: "POST",
             url: "https://mini.tikroko.ovh/~webcent/api/authentification",
@@ -142,12 +202,39 @@ $(document).ready(function(){
                 sessionStorage.setItem('idUser', oRep.id);
                 sessionStorage.setItem('pseudo', oRep.pseudo);
                 sessionStorage.setItem('email', oRep.email);
+                sessionStorage.setItem('isAdmin', oRep.isAdmin);
                 $('#btnConnexion').hide();
                 $('#btnProfil').show();
                 $('#popupConnexion').hide();
+
+                $.ajax({
+                    type: "GET",
+                    url: "https://mini.tikroko.ovh/~webcent/api/liste_compet",
+                    data: {"idUtilisateur": sessionStorage.getItem('idUser'), "attenteValid": true},
+                    success: function (oRep) {
+                        console.log("attente validation" + (oRep));
+                        if (oRep==false){
+                            $('#notifhaut').hide();
+                            sessionStorage.setItem('notifnombre', 0);
+                            console.log("hide notif haut");
+                        }
+                        else {
+                            console.log(oRep.length);
+                            $('#notifhaut').text(oRep.length);
+                            sessionStorage.setItem('notifnombre', oRep.length);
+                            sessionStorage.setItem('notif', oRep);
+                        }
+                    },
+                    error: function () {
+                        console.log("erreur recup notif");
+
+                    },
+                    dataType: "json"
+                });
             },
             error: function () {
                 console.log("erreur");
+                $('#feedbackco').append('<p class="alerte">*Pseudo et/ou Mot de passe incorrect</p>');
 
             },
             dataType: "json"
@@ -164,19 +251,25 @@ $(document).ready(function(){
         var mdpConfirmation = $("#mdpConfirmationInscription").val();
         var etatCheckBox = document.getElementById("cdUtilisations").checked;
         console.log("pseudo: " + pseudo + " mail: " + email + " mdp: " + mdp + " mdp Conf: " + mdpConfirmation + " check : " + etatCheckBox);
-        //Attention lignes en trop
-       
-        if (pseudo == "" || pseudo == " ") {
+        if (!etatCheckBox){
+            console.log("checkbox pas coché"); //rajouter feedback erreur
+            return false;
+        }
+        else if (mdp != mdpConfirmation) {
+            console.log("mdp different mdpConfirmation"); //rajouter feedback erreur
+            return false;
+        }
+        else if (pseudo == "" || pseudo == " ") {
             console.log("pseudo vide"); //rajouter feedback erreur
             $('#feedback').append('<p class="alerte">*Pseudo maquant</p>');
             return false;
-        } 
+        }
         else if (email == "" || email == " ") {
             console.log("email vide"); //rajouter feedback erreur
             $('#feedback').append('<p class="alerte">*Email maquant</p>');
             return false;
-        } 
-        
+        }
+
         else if (mdp == "" || mdp == " ") {
             console.log("mdp vide"); //rajouter feedback erreur
             $('#feedback').append('<p class="alerte">*Mot de passe maquant</p>');
@@ -192,9 +285,9 @@ $(document).ready(function(){
             $('#feedback').append('<p class="alerte">*Il faut accepter les conditions générales d utilisation</p>');
             return false;
         }
-        
+
         //page competResultat : rajout du pseudo de l'utilisateur et email clementV2
-        if (window.location.pathname=="/competResultat.html"){ //adresse à modif en fonction de son serveur local
+        if (window.location.pathname=="/Applications/MAMP/htdocs/00h36/competResultat.html"){ //adresse à modif en fonction de son serveur local
             $("#showDate").text("date :" + sessionStorage.getItem('Gagnant'));
             console.log("info profil");
             $.ajax({
@@ -216,9 +309,9 @@ $(document).ready(function(){
                 }
             });
             $("#showDate").text("date :" + sessionStorage.getItem('Gagnant'));
-        }  
-       
-       
+        }
+
+
         //$("#feedback").hide(); //A rajouter si on a le temps
         console.log("avant requête ajax")
         $.ajax({
@@ -256,9 +349,7 @@ $(document).ready(function(){
     //profil reglage - modifier pseudo - emilie
     $("#btnConfirmerReglagePseudo").click(function() {
         console.log("click confirmer reglage");
-
         $('#feedbackRegPseudo').empty();
-
         var pseudoNV = $("#pseudoReglage").val();
         console.log("pseudo: " + pseudoNV );
         //$("#feedback").hide(); //A rajouter si on a le temps
@@ -296,17 +387,13 @@ $(document).ready(function(){
     //profil reglage - modifier email - emilie
     $("#btnConfirmerReglageEmail").click(function() {
         console.log("click confirmer reglage");
-
-        $('#feedbackRegMail').empty();
-
         var emailNV = $("#emailReglage").val();
         console.log("email: " + emailNV);
+        $('#feedbackRegMail').empty();
         //$("#feedback").hide(); //A rajouter si on a le temps
         if ($("#emailReglage").val().replace(/^\s+|\s+$/g, "").length == 0) {
             console.log("email vide");
-            //Melinav3
             $('#feedbackRegMail').append('<p class="alerte">*E-mail vide</p>');
-
             return false;
         }
         else {
@@ -315,6 +402,7 @@ $(document).ready(function(){
                 url: "https://mini.tikroko.ovh/~webcent/api/utilisateur/modification",
                 data: {"hash": sessionStorage.getItem('token'), "email": emailNV},
                 success: function (oRep) {
+                    console.log("success");
                     if(!oRep){
                         console.log("mail utilisé");
                         $('#feedbackRegMail').append('<p class="alerte">*E-mail déjà utilisé</p>');
@@ -324,14 +412,11 @@ $(document).ready(function(){
                         $('#feedbackRegMail').append('<p class="green" id="mssgModif"> Modification effectuée </p>');
                         console.log("success");
                     }
-                    console.log("success");
                     sessionStorage.setItem('email', emailNV);
                     window.location.replace("profil.html");
                 },
                 error: function () {
                     console.log("erreur");
-                    //Melinav3
-
                 },
                 dataType: "json"
             });
@@ -342,7 +427,6 @@ $(document).ready(function(){
     $("#btnConfirmerReglageMdp").click(function() {
         console.log("click confirmer reglage");
         $('#feedbackRegMdp').empty();
-
         var passeNV = $("#mdpReglage").val();
         var passeConfirmNV = $("#mdpConfirmationReglage").val();
         console.log(" passe: " + passeNV + " passe conf: " + passeConfirmNV);
@@ -354,7 +438,6 @@ $(document).ready(function(){
         }
         if ($("#mdpReglage").val().replace(/^\s+|\s+$/g, "").length == 0) {
             console.log("mdp vide");
-            //Melinav3
             $('#feedbackRegMdp').append('<p class="alerte">*Mot(s) de passe vide</p>');
             return false;
         }
@@ -441,7 +524,6 @@ $(document).ready(function(){
 
 
 });
-
 
 $(function(){
 
@@ -651,14 +733,31 @@ $(function(){
         $messageScore3.fadeIn().delay(2000).fadeOut();
         $compet3.hide();
     })
+
+    //emiliev3
     $('#btnValidationAdmin').click(function(){
+        var idUser = document.getElementById('listeUser').value;
+        console.log(idUser);
+        $.ajax({
+            type: "POST",
+            url: "https://mini.tikroko.ovh/~webcent/api/utilisateur/modification_admin",
+            data: {"hash": sessionStorage.getItem('token'),"idUtilisateur": idUser, "choix": 1},
+            success: function () {
+                console.log("success");
+                $messageAdmin.fadeIn().delay(2000).fadeOut();
+            },
+            error: function () {
+                console.log("erreur passage admin");
+            },
+            dataType: "json"
+        });
         $messageAdmin.fadeIn().delay(2000).fadeOut();
     })
 
     var $messageAccepterTournoi,$messageRefuserTournoi,$competition;
     $messageAccepterTournoi=$('.mssgAccepterTournoi');
     $messageRefuserTournoi=$('.mssgRefuserTournoi');
-    $competition=$('.competitionValide')
+    $competition=$('.competitionValide');
 
     $('#btnAccepterTournoi').click(function(){
         $messageAccepterTournoi.fadeIn().delay(2000).fadeOut();
@@ -680,7 +779,7 @@ $(function(){
         url: baseURL + '/api/liste_compet',
         success: function(oRep){
             console.log("récupération liste compet");
-            if(window.location.pathname=="/planning.html"){ //adresse à modif en fonction du localhost
+            if(window.location.pathname=="/Applications/MAMP/htdocs/00h36/planning.html"){ //adresse à modif en fonction du localhost
                 var ini=oRep[0];
                 var date=ini.startDate;
                 var statut=ini.status;
@@ -708,9 +807,9 @@ $(function(){
                         if(oRep[i].status!='2'){
                             statut=oRep[i].status;
                             //Melinav3
-                            var lienCompet = $('<input type="button" name='+ ini.id+' value="Nom de la compétition :' + oRep[i].name 
-                            +'- Heure de début : '+ oRep[i].startDate.substr(10)
-                            +'- Nombre de places : '+oRep[i].capacity+'" class="rectangleCompet lien">');
+                            var lienCompet = $('<input type="button" name='+ ini.id+' value="Nom de la compétition :' + oRep[i].name
+                                +'- Heure de début : '+ oRep[i].startDate.substr(10)
+                                +'- Nombre de places : '+oRep[i].capacity+'" class="rectangleCompet lien">');
                             if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
                             $('body').append(lienCompet);
                         } 
@@ -731,7 +830,7 @@ $(function(){
         success: function(oRep){
             console.log("récupération liste compet");
             console.log(oRep);
-            if(window.location.pathname=="/resultats.html"){ //adresse à modif en fonction du localhost
+            if(window.location.pathname=="/Applications/MAMP/htdocs/00h36/resultats.html"){ //adresse à modif en fonction du localhost
                 var ini=oRep[0];
                 var date=ini.startDate;
                 var statut=ini.status;
@@ -743,7 +842,6 @@ $(function(){
                     var ligneDate = $('<li class="compet-jour">')
                         .append('<p class="jour">'+ini.startDate.substr(0,10)+'</p>');
                     $('body').append(ligneDate);
-                    //Melinav3
                     var lienCompet=$('<input type="button" name='+ ini.id+' class="rectangleCompet lien" value="' + ini.name +'-'+ ini.startDate+'-'+ini.type+'/'+ini.capacity+'">')
 
                     if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
@@ -760,9 +858,9 @@ $(function(){
                         if(oRep[i].status=='2'){
                             statut=oRep[i].status;
                             //Melinav3
-                            var lienCompet=$('<input type="button" name='+ oRep[i].id+' class="rectangleCompet lien" value="Nom de la compétition : ' + oRep[i].name 
-                            +'- Heure de début : '+ oRep[i].startDate.substr(10)
-                            +'- Nombre de places : '+oRep[i].capacity+'">');
+                            var lienCompet=$('<input type="button" name='+ oRep[i].id+' class="rectangleCompet lien" value="Nom de la compétition : ' + oRep[i].name
+                                +'- Heure de début : '+ oRep[i].startDate.substr(10)
+                                +'- Nombre de places : '+oRep[i].capacity+'">');
                                 if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
                                 $('body').append(lienCompet);
                             }
@@ -780,4 +878,3 @@ $("#btnDeconnexion").click(function() {
     sessionStorage.clear();
     window.location.replace("index.html");
 });
-

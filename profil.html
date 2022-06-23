@@ -11,6 +11,11 @@
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/script.js"></script>
+    <script>
+        if (sessionStorage.getItem('token')==undefined) {
+            window.location.replace("index.html");
+        }
+    </script>
 </head>
 
 <body>
@@ -27,12 +32,11 @@
         </div>
 
         <div class="profilNotif">
-        <a href="./profil.html" class="profil lien" id="btnProfil">
-            <p>Profil</p>
-            <img src="images/pdp.webp" alt="photo de profil" class="pdp">
-            
-        </a>
-        <p class="notification">2</p>
+            <a href="./profil.html" class="profil lien" id="btnProfil">
+                <p>Profil</p>
+                <img src="images/pdp.webp" alt="photo de profil" class="pdp">
+            </a>
+            <p id="notifHautNombre" class="notification"></p>
         </div>
     </header>
 
@@ -52,42 +56,43 @@
         <!-- badge si admin -->
         <input type="button" id="btnAdmin1" class="button lightBluebckg black" value="Admin">
         <p class="cache green" id="mssgModif"> Modifications effectuées </p>
+
     </div>
-    
 
 
 <!-- zone du profil de base (palmares et infos) -->
     <div class="profilStandard">
     <!-- zone du palmares -->
         <div class="palmares">
-            <h2>Palmares des matchs</h2>
-            <div>
-                <div class="piechartmatchs">
+            <h2>Palmares</h2>
+            <div class="display:flex;">
+                <div id="piechartMatch" class="piechart">
                     <div class="cercle"></div>
                 </div>
                 <p class="legend lightBluebckg"> Victoires </p>
                 <p class="legend darkBlue2bckg"> Défaites </p>
             </div>
-            <button class="button darkBlue2bckg" id="btnConfirmerTournoi"> <p class="alerte">6</p> Tournoi(s) à confirmer</button>
+            <button class="button darkBlue2bckg" id="btnConfirmerTournoi"> <p id="notifbas" class="alerte">6</p> Tournoi(s) à confirmer</button>
         </div>
+
     <!-- zone des infos -->
         <div>
             <h2>Infos</h2>
             <p id="pseudoProfilInfo"></p>  <!-- emiliev2-->
             <p id="emailProfilInfo"></p> <!-- emiliev2-->
             <p id="equipeProfilInfo"></p> <!-- emiliev2-->
-            <p>Prochaine compétition : Aucune</p>
-
+            <p id="competWinProfilInfo"></p><!-- emiliev3-->
             <input type="button" class="button darkBlue2bckg" id="btnModif" value="Modifier les infos">
-            <input type="button" class="button darkBlue2bckg" id="btnCrea" value="Créer compétition">
-            <input type="button" id="btnDeconnexion" class="button darkBlue2bckg" value="Déconnexion">
+            <input type="button" class="button darkBlue2bckg" id="btnCrea" value="Creer compétition">
+            <input type="button" id="btnDeconnexion" class="button darkBlue2bckg" value="Deconnexion">
 
         </div>
     </div>
 
     <!-- zone de paramètrage des infos du compte - accès via le modifier les infos-->
     <div class ="profilReglage mrgLeft">
-        <span class="flex-container"><p>Nouveau pseudo :</p><input type="text" id="pseudoReglage" class="textInputModif" placeholder="Pseudo"> <br/><!-- emiliev2-->
+        <span class="flex-container">
+            <p>Nouveau pseudo :</p><input type="text" id="pseudoReglage" class="textInputModif" placeholder="Pseudo"> <br/><!-- emiliev2-->
         </span>
         <!--Melinav3-->
         <span id="feedbackRegPseudo"></span>
@@ -103,21 +108,22 @@
         <!--Melinav3-->
         <span id="feedbackRegMail"></span>
         <span class="flex-container">
-            <p>Nouveau mot de passe :</p><input type="password" id="mdpReglage" class="textInputModif" placeholder="Mot de passe"> <br/><!-- emiliev2-->        
+            <p>Nouveau mot de passe :</p><input type="password" id="mdpReglage" class="textInputModif" placeholder="Mot de passe"> <br/><!-- emiliev2-->
         </span>
         <span class="flex-container">
-            <p>Confirmation mot de passe</p><input type="password"  id="mdpConfirmationReglage" class="textInputModif" placeholder="Confirmer le mot de passe"><!-- emiliev2-->        
+            <p>Confirmation mot de passe</p><input type="password"  id="mdpConfirmationReglage" class="textInputModif" placeholder="Confirmer le mot de passe"><!-- emiliev2-->
         </span>
         <!--Melinav3-->
         <span id="feedbackRegMdp"></span>
         <span>
             <input type="button" id="btnConfirmerReglageMdp" class="button darkBlue2bckg" value="Confirmer les modifications du mot de passe"><!-- emiliev2-->
-            <br><input type="button" class="button darkBlue2bckg btnAnnuler" value="Annuler">        </span>
+            <br><input type="button" class="button darkBlue2bckg btnAnnuler" value="Annuler">
+        </span>
     </div>
 
 <!-- zone de la validation de tournoi - accès via le bouton tournoi-->
 <div class="profilValidationTournoi mrgLeft">
-    <li class="compet-jour">
+    <li id="compet-jour" class="compet-jour">
         <p class="green cache mssgAccepterTournoi">Tournoi confirmé!</p>
         <p class="red cache mssgRefuserTournoi">Tournoi annulé!</p>
         
@@ -169,7 +175,7 @@
     <p>heure (HH:MM:SS)</p><input id="heureTournoi" type="input" class="textInputModif">
     <p>nombre d'equipe</p>
     <div class="select">
-    <select id="nombreEquipeTournoi"><option value="8">8</option><option value="16">16</option><option value="32">32</option> </select>
+        <select id="nombreEquipeTournoi"><option value="2">2</option><option value="8">8</option><option value="16">16</option><option value="32">32</option> </select>
     </div>
     <img><p>discord</p><input id="discordTournoi" type="input" class="textInputModif"> <!-- rajouter image-->
     <p>règlement tournoi</p><input id="reglementTournoi" type="textarea"  class="textInputModif">
@@ -191,7 +197,7 @@
         <p class="equipe">admin</p></div>
         <!--melinav3-->
         <div class="espace"></div>
-        <div class="select"><select><option>pseudo1</option><option>pseudo2</option></select></div> 
+        <div class="select"><select id="listeUser"></select></div>
         <div class="espace"></div>
         <div>
         <input type="button" value="ok" class="button lightBluebckg black" id="btnValidationAdmin"></div>
