@@ -301,7 +301,7 @@ body{
   display:block;
   color:red;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 19px;
 }
 
 /* sélecteur pour un html suivant:
@@ -362,7 +362,7 @@ body{
 }
 
 .cerclePdp{
-  background-color: #031325;
+  background-color: #1E1824;
   width: 10em;  
 }
 
@@ -378,7 +378,7 @@ body{
   position: relative;
 }
 
-.piechart {
+.piechartmatchs {
   display: block;
   width: 9em;
   height: 9em;
@@ -410,6 +410,9 @@ background-color: #031325;
 #btnConfirmerTournoi{
   position: absolute;
   bottom: 0;
+  display: flex;
+  justify-content:auto;
+  vertical-align: top;
 }
 
 #confirmer{
@@ -540,4 +543,6 @@ background-color: #031325;
   cursor: pointer;
 }
 
-
+.profil + .lien{
+  display: none;
+}

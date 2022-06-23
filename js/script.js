@@ -1,6 +1,3 @@
-
-var baseURL = "https://mini.tikroko.ovh/~webcent" // Florent
-
 $(document).ready(function(){
     if (sessionStorage.getItem('token')==undefined){
         $('#btnConnexion').show();
@@ -9,7 +6,7 @@ $(document).ready(function(){
     else    {
         $('#btnConnexion').hide();
         $('#btnProfil').show();
-    } 
+    }
 
     var popup = $('<div id="popupConnexion" class="popup">')
     .append('<h2>Connexion</h2>')
@@ -23,6 +20,7 @@ $(document).ready(function(){
         + '<a href="inscription.html" class="lien">'
             +'<input type="button" id="btnCreerCompte" class="button darkBlue2bckg" value="Créer mon compte">'
             +'</a></div>'))
+    .append($('<span id="#feedbackco"></span>'))
     .append($('<div class="paratext flex-container">'
         +'<p>Mentions légales</p><p>Politique de confidentialité</p></div>'))
     $('body').append(popup);
@@ -95,6 +93,8 @@ $(document).ready(function(){
             },
             error: function () {
                 console.log("erreur");
+                $('#feedbackco').append('<p class="alerte">*Pseudo et/ou Mot de passe incorrect</p>');
+
             },
             dataType: "json"
         });
@@ -103,32 +103,43 @@ $(document).ready(function(){
     //creer un nouvel utilisateur - inscription - Emilie
     $("#btnInscriptionConfirmation").click(function() {
         console.log("click confirmer inscription");
+        $('#feedback').empty();
         var pseudo = $("#pseudoInscription").val();
         var email = $("#emailInscription").val();
         var mdp = $("#mdpInscription").val();
         var mdpConfirmation = $("#mdpConfirmationInscription").val();
         var etatCheckBox = document.getElementById("cdUtilisations").checked;
         console.log("pseudo: " + pseudo + " mail: " + email + " mdp: " + mdp + " mdp Conf: " + mdpConfirmation + " check : " + etatCheckBox);
-        if (!etatCheckBox){
-            console.log("checkbox pas coché"); //rajouter feedback erreur
+        if (pseudo == "" || pseudo == " ") {
+            console.log("pseudo vide"); //rajouter feedback erreur
+            $('#feedback').append('<p class="alerte">*Pseudo maquant</p>');
+            return false;
+        } 
+        else if (email == "" || email == " ") {
+            console.log("email vide"); //rajouter feedback erreur
+            $('#feedback').append('<p class="alerte">*Email maquant</p>');
+            return false;
+        } 
+        
+        else if (mdp == "" || mdp == " ") {
+            console.log("mdp vide"); //rajouter feedback erreur
+            $('#feedback').append('<p class="alerte">*Mot de passe maquant</p>');
             return false;
         }
         else if (mdp != mdpConfirmation) {
             console.log("mdp different mdpConfirmation"); //rajouter feedback erreur
+            $('#feedback').append('<p class="alerte">*Confirmation mot de passe différente mot de passe</p>');
             return false;
         }
-        else if (pseudo == "" || pseudo == " ") {
-            console.log("pseudo vide"); //rajouter feedback erreur
+        else if (!etatCheckBox){
+            console.log("checkbox pas coché"); //rajouter feedback erreur
+            $('#feedback').append('<p class="alerte">*Il faut accepter les conditions générales d utilisation</p>');
             return false;
         }
-        else if (email == "" || email == " ") {
-            console.log("email vide"); //rajouter feedback erreur
-            return false;
-        }
-        else if (mdp == "" || mdp == " ") {
-            console.log("mdp vide"); //rajouter feedback erreur
-            return false;
-        }
+        
+        
+       
+       
         //$("#feedback").hide(); //A rajouter si on a le temps
         console.log("avant requête ajax")
         $.ajax({
@@ -143,6 +154,7 @@ $(document).ready(function(){
             },
             error: function () {
                 console.log("erreur, pseudo ou email deja existant");
+                $('#feedback').append('<p class="alerte">*Pseudo ou E-mail déjà existant</p>');
             },
             dataType: "json"
         });
@@ -168,7 +180,8 @@ $(function(){
         $profil.hide();
         $validation.hide();
         $creation.hide();
-        $administrateur.show();})
+        $administrateur.show();
+        $('#btnAdmin1').hide();})
 
     $('#btnModif').click(function(){
         console.log("modification infos");
@@ -200,7 +213,8 @@ $(function(){
         $profil.show();
         $validation.hide();
         $creation.hide();
-        $administrateur.hide();})
+        $administrateur.hide();
+        $('#btnAdmin1').show();})
 
     $('.btnConfirmation').click(function(){
         console.log("confirmation");
@@ -376,106 +390,10 @@ $(function(){
     $('.logo').click(function(){
         window.location.replace("./index.html")
     })
-
-    // Florent
-    //requet liste compet planning
-    $.ajax({
-        type: "GET",
-        url: baseURL + '/api/liste_compet',
-        success: function(oRep){
-            console.log("récupération liste compet");
-            if(window.location.pathname=="/Projey/planning.html"){ //adresse à modif en fonction du localhost
-                var ini=oRep[0];
-                var date=ini.startDate;
-                var statut=ini.status;
-
-                console.log(date);
-                console.log(statut);
-  
-                if(statut!='2'){
-                    var ligneDate = $('<li class="compet-jour">')
-                        .append('<p class="jour">'+ini.startDate.substr(0,10)+'</p>');
-                    $('body').append(ligneDate);
-                    var lienCompet = $('<a href="competPlanning.html" class="rectangleCompet lien">')
-                        .append('<p>' + ini.name +'-'+ ini.startDate+'-'+ini.type+'/'+ini.capacity+'</p>');
-                    if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
-                    $('body').append(lienCompet);
-                }
-                $.each(oRep, function(i){
-                    if(i!='0'){
-                        if(oRep[i].status!='2'){
-                            var ligneDate = $('<li class="compet-jour">')
-                                .append('<p class="jour">'+ oRep[i].startDate.substr(0,10)+'</p>')
-                            $('body').append(ligneDate);
-                            date=oRep[i].startDate;
-                        }
-                        if(oRep[i].status!='2'){
-                            statut=oRep[i].status;
-                            var lienCompet = $('<a href="competPlanning.html" class="rectangleCompet lien">')
-                                .append('<p>Nom de la compétition : ' + oRep[i].name 
-                                    +'- Heure de début : '+ oRep[i].startDate.substr(10)
-                                    +'- Type de compétition : '+oRep[i].type
-                                    +'- Nombre de places : '+oRep[i].capacity+'</p>');
-                            if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
-                            $('body').append(lienCompet);
-                        } 
-                    }
-                })
-            }
-        },
-        error: function() {
-            console.log("erreur au chargement de la liste des competes");
-        }
-    });
-
-    //Florent
-    //requete pour liste compete resultat
-    $.ajax({
-        type: "GET",
-        url: baseURL + '/api/liste_compet',
-        success: function(oRep){
-            console.log("récupération liste compet");
-            console.log(oRep);
-            if(window.location.pathname=="/Projey/resultats.html"){ //adresse à modif en fonction du localhost
-                var ini=oRep[0];
-                var date=ini.startDate;
-                var statut=ini.status;
-
-                console.log(date);
-                console.log(statut);
-
-                if(statut=='2'){
-                    var ligneDate = $('<li class="compet-jour">')
-                        .append('<p class="jour">'+ini.startDate.substr(0,10)+'</p>');
-                    $('body').append(ligneDate);
-                    var lienCompet = $('<a href="competPlanning.html" class="rectangleCompet lien">')
-                        .append('<p>' + ini.name +'-'+ ini.startDate+'-'+ini.type+'/'+ini.capacity+'</p>');
-                    if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
-                    $('body').append(lienCompet);
-                }
-                $.each(oRep, function(i){
-                    if(i!='0'){
-                        if(oRep[i].status=='2' && oRep[i].startDate.substr(0,17)!=date.substr(0,17)){
-                            var ligneDate = $('<li class="compet-jour">')
-                                .append('<p class="jour">'+ oRep[i].startDate.substr(0,10)+'</p>')
-                            $('body').append(ligneDate);
-                            date=oRep[i].startDate;
-                        }
-                        if(oRep[i].status=='2'){
-                            statut=oRep[i].status;
-                                var lienCompet = $('<a href="competPlanning.html" class="rectangleCompet lien">')
-                                    .append('<p>Nom de la compétition : ' + oRep[i].name 
-                                        +'- Heure de début : '+ oRep[i].startDate.substr(10)
-                                        +'- Type de compétition : '+oRep[i].type
-                                        +'- Nombre de places : '+oRep[i].capacity+'</p>');
-                                if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
-                                $('body').append(lienCompet);
-                            }
-                    }
-                })
-            }
-
-        },
-    });
-    //fin des requetes de Florent
 })  
+//deconnexion profil emiliev2
+$("#btnDeconnexion").click(function() {
+    console.log("click deconnexion");
+    sessionStorage.clear();
+    window.location.replace("index.html");
+});

@@ -50,25 +50,27 @@
     
     <div class="mrgLeft">
         <!-- badge si admin -->
-        <input type="button" id="btnAdmin1" class="button lightBluebckg black" value="Admin">
-        <p class="cache green" id="mssgModif"> Modifications effectuées </p>
+        <p class="equipe">Admin</p>
+        <input type="button" id="btnAdmin1" class="button lightBluebckg black" value="Donner droits administrateur">
+     </div>   
+     <p class="cache green" id="mssgModif"> Modifications effectuées </p>
 
-    </div>
+    
 
 
 <!-- zone du profil de base (palmares et infos) -->
     <div class="profilStandard">
     <!-- zone du palmares -->
         <div class="palmares">
-            <h2>Palmares</h2>
-            <div class="display:flex;">
-                <div class="piechart">
+            <h2>Palmares des matchs</h2>
+            <div>
+                <div class="piechartmatchs">
                     <div class="cercle"></div>
                 </div>
                 <p class="legend lightBluebckg"> Victoires </p>
                 <p class="legend darkBlue2bckg"> Défaites </p>
             </div>
-            <input type="button" class="button darkBlue2bckg" id="btnConfirmerTournoi" value="Tournois à confirmer">
+            <button class="button darkBlue2bckg" id="btnConfirmerTournoi"> <p class="alerte">6</p> Tournoi(s) à confirmer</button>
         </div>
     <!-- zone des infos -->
         <div>
@@ -79,6 +81,8 @@
             <p>Prochaine compétition: Aucune</p>
             <input type="button" class="button darkBlue2bckg" id="btnModif" value="Modifier les infos">
             <input type="button" class="button darkBlue2bckg" id="btnCrea" value="Creer compétition">
+            <input type="button" class="button darkBlue2bckg" id="btnDeconnexion" value="Deconnexion">
+
         </div>
     </div>
 
