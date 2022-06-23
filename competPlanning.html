@@ -13,32 +13,23 @@
     <script src="js/jquery-ui.js"></script>
     <script src="js/script.js"></script>
 </head>
-
+ 
 <body>
 
 <!-- header -->
-<header class="header flex-container">
+<header class="flex-container header">
     <div class="flex-container">
-        <img src="images/logo.png" alt="Logo du site" width="10%" class="logo">
+        <img src="images/logo.png" alt="Logo du site" width="10%">
         <div class="menu">
             <li><a href="index.html" class="lien">Accueil</a></li>
             <li><a href="planning.html" class="lien lightBlue">Planning</a></li>
             <li><a href="resultats.html" class="lien">Résultats</a></li>
         </div>
     </div>
-
-    <!-- btn connexion si pas connecté -->
-    <input type="button" id="btnConnexion" class="button darkBlue2bckg" value="S'inscrire/Se connecter"/>
-
-    <!-- onglet profil si connecté -->
-    <div class="profilNotif">
-        <a href="./profil.html" class="profil lien" id="btnProfil">
-            <p>Profil</p>
-            <img src="images/pdp.webp" alt="photo de profil" class="pdp">
-
-        </a>
-        <p id="notifHautNombre" class="notification"></p>
-    </div>
+    <a href="profil.html" class="profil lien">
+        <p>Profil</p>
+        <img src="images/pdp.webp" alt="photo de profil" class="pdp">
+    </a>
 </header>
 
 <!-- banniere + photo de profil tournoi - rajouter css -->
@@ -55,29 +46,25 @@
 
 </div>
 
-<div class="centretitre"><h2>Nom compétition</h2></div>
+<div class="centretitre"><h2 id="nomCompetitionCompetPlanning">Nom compétition</h2></div>
 
 
 <!-- barre nav -->
 <div class="menu centre">
     <li><p class="lienResume pointer">Résumé</p></li>
-    <li><p class="lienResultats pointer">Planning</p></li>
+    <li><p class="lienPlanning pointer">Planning</p></li>
     <li><p class="lienReglement pointer">Règlement</p></li>
     <li><p class="lienGestion pointer">Gestion</p></li>
 </div>
 
-<!--messages-->
-<div><p class="centretitre cache green" id="mssgInscription">Votre équipe est inscrite!</p>
-    <p class="centretitre cache green" id="mssgDesinscription">Votre désinscription est confirmée</p>
-</div>
 <!-- si résumé -->
 <div class="partieResume">
-    <p class="centretitre">Date du tournoi : </p>
-    <p class="centretitre">Heure du début : </p>
-    <p class="centretitre">Nombre de place équipe : </p>
-    <p class="centretitre">Place restante : </p>
-    <p class="centretitre">Type de tournoi : </p>
-    <p class="centretitre">Statut : </p>
+    <p id="dateCompetInfo" class="centretitre">Date du tournoi : </p>
+    <p id="heureCompetInfo" class="centretitre">Heure du début : </p>
+    <p id="effectifCompetInfo" class="centretitre">Nombre de place équipe : </p>
+    <p id="placeRestanteCompetInfo" class="centretitre">Place restante : </p>
+    <p id="typeCompetInfo" class="centretitre">Type de tournoi : </p>
+    <p id="statutCompetInfo" class="centretitre">Statut : </p>
     <div style = "text-align: center;">
         <!-- choisir le bouton en fonction de l'utilisateur : est-il dans une équipe inscrite? -->
         <input type="button" id="btnInscriptionEquipe" class="centre button darkBlue2bckg" value="Inscrire mon équipe">
@@ -85,9 +72,9 @@
     </div>
 </div>
 
-<!-- si résultats -->
-<div class="partieResultats">
-    <li class="compet-jour">
+<!-- si planning -->
+<div class="partiePlanning">
+    <!-- <li class="compet-jour">
         <p class="jour">Mercredi 22 juin</p>
         <a href="#" class="rectangleCompet lien">
             <p>Phase 1 - équipe 1 - équipe 2 - BO1 - Heure approximative du début : 20h</p>
@@ -101,17 +88,19 @@
         <a href="#" class="rectangleCompet lien">
             <p>Phase 1 - équipe 1 - équipe 2 - BO1 - Heure approximative du début : 20h</p>
         </a>
-    </li>
-</div>
+    </li> -->
+    <h2 id="planningCompetInfo" class="centretitre"></h2>
+</div> 
 
 
 <!-- si règlement -->
 <div id="reglement" class="partieReglement">
     <h1 class="centretitre">Reglement</h1>
     <div>
-        <h4 class="centretitre">Règle 1: tous les membres de chaque équipe doivent posséder discord</h4>
+        <p id="reglementCompetInfo" class="centretitre"></p>
+        <!-- <h4 class="centretitre">Règle 1: tous les membres de chaque équipe doivent posséder discord</h4>
         <h4 class="centretitre">Règle 2: les équipes sont composées de 5 membres</h4>
-        <h4 class="centretitre">Règle 3: ...</h4>
+        <h4 class="centretitre">Règle 3: ...</h4> -->
     </div>
 </div>
 
@@ -122,15 +111,15 @@
         <!-- badge si admin -->
         <input type="button" id="btnAdmin2" class="button lightBluebckg black" value="Admin">
     </div>
-    <div><p class="centretitre">Match en cours : quart de finale</p>
+    <div class="enCours"><p class="centretitre">Match en cours : quart de finale</p>
         <p class="centretitre">Equipe adverse : équipe 2</p>
         <p class="centretitre">Heure début : 22h</p>
         <p class="centretitre">discord (obligatoire) :</p></div>
-    <div><p class="centretitre">Match en cours : quart de finale</p>
+    <div class="fini"><p class="centretitre">Match en cours : quart de finale</p>
         <p class="centretitre">Equipe adverse : équipe 2</p>
         <p class="centretitre">Heure début : 22h</p>
     <p class="centretitre">discord (obligatoire) :</p></div>
-    <div><p class="centretitre">vous avez perdu,</p>
+    <div><p id="msgVictoireDefaire" class="centretitre">vous avez perdu,</p>
         <p class="centretitre">dommage :’(</p>
         <p class="centretitre">N’hésitez pas à retenter votre chance sur un autre tournoi 
         et à revenir plus tard pour découvrir le grand gagnant !</p></div>
@@ -176,44 +165,38 @@
 </div>
    
 
+<!-- florent v2 -->
 <!-- gestion - admin - validation score -->
-<div id="validationScore">
+<!-- <div id="validationScore">
     <h3 class="centretitre bold">Gestion des scores</h3>
-    
     <li class="compet-jour">
-
-        <p class="green cache" id="mssgScore1">Score validé</p>
-        <div id="compet1">
         <a href="#" class="rectangleCompet lien">
             <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
         </a>
-        <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
-        <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
-        <input type="button" value="ok" class="button lightBluebckg" id="btnOk1">
+        <div style="display:none;">
+            <p>Equipe 1</p><input type="text">
+            <p>Equipe 2</p><input type="text">
+            <input type="button" class="okScore button lightBluebckg" value="ok">
         </div>
-
-        <p class="green cache" id="mssgScore2">Score validé</p>
-        <div id="compet2">
         <a href="#" class="rectangleCompet lien">
             <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
         </a>
-        <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
-        <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
-        <input type="button" value="ok" class="button lightBluebckg" id="btnOk2">
+        <div style="display:none;">
+            <p>Equipe 1</p><input type="text">
+            <p>Equipe 2</p><input type="text">
+            <input type="button" class="okScore button lightBluebckg" value="ok">
         </div>
-
-    
-        <p class=" green cache" id="mssgScore3">Score validé</p>
-        <div id="compet3">    
-            <a href="#" class="rectangleCompet lien">
+        <a href="#" class="rectangleCompet lien">
             <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
-            </a>
-            <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
-            <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
-            <input type="button" id="okScore" class="button lightBluebckg" value="ok" id="btnOk3">
+        </a>
+        <div style="display:none;">
+            <p>Equipe 1</p><input type="text">
+            <p>Equipe 2</p><input type="text">
+            <input type="button" class="okScore button lightBluebckg" value="ok">
         </div>
+        
     </li>
-</div>
+</div> -->
 
 <!-- inscription -->
 <div id="inscrireEquipe" class="mrgLeft">
@@ -225,9 +208,9 @@
     <p>Joueur 3</p><input type="text" class="textInputModif">
     <p>Joueur 4</p><input type="text" class="textInputModif">
     <p>Joueur 5</p><input type="text" class="textInputModif">
-    <input type="button" class="button darkBlue2bckg" value="Inscrire mon equipe" id="btnInscription">
+    <input type="button" class="button darkBlue2bckg" value="Inscrire mon equipe">
     <input type="button"  id="btnAnnulerInscription" class="button darkBlue2bckg" value="Annuler">
-    <p class="alerte cache">Erreur ! le nom d’équipe est déjà pris - joueur 4 et 5 n’existe pas</p>
+    <p class="alerte">Erreur ! le nom d’équipe est déjà pris - joueur 4 et 5 n’existe pas</p>
     <p>Attention chaque joueur devra valider sur son profil sa participation- si un joueur refuse ou ne valide pas l’inscription sera supprimée</p>
 </div>
 

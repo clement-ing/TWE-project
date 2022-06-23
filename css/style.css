@@ -174,20 +174,14 @@ body{
   text-align: left;
 }
 
-/*Melina v3*/
 .rectangleCompet{
   background-color: #116688 ;
   border-radius: 5px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-top: 1em;
   padding: 0 1em 0 1em;
-  height:3em;
-  font-size:0.9em;
-  margin-left:2em;
-  width: 92%;
-  border: none;
-  font-family: 'Poppins';
 }
 
 
@@ -437,11 +431,9 @@ background-color: #1E1824;
   border:none;
 }*/
 
-/*Melinav3*/
 .btnChoix{
   width: 90%;
   display: flex;
-  margin-left: 2em;
 }
 
 .marge{
@@ -471,7 +463,7 @@ background-color: #1E1824;
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: left;
+  justify-content: space-evenly;
 }
 
 .profilNotif{
@@ -531,6 +523,11 @@ background-color: #1E1824;
   display: none;
 }
 
+/* Florent v2 */
+.partiePlanning{ 
+  display: none;
+}
+
 #gestion{
   display: none
 }
@@ -554,8 +551,7 @@ background-color: #1E1824;
 .profil + .lien{
   display: none;
 }
-/*melinav3*/
-.espace{
-  width:1em;
-  background-color: #1E1824;
+
+#btnAdmin2{
+  display: none;
 }

@@ -1,28 +1,41 @@
 var baseURL = "https://mini.tikroko.ovh/~webcent" // Florent
 
 $(document).ready(function(){
-
     if (sessionStorage.getItem('token')==undefined){
         $('#btnConnexion').show();
         $('#btnProfil').hide();
-        $('#notifHautNombre').hide();
     }
     else    {
         $('#btnConnexion').hide();
         $('#btnProfil').show();
-        if (sessionStorage.getItem('notifnombre')==0){
-            console.log("testnotifrouge2");
-            $('#notifHautNombre').hide();
-        }
-        else {
-            $('#notifhaut').text(sessionStorage.getItem('notifnombre'));
-            $('#notifhaut').show();
-        }
     }
 
-        
+    //Florent V2
+    if (window.location.pathname=="/competPlanning.html"){ //adresse à modif en fonction de son serveur local
+        console.log("info profil");
+        $("#nomCompetitionCompetPlanning").text(sessionStorage.getItem('nomTournoi'));
+        $("#dateCompetInfo").text("Date : " + sessionStorage.getItem('dateTournoi').substring(0,10));
+        $("#heureCompetInfo").text("Heure de début : " + sessionStorage.getItem('dateTournoi').substring(10,16));
+        $("#effectifCompetInfo").text("Nombre maximale d'équipes : " + sessionStorage.getItem('capaciteTournoi'));
+        $("#placeRestanteCompetInfo").text("Places restantes : " + (parseInt(sessionStorage.getItem('capaciteTournoi'))-parseInt(sessionStorage.getItem('placesrestantesTournoi'))).toString());
+        $("#typeCompetInfo").text("Type de tournoi : " + sessionStorage.getItem('typeTournoi'));
+        $("#statutCompetInfo").text("Statut : " + sessionStorage.getItem('statutTournoi'));
+    }
+
+    if (window.location.pathname=="/competResultat.html"){ //adresse à modif en fonction de son serveur local
+        console.log("info profil");
+        $("#nomCompetitionCompetPlanning").text(sessionStorage.getItem('nomTournoi'));
+        $("#gagnantTournoi").text("Equipe gagnante : " + sessionStorage.getItem('gagnantTournoi'));
+        $("#dateCompetInfo").text("Date : " + sessionStorage.getItem('dateTournoi').substring(0,10));
+        $("#heureCompetInfo").text("Heure de début : " + sessionStorage.getItem('dateTournoi').substring(10,16));
+        $("#placeRestanteCompetInfo").text("Nombre d'équipes inscrites: " + sessionStorage.getItem('placesrestantesTournoi'));
+        $("#typeCompetInfo").text("Type de tournoi : " + sessionStorage.getItem('typeTournoi'));
+        $("#statutCompetInfo").text("Statut : " + sessionStorage.getItem('statutTournoi'));
+    }
+    
+         
     //page profil : rajout du pseudo de l'utilisateur et email emiliev2
-    if (window.location.pathname=="/Applications/MAMP/htdocs/00h36/profil.html"){ //adresse à modif en fonction de son serveur local
+    if (window.location.pathname=="/profil.html"){ //adresse à modif en fonction de son serveur local
         console.log("info profil");
         $("#pseudoProfilInfo").text("Pseudo : " + sessionStorage.getItem('pseudo'));
         $("#emailProfilInfo").text("Email : " + sessionStorage.getItem('email'));
@@ -49,58 +62,7 @@ $(document).ready(function(){
             },
             dataType: "json"
         });
-        if (sessionStorage.getItem('isAdmin')==0){
-            $('#btnAdmin1').hide();
-        }
 
-        //notif
-        $("notifbas").text(sessionStorage.getItem('notifnombre'))
-
-        //tous les users du site pour admin :
-        if (sessionStorage.getItem('isAdmin')==1){
-            $.ajax({
-                type: "GET",
-                url: "https://mini.tikroko.ovh/~webcent/api/liste_utilisateurs",
-                data: {"debutPseudo": ""},
-                success: function (oRep) {
-                    console.log("liste user");
-                    for (i = 1; i < oRep.length; i++) {
-                        //console.log(oRep[i].pseudo);
-                        $("#listeUser").append("<option value=" + i + ">" + oRep[i].pseudo + "</option>");
-                    }
-                },
-                error: function () {
-                    console.log("erreur liste user");
-                },
-                dataType: "json"
-            });
-
-        }
-
-        $.ajax({
-            type: "GET",
-            url: "https://mini.tikroko.ovh/~webcent/api/utilisateur/stats",
-            data: {"idUtilisateur": sessionStorage.getItem('idUser')},
-            success: function (oRep) {
-                console.log("stat :" + oRep);
-                sessionStorage.setItem('nbMatch', oRep.nbMatch);
-                sessionStorage.setItem('nbMatchWin', oRep.nbMatchWin);
-                sessionStorage.setItem('nbCompet', oRep.nbCompet);
-                sessionStorage.setItem('nbCompetWin', oRep.nbCompetWin);
-                if (oRep==false){
-                    $("#competWinProfilInfo").text("Nombre compétition gagné : " + "aucune");
-                }
-                else {
-                    $("#competWinProfilInfo").text("Nombre compétition gagné : " + sessionStorage.getItem('nbCompetWin'));
-                }
-            },
-            error: function () {
-                console.log("erreur stat");
-            },
-            dataType: "json"
-        });
-
-        //pie chart <3
         //$("piechartMatch")
     }
 
@@ -108,7 +70,7 @@ $(document).ready(function(){
     .append('<h2>Connexion</h2>')
     .append($('<img src="./images/cross.jpg" class="croix">'))
     .append($(/*'<form action="">'
-        +*/'<input type="text" id="login" class="textInputModif" placeholder="Email"><br/>'
+        +*/'<input type="text" id="login" class="textInputModif" placeholder="Pseudo"><br/>'
         + '<input type="password" id="motDePasse" class="textInputModif" placeholder="Mot de passe"><br/>'
         + '<input type="button" id="btnConfirmerConnexion" class="button darkBluebckg" value="Se connecter">'))
     .append($('<div class="creation-compte">'
@@ -116,7 +78,7 @@ $(document).ready(function(){
         + '<a href="inscription.html" class="lien">'
             +'<input type="button" id="btnCreerCompte" class="button darkBlue2bckg" value="Créer mon compte">'
             +'</a></div>'))
-        .append($('<span id="feedbackco"></span>'))
+    .append($('<span id="#feedbackco"></span>'))
     .append($('<div class="paratext flex-container">'
         +'<p>Mentions légales</p><p>Politique de confidentialité</p></div>'))
     $('body').append(popup);
@@ -143,7 +105,7 @@ $(document).ready(function(){
             console.log("click close");
         }
     });
-    
+
     
     $("#btnConnexion").click(function(){
         console.log("click login");
@@ -168,32 +130,17 @@ $(document).ready(function(){
        //fonction inscription Emilie
        $("#btnConfirmerConnexion").click(function() {
         console.log("click confirmer connexion");
-        $('#feedbackco').empty();
         var login = $("#login").val();
         var passe = $("#motDePasse").val();
         var token = false;
         console.log("login: " + login + " passe: " + passe);
-
-        if (login == "" || login == " ") {
-               console.log("pseudo vide"); //rajouter feedback erreur
-               //Melinav3
-               $('#feedbackco').append('<p class="alerte">*Pseudo maquant</p>');
-               return false;}
-
-        else if (passe == "" || passe == " ") {
-               console.log("mdp vide"); //rajouter feedback erreur
-               //Melinav3
-               $('#feedbackco').append('<p class="alerte">*Mot de passe maquant</p>');                return false;
-        }
-
+        //$("#feedback").hide(); //A rajouter si on a le temps
         $.ajax({
             type: "POST",
             url: "https://mini.tikroko.ovh/~webcent/api/authentification",
             data: {"pseudo": login, "mdp": passe},
             success: function (oRep) {
                 if (!oRep){
-                    //Melinav3
-                    $('#feedbackco').append('<p class="alerte">*Pseudo et/ou Mot de passe incorrect</p>');
                     return false;
                 }
                 console.log(oRep);
@@ -202,35 +149,10 @@ $(document).ready(function(){
                 sessionStorage.setItem('idUser', oRep.id);
                 sessionStorage.setItem('pseudo', oRep.pseudo);
                 sessionStorage.setItem('email', oRep.email);
-                sessionStorage.setItem('isAdmin', oRep.isAdmin);
+                sessionStorage.setItem('isAdmin', oRep.isAdmin)
                 $('#btnConnexion').hide();
                 $('#btnProfil').show();
                 $('#popupConnexion').hide();
-
-                $.ajax({
-                    type: "GET",
-                    url: "https://mini.tikroko.ovh/~webcent/api/liste_compet",
-                    data: {"idUtilisateur": sessionStorage.getItem('idUser'), "attenteValid": true},
-                    success: function (oRep) {
-                        console.log("attente validation" + (oRep));
-                        if (oRep==false){
-                            $('#notifhaut').hide();
-                            sessionStorage.setItem('notifnombre', 0);
-                            console.log("hide notif haut");
-                        }
-                        else {
-                            console.log(oRep.length);
-                            $('#notifhaut').text(oRep.length);
-                            sessionStorage.setItem('notifnombre', oRep.length);
-                            sessionStorage.setItem('notif', oRep);
-                        }
-                    },
-                    error: function () {
-                        console.log("erreur recup notif");
-
-                    },
-                    dataType: "json"
-                });
             },
             error: function () {
                 console.log("erreur");
@@ -263,13 +185,13 @@ $(document).ready(function(){
             console.log("pseudo vide"); //rajouter feedback erreur
             $('#feedback').append('<p class="alerte">*Pseudo maquant</p>');
             return false;
-        }
+        } 
         else if (email == "" || email == " ") {
             console.log("email vide"); //rajouter feedback erreur
             $('#feedback').append('<p class="alerte">*Email maquant</p>');
             return false;
-        }
-
+        } 
+        
         else if (mdp == "" || mdp == " ") {
             console.log("mdp vide"); //rajouter feedback erreur
             $('#feedback').append('<p class="alerte">*Mot de passe maquant</p>');
@@ -285,9 +207,9 @@ $(document).ready(function(){
             $('#feedback').append('<p class="alerte">*Il faut accepter les conditions générales d utilisation</p>');
             return false;
         }
-
+        
         //page competResultat : rajout du pseudo de l'utilisateur et email clementV2
-        if (window.location.pathname=="/Applications/MAMP/htdocs/00h36/competResultat.html"){ //adresse à modif en fonction de son serveur local
+        if (window.location.pathname=="/competResultat.html"){ //adresse à modif en fonction de son serveur local
             $("#showDate").text("date :" + sessionStorage.getItem('Gagnant'));
             console.log("info profil");
             $.ajax({
@@ -309,9 +231,9 @@ $(document).ready(function(){
                 }
             });
             $("#showDate").text("date :" + sessionStorage.getItem('Gagnant'));
-        }
-
-
+        }  
+       
+       
         //$("#feedback").hide(); //A rajouter si on a le temps
         console.log("avant requête ajax")
         $.ajax({
@@ -349,14 +271,11 @@ $(document).ready(function(){
     //profil reglage - modifier pseudo - emilie
     $("#btnConfirmerReglagePseudo").click(function() {
         console.log("click confirmer reglage");
-        $('#feedbackRegPseudo').empty();
         var pseudoNV = $("#pseudoReglage").val();
         console.log("pseudo: " + pseudoNV );
         //$("#feedback").hide(); //A rajouter si on a le temps
         if ($("#pseudoReglage").val().replace(/^\s+|\s+$/g, "").length == 0) {
             console.log("pseudo vide");
-            //Melinav3
-            $('#feedbackRegPseudo').append('<p class="alerte">*Pseudo vide</p>');
             return false;
         }
         else {
@@ -364,15 +283,8 @@ $(document).ready(function(){
                 type: "POST",
                 url: "https://mini.tikroko.ovh/~webcent/api/utilisateur/modification",
                 data: {"hash": sessionStorage.getItem('token'), "pseudo": pseudoNV},
-                success: function (oRep) {
-                    console.log(oRep);
-                    if (!oRep){
-                        $('#feedbackRegPseudo').append('<p class="alerte">*Pseudo déjà utilisé</p>');
-                        return false;}
-                    else {
-                        $('#feedbackRegPseudo').append('<p class="green" id="mssgModif"> Modification effectuée </p>');
-                        console.log("success");
-                    }
+                success: function () {
+                    console.log("success");
                     sessionStorage.setItem('pseudo', pseudoNV);
                     window.location.replace("profil.html");
                 },
@@ -389,11 +301,9 @@ $(document).ready(function(){
         console.log("click confirmer reglage");
         var emailNV = $("#emailReglage").val();
         console.log("email: " + emailNV);
-        $('#feedbackRegMail').empty();
         //$("#feedback").hide(); //A rajouter si on a le temps
         if ($("#emailReglage").val().replace(/^\s+|\s+$/g, "").length == 0) {
             console.log("email vide");
-            $('#feedbackRegMail').append('<p class="alerte">*E-mail vide</p>');
             return false;
         }
         else {
@@ -401,17 +311,8 @@ $(document).ready(function(){
                 type: "POST",
                 url: "https://mini.tikroko.ovh/~webcent/api/utilisateur/modification",
                 data: {"hash": sessionStorage.getItem('token'), "email": emailNV},
-                success: function (oRep) {
+                success: function () {
                     console.log("success");
-                    if(!oRep){
-                        console.log("mail utilisé");
-                        $('#feedbackRegMail').append('<p class="alerte">*E-mail déjà utilisé</p>');
-                        return false;
-                    }
-                    else {
-                        $('#feedbackRegMail').append('<p class="green" id="mssgModif"> Modification effectuée </p>');
-                        console.log("success");
-                    }
                     sessionStorage.setItem('email', emailNV);
                     window.location.replace("profil.html");
                 },
@@ -426,19 +327,16 @@ $(document).ready(function(){
     //profil reglage - modifier mdp - emilie
     $("#btnConfirmerReglageMdp").click(function() {
         console.log("click confirmer reglage");
-        $('#feedbackRegMdp').empty();
         var passeNV = $("#mdpReglage").val();
         var passeConfirmNV = $("#mdpConfirmationReglage").val();
         console.log(" passe: " + passeNV + " passe conf: " + passeConfirmNV);
         //$("#feedback").hide(); //A rajouter si on a le temps
         if (passeNV != passeConfirmNV) {
             console.log("mdp different mdpConfirmation");
-            $('#feedbackRegMdp').append('<p class="alerte">*Mots de passe différents</p>');
             return false;
         }
         if ($("#mdpReglage").val().replace(/^\s+|\s+$/g, "").length == 0) {
             console.log("mdp vide");
-            $('#feedbackRegMdp').append('<p class="alerte">*Mot(s) de passe vide</p>');
             return false;
         }
         else {
@@ -449,7 +347,6 @@ $(document).ready(function(){
                 success: function () {
                     console.log("success");
                     sessionStorage.setItem('mdp', passeNV);
-                    $('#feedbackRegMdp').append('<p class="green">Modification réussie</p>');
                     window.location.replace("profil.html");
                 },
                 error: function () {
@@ -459,69 +356,6 @@ $(document).ready(function(){
             });
         }
     });
-
-    //creation de tournoi - emiliev3
-    $("#btnCreationTournoi").click(function() {
-        console.log("click confirmer tournoi");
-        $('#feedbackCrea').empty();
-        var nom = $("#nomTournoi").val();
-        var type = $("#typeTournoi").val();
-        var date = $("#dateTournoi").val();
-        var heure = $("#heureTournoi").val();
-        var nombreEquipe = $("#nombreEquipeTournoi").val();
-        var discord = $("#discordTournoi").val();
-        var reglement = $("#reglementTournoi").val();
-        var bo = $("#boTournoi").val();
-        console.log("hash " + sessionStorage.getItem('token') + " nom " + nom + " dateDebut " + date + " nbEquipes " + nombreEquipe + " discord " + discord + " reglement " + reglement + " type " + type + " bo " + bo);
-        if ($("#nomTournoi").val().replace(/^\s+|\s+$/g, "").length == 0) {
-            console.log("nom vide");
-            $('#feedbackCrea').append('<p class="alerte"> *Nom du tournoi manquant </p>');
-            return false;
-        }
-        else if ($("#dateTournoi").val().replace(/^\s+|\s+$/g, "").length == 0) {
-            console.log("date vide");
-            $('#feedbackCrea').append('<p class="alerte"> *Date du tournoi manquant </p>');
-            return false;
-        }
-        else if ($("#heureTournoi").val().replace(/^\s+|\s+$/g, "").length == 0) {
-            console.log("heure vide");
-            $('#feedbackCrea').append('<p class="alerte"> *Heure du tournoi manquant </p>');
-            return false;
-        }
-        else if ($("#discordTournoi").val().replace(/^\s+|\s+$/g, "").length == 0) {
-            console.log("discord vide");
-            $('#feedbackCrea').append('<p class="alerte"> *Discord manquant </p>');
-            return false;
-        }
-        else if ($("#reglementTournoi").val().replace(/^\s+|\s+$/g, "").length == 0) {
-            console.log("reglement vide");
-            $('#feedbackCrea').append('<p class="alerte"> *Règlement du tournoi manquant </p>');
-            return false;
-        }
-        else if (type==0){
-            console.log("fonction pas dev");
-            $('#feedbackCrea').append('<p class="alerte"> *Fonctionnalité championnat pas encore disponible </p>');
-            return false;
-        }
-        else {
-            console.log("avant ajax");
-            $.ajax({
-                type: "POST",
-                url: "https://mini.tikroko.ovh/~webcent/api/creation_compet",
-                data: {"hash": sessionStorage.getItem('token'), "nom": nom, "dateDebut": date, "nbEquipes": nombreEquipe, "discord": discord, "reglement": reglement, "type": type,"bo": bo},
-                success: function () {
-                    console.log("success");
-                    $('#feedbackCrea').append('<p class="green"> *Tournoi créé! </p>');
-                    window.location.replace("profil.html");
-                },
-                error: function () {
-                    console.log("erreur");
-                },
-                dataType: "json"
-            });
-        }
-    });
-
 
 });
 
@@ -592,6 +426,7 @@ $(function(){
     $resume=$('.partieResume');
     $reglement=$('.partieReglement');
     $resultats=$('.partieResultats');
+    $planning=$('.partiePlanning'); //Florentv2
     $gestion=$('#gestion');
     $valideCreation=$('#validationCreationTournoi');
     $valideScore=$('#validationScore');
@@ -616,61 +451,51 @@ $(function(){
         $valideCreation.hide();
         $valideScore.hide();
         $inscription.hide();
+        $planning.hide();
+        $('compet-jour').remove();
+        $('btnMatch').remove();
     })
 
-    $('.lienResultats').click(function(){
-        console.log("resultats");
-        $resume.hide();
-        $resultats.show();
-        $reglement.hide();
-        $gestion.hide();
-        $valideCreation.hide();
-        $valideScore.hide();
-        $inscription.hide();
-    })
-
-    $('.lienReglement').click(function(){
-        console.log("reglement");
-        $resume.hide();
-        $resultats.hide();
-        $reglement.show();
-        $gestion.hide();
-        $valideCreation.hide();
-        $valideScore.hide();
-        $inscription.hide();
-    })
-
-    $('.lienGestion').click(function(){
-        console.log("gestion non admin");
-        $resume.hide();
-        $resultats.hide();
-        $reglement.hide();
-        $gestion.show();
-        $valideCreation.hide();
-        $valideScore.hide();
-        $inscription.hide();
-    })
-
-    $('#btnInscriptionEquipe').click(function(){
-        console.log("inscription equipe");
+    // Florent v2
+    if(sessionStorage.getItem('isAdmin')=='1'){
+        $('#btnAdmin2').show();
+    }
+    
+    //Florent v2. NOTE : ajout de $planning.hide(); sur tous les autre lien.click
+    $('.lienPlanning').click(function(){
+        console.log("resume");
         $resume.hide();
         $resultats.hide();
         $reglement.hide();
         $gestion.hide();
         $valideCreation.hide();
         $valideScore.hide();
-        $inscription.show();
-    })
-
-    $('#btnAnnulerInscription').click(function(){
-        console.log("annulation inscription equipe");
-        $resume.show();
-        $resultats.hide();
-        $reglement.hide();
-        $gestion.hide();
-        $valideCreation.hide();
-        $valideScore.hide();
         $inscription.hide();
+        $planning.show();
+        $.ajax({
+            type: "GET",
+            url: baseURL + '/api/competition/liste_matchs',
+            data:{'idCompet':sessionStorage.getItem('idTournoi')},
+            success: function(oRep){
+                if(window.location.pathname=="/competPlanning.html"){//adresse à modif en fonction du localhost
+                    console.log(oRep)
+                    console.log("ok")
+                    if(!oRep){
+                        $('#planningCompetInfo').text('Plus de matchs prévus pour cette compétition !');
+                    } else {
+                        var liste= $('<li class="compet-jour">')
+                            .append('<p class="jour">'+sessionStorage.getItem('startDate').substring(0,10)+'</p>')
+                        $('body').append(liste)
+                        $.each(oRep, function(i){
+                            var match=oRep[i];
+                            var rectangleMatch = $('<input type="button" name='+ match.id+' class="btnMatch rectangleCompet lien'
+                            +'value=Phase :'+match.id+'-'+match+'>')
+                            $('body').append(rectangleMatch);
+                        });
+                    };
+                }
+            }
+        });
     })
 
     $('#btnAdmin2').click(function(){
@@ -682,10 +507,140 @@ $(function(){
         $valideCreation.hide();
         $valideScore.show();
         $inscription.hide();
+        $planning.hide();
+
+        $.ajax({
+            type: "GET",
+            url: baseURL + '/api/competition/liste_matchs',
+            data:{'idCompet':sessionStorage.getItem('idTournoi')},
+            success: function(oRep){
+                if(window.location.pathname=="/competPlanning.html"){//adresse à modif en fonction du localhost
+                    console.log(oRep)
+                    console.log("ok")
+                    console.log(sessionStorage.getItem('idTournoi'))
+
+                    var liste= $('<li class="compet-jour">')
+                        .append('<p class="jour">'+sessionStorage.getItem('startDate')+'</p>')
+                    $('body').append(liste)
+
+                    if(!oRep){
+                        $('#planningCompetInfo').text('Plus de matchs prévus pour cette compétition !');
+                    } else{
+                        $.each(oRep, function(i){
+                            var match=oRep[i];
+                            var rectangleMatch = $('<input type="button" name='+ match.id+' class="btnMatch rectangleCompet lien'
+                            +'value=Phase :'+match.id+'-'+match+'>')
+                            rectangleMatch.append('<div style="display:none;">'
+                                +'<p>Equipe 1</p><input type="text">'
+                                +'<p>Equipe 2</p><input type="text">'
+                                +'<input type="button" class="okScore button lightBluebckg" value="ok"></div>')
+                            $('body').append(rectangleMatch);
+                        });
+                    }
+                }
+            }
+        });
+    })  
+
+    $('.btnMatch').click(function(){
+        sessionStorage.setItem('idMatch',this.name);
+        (this).children().show();
+        $.ajax({
+            type: "GET",
+            url: baseURL + '/api/match/equipes',
+            data:{'idMatch': sessionStorage.getItem('idMatch')},
+            success:function(oRep){
+                console.log("obtention des équipes ")
+            }
+        });
+    });
+
+        //florent v2
+        $('.okScore').click(function(){
+            // console.log("clique ok scores");
+            // $resume.hide();
+            // $resultats.hide();
+            // $reglement.hide();
+            // $gestion.show();
+            // $valideCreation.hide();
+            // $valideScore.hide();
+            // $inscription.hide();
+            // $planning.hide();
+           
+            // $.ajax({
+            //     var 
+            //     type: "POST",
+            //     url: baseURL + '/api/match/score',
+            //     data:{'hash': sessionStorage.getItem('token'),
+            //         'idMatch': sessionStorage.getItem('idMatch'),
+            //         'idEquipe1':
+            //         'idEquipe2':
+            //         'scoreEquipe1':
+            //         'scoreEquipe2':
+                    
+            //         sessionStorage.setItem('idUser', oRep.id);
+            //         sessionStorage.setItem('pseudo', oRep.pseudo);
+            //         sessionStorage.setItem('email', oRep.email);
+            //         sessionStorage.setItem('isAdmin', oRep.isAdmin)
+            //     },
+            //     success:function(oREp){
+    
+            //     }
+            // });
+        })
+
+    $('.lienResultats').click(function(){
+        console.log("resultats");
+        $resume.hide();
+        $resultats.show();
+        $reglement.hide();
+        $gestion.hide();
+        $valideCreation.hide();
+        $valideScore.hide();
+        $inscription.hide();
+        $planning.hide();
+        $.ajax({
+            type: "GET",
+            url: baseURL + '/api/competition/liste_matchs',
+            data:{'idCompet':sessionStorage.getItem('idTournoi')},
+            success: function(oRep){
+                if(window.location.pathname=="/competResultat.html"){//adresse à modif en fonction du localhost
+                    console.log(oRep)
+                    console.log("ok")
+                    if(!oRep){
+                        $('#planningCompetInfo').text('Plus de matchs prévus pour cette compétition !');
+                    } else {
+                        $('#jourInfoCompetResultat').text(sessionStorage.getItem('dateTournoi').substring(0,10))
+                        var enregistre = $('<div>');
+                        $.each(oRep, function(i){
+                            var match=oRep[i];
+                            var rectangleMatch = $('<input type="button" name='+ match.id+' class="btnMatch rectangleCompet lien"'
+                            +'value=Phase :'+match.id+'-'+match+'>');
+                            enregistre.append(rectangleMatch);
+                        });
+                        $('#listeMatchCoompetInfo').html(enregistre);
+                    };
+                }
+            }
+        });
+    })
+    
+
+    $('.lienReglement').click(function(){
+        console.log("reglement");
+        $resume.hide();
+        $resultats.hide();
+        $reglement.show();
+        $gestion.hide();
+        $valideCreation.hide();
+        $valideScore.hide();
+        $inscription.hide();
+        $planning.hide();
+        $("#reglementCompetInfo").text(sessionStorage.getItem('reglementTournoi'));
     })
 
-    $('#okScore').click(function(){
-        console.log("clique ok scores");
+    $('.lienGestion').click(function(){
+        console.log("gestion non admin");
         $resume.hide();
         $resultats.hide();
         $reglement.hide();
@@ -693,7 +648,35 @@ $(function(){
         $valideCreation.hide();
         $valideScore.hide();
         $inscription.hide();
+        $planning.hide();
+        
     })
+
+    $('#btnInscriptionEquipe').click(function(){
+        console.log("inscription equipe");
+        $resume.hide();
+        $resultats.hide();
+        $reglement.hide();
+        $gestion.hide();
+        $valideCreation.hide();
+        $valideScore.hide();
+        $inscription.show();
+        $planning.hide();
+    })
+
+    $('#btnAnnulerInscription').click(function(){
+        console.log("annulation inscription equipe");
+        $resume.show();
+        $resultats.hide();
+        $reglement.hide();
+        $gestion.hide();
+        $valideCreation.hide();
+        $valideScore.hide();
+        $inscription.hide();
+        $planning.hide();
+    })
+
+
     $('#btnInscription').click(function(){
         console.log("inscription équipe confirmée");
         $resume.show();
@@ -703,11 +686,12 @@ $(function(){
         $valideCreation.hide();
         $valideScore.hide();
         $inscription.hide();
+        $planning.hide();
         $messageInscription.fadeIn().delay(2000).fadeOut();
 
     })
     $('#confirmerDesinscription').click(function(){
-        console.log("desinscription équipe confirmée");
+        console.log("inscription équipe confirmée");
         $resume.show();
         $resultats.hide();
         $reglement.hide();
@@ -716,6 +700,7 @@ $(function(){
         $valideScore.hide();
         $inscription.hide();
         $popupdes.hide()
+        $planning.hide();
         $messageDesinscription.fadeIn().delay(2000).fadeOut();
 
     })
@@ -733,31 +718,14 @@ $(function(){
         $messageScore3.fadeIn().delay(2000).fadeOut();
         $compet3.hide();
     })
-
-    //emiliev3
     $('#btnValidationAdmin').click(function(){
-        var idUser = document.getElementById('listeUser').value;
-        console.log(idUser);
-        $.ajax({
-            type: "POST",
-            url: "https://mini.tikroko.ovh/~webcent/api/utilisateur/modification_admin",
-            data: {"hash": sessionStorage.getItem('token'),"idUtilisateur": idUser, "choix": 1},
-            success: function () {
-                console.log("success");
-                $messageAdmin.fadeIn().delay(2000).fadeOut();
-            },
-            error: function () {
-                console.log("erreur passage admin");
-            },
-            dataType: "json"
-        });
         $messageAdmin.fadeIn().delay(2000).fadeOut();
     })
 
     var $messageAccepterTournoi,$messageRefuserTournoi,$competition;
     $messageAccepterTournoi=$('.mssgAccepterTournoi');
     $messageRefuserTournoi=$('.mssgRefuserTournoi');
-    $competition=$('.competitionValide');
+    $competition=$('.competitionValide')
 
     $('#btnAccepterTournoi').click(function(){
         $messageAccepterTournoi.fadeIn().delay(2000).fadeOut();
@@ -779,7 +747,7 @@ $(function(){
         url: baseURL + '/api/liste_compet',
         success: function(oRep){
             console.log("récupération liste compet");
-            if(window.location.pathname=="/Applications/MAMP/htdocs/00h36/planning.html"){ //adresse à modif en fonction du localhost
+            if(window.location.pathname=="/planning.html"){ //adresse à modif en fonction du localhost
                 var ini=oRep[0];
                 var date=ini.startDate;
                 var statut=ini.status;
@@ -791,14 +759,16 @@ $(function(){
                     var ligneDate = $('<li class="compet-jour">')
                         .append('<p class="jour">'+ini.startDate.substr(0,10)+'</p>');
                     $('body').append(ligneDate);
-                    //Melinav3
-                    var lienCompet = $('<input type="button" name='+ ini.id+' value="'+ini.name +'-'+ ini.startDate+'-'+ini.type+'/'+ini.capacity+'" class="rectangleCompet lien">');
-                    if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
-                    $('body').append(lienCompet);
+                    var lienCompet = $('<input type="button" name='+ ini.id+' value="Nom de la compétition : '+ini.name 
+                    +'- Heure de début : '+ ini.startDate
+                    +' - Type de compétition : '+ini.type
+                    +" - Nombre maximale d'équipes :"+ini.capacity+'" class="rectangleCompet lien"' 
+                    +'onclick="setIdTournoi(this.name,' + "'competPlanning.html')" +';">');
+                     $('body').append(lienCompet);
                 }
                 $.each(oRep, function(i){
                     if(i!='0'){
-                        if(oRep[i].status!='2'){
+                        if(oRep[i].status!='2' && oRep[i].startDate.substr(0,14)!=date.substr(0,14)){
                             var ligneDate = $('<li class="compet-jour">')
                                 .append('<p class="jour">'+ oRep[i].startDate.substr(0,10)+'</p>')
                             $('body').append(ligneDate);
@@ -806,11 +776,14 @@ $(function(){
                         }
                         if(oRep[i].status!='2'){
                             statut=oRep[i].status;
-                            //Melinav3
-                            var lienCompet = $('<input type="button" name='+ ini.id+' value="Nom de la compétition :' + oRep[i].name
-                                +'- Heure de début : '+ oRep[i].startDate.substr(10)
-                                +'- Nombre de places : '+oRep[i].capacity+'" class="rectangleCompet lien">');
-                            if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
+                            var lienCompet=$('<input type="button" name='+ oRep[i].id+' class="rectangleCompet lien" value="Nom de la compétition : ' + oRep[i].name 
+                            +'- Heure de début : '+ oRep[i].startDate.substr(10)
+                            +'- Type de compétition : '+oRep[i].type
+                            +" - Nombre maximale d'équipes :"+oRep[i].capacity+'" onclick="setIdTournoi(this.name,' + "'competPlanning.html')" +';">');
+                            if(statut=='1') {
+                                lienCompet.value+='- En cours ';
+                                lienCompet.className+="en-cours";
+                            }
                             $('body').append(lienCompet);
                         } 
                     }
@@ -830,7 +803,7 @@ $(function(){
         success: function(oRep){
             console.log("récupération liste compet");
             console.log(oRep);
-            if(window.location.pathname=="/Applications/MAMP/htdocs/00h36/resultats.html"){ //adresse à modif en fonction du localhost
+            if(window.location.pathname=="/resultats.html"){ //adresse à modif en fonction du localhost
                 var ini=oRep[0];
                 var date=ini.startDate;
                 var statut=ini.status;
@@ -842,28 +815,28 @@ $(function(){
                     var ligneDate = $('<li class="compet-jour">')
                         .append('<p class="jour">'+ini.startDate.substr(0,10)+'</p>');
                     $('body').append(ligneDate);
-                    var lienCompet=$('<input type="button" name='+ ini.id+' class="rectangleCompet lien" value="' + ini.name +'-'+ ini.startDate+'-'+ini.type+'/'+ini.capacity+'">')
-
-                    if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
+                    var lienCompet = $('<input type="button" name='+ ini.id+' value="Nom de la compétition : '+ini.name 
+                        +'- Heure de début : '+ ini.startDate
+                        +' - Type de compétition : '+ini.type
+                        +" - Nombre maximale d'équipes :"+ini.capacity+'" class="rectangleCompet lien"' 
+                        +'onclick="setIdTournoi(this.name,' + "'competResultat.html')" +';">');
                     $('body').append(lienCompet);
                 }
                 $.each(oRep, function(i){
                     if(i!='0'){
-                        if(oRep[i].status=='2' && oRep[i].startDate.substr(0,17)!=date.substr(0,17)){
+                        if(oRep[i].status=='2' && oRep[i].startDate.substr(0,10)!=date.substr(0,10)){
                             var ligneDate = $('<li class="compet-jour">')
                                 .append('<p class="jour">'+ oRep[i].startDate.substr(0,10)+'</p>')
                             $('body').append(ligneDate);
                             date=oRep[i].startDate;
                         }
                         if(oRep[i].status=='2'){
-                            statut=oRep[i].status;
-                            //Melinav3
-                            var lienCompet=$('<input type="button" name='+ oRep[i].id+' class="rectangleCompet lien" value="Nom de la compétition : ' + oRep[i].name
-                                +'- Heure de début : '+ oRep[i].startDate.substr(10)
-                                +'- Nombre de places : '+oRep[i].capacity+'">');
-                                if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
-                                $('body').append(lienCompet);
-                            }
+                            var lienCompet=$('<input type="button" name='+ oRep[i].id+' class="rectangleCompet lien" value="Nom de la compétition : ' + oRep[i].name 
+                            +' - Heure de début : '+ oRep[i].startDate.substr(10)
+                            +' - Type de compétition : '+oRep[i].type
+                            +" - Nombre maximale d'équipes :"+oRep[i].capacity+'" onclick="setIdTournoi(this.name,' + "'competResultat.html')" +';">');
+                            $('body').append(lienCompet);
+                        }
                     }
                 })
             }
@@ -877,4 +850,61 @@ $("#btnDeconnexion").click(function() {
     console.log("click deconnexion");
     sessionStorage.clear();
     window.location.replace("index.html");
+
+
+    
 });
+
+// clementv4
+function setIdTournoi(idTournoi,page){
+    console.log("setIdTournoi");
+    console.log(idTournoi);
+    $.ajax({
+        type:"GET",
+        url:baseURL+'/api/competition',
+        data:{'idCompet':parseInt(idTournoi)},
+        success:function(oRep){
+            console.log(oRep);
+            sessionStorage.setItem("idTournoi", idTournoi);
+            sessionStorage.setItem("nomTournoi", oRep.name);
+            sessionStorage.setItem("idAdminTournoi", oRep.idAdmin);
+            sessionStorage.setItem("dateTournoi", oRep.startDate);
+            sessionStorage.setItem("capaciteTournoi", oRep.capacity);
+            sessionStorage.setItem("statutTournoi", oRep.status);
+            sessionStorage.setItem("typeTournoi", oRep.type);
+            sessionStorage.setItem("reglementTournoi", oRep.reglement);
+            console.log("infos tournoi attribuées")
+        },
+        error:function(){
+            console.log("erreur à la recuperation des informations du tournoi")
+        },
+    });
+    $.ajax({
+        type:"GET",
+        url:baseURL+'/api/competition/nombre_equipes',
+        data:{'idCompet':idTournoi, 'verifValid':'1'},
+        success:function(oRep){
+            sessionStorage.setItem("placesrestantesTournoi", oRep);
+            console.log("gagnant tournoi attribué si existant")
+        },
+        error:function(){
+            console.log("erreur à la recuperation des informations du tournoi")
+        },
+    });
+    $.ajax({
+        type:"GET",
+        url:baseURL+'/api/gagnant_compet',
+        data:{'idCompet':idTournoi},
+        success:function(oRep){
+            sessionStorage.setItem("gagnantTournoi", oRep);
+            window.location.replace(page);
+        },
+        error:function(){
+            console.log("erreur à la recuperation des informations du tournoi")
+        },
+    });
+}
+
+
+
+    

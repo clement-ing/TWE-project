@@ -12,32 +12,25 @@
     <script src="js/jquery-ui.js"></script>
     <script src="js/script.js"></script>
 </head>
-
+ 
 <body>
 
 <!-- header -->
-<header class="header flex-container">
+<header class="flex-container header">
     <div class="flex-container">
-        <img src="images/logo.png" alt="Logo du site" width="10%" class="logo">
+        <img src="images/logo.png" alt="Logo du site" width="10%" class="logo"> 
         <div class="menu">
             <li><a href="index.html" class="lien">Accueil</a></li>
             <li><a href="planning.html" class="lien">Planning</a></li>
             <li><a href="resultats.html" class="lien lightBlue">Résultats</a></li>
         </div>
     </div>
-
-    <!-- btn connexion si pas connecté -->
+    <a href="./profil.html" class="profil lien" id="btnProfil">
+        <p>Profil</p>
+        <img src="images/pdp.webp" alt="photo de profil" class="pdp">
+        
+    </a>
     <input type="button" id="btnConnexion" class="button darkBlue2bckg" value="S'inscrire/Se connecter"/>
-
-    <!-- onglet profil si connecté -->
-    <div class="profilNotif">
-        <a href="./profil.html" class="profil lien" id="btnProfil">
-            <p>Profil</p>
-            <img src="images/pdp.webp" alt="photo de profil" class="pdp">
-
-        </a>
-        <p id="notifHautNombre" class="notification"></p>
-    </div>
 </header>
 
 <!-- banniere + photo de profil tournoi - rajouter css -->
@@ -47,13 +40,13 @@
    
     <div class="cerclePdp">
         <div class="cerclep"> 
-        <img src="images/pdp.webp" class="pdpBanniere" alt="photo de profil de joueur">
+        <img src="images/essai.jpg" class="pdpBanniere" alt="photo de profil de joueur">
     </div>
     </div>
 
 </div>
 
-<div class="centretitre"><h2>Nom compétition</h2></div>
+<div class="centretitre"><h2 id="nomCompetitionCompetPlanning">Nom compétition</h2></div>
 
 <!-- barre nav -->
 <div class="menu centre">
@@ -64,19 +57,20 @@
 
 <!-- si résumé -->
 <div class="partieResume">
-    <p class="centretitre">Equipe gagnante: </p>
-    <p class="centretitre">Date du tournoi:</p>
-    <p class="centretitre">Heure du début:</p>
-    <p class="centretitre">Nombre d'équpe inscrite:</p>
-    <p class="centretitre">Type de tournoi:</p>
-    <p class="centretitre">Statut:</p>
+    <p id="gagnantTournoi" class="centretitre">Equipe gagnante: </p>
+    <p id="dateCompetInfo" class="centretitre">Date du tournoi:</p>
+    <p id="heureCompetInfo" class="centretitre">Heure du début:</p>
+    <p id="placeRestanteCompetInfo" class="centretitre">Nombre d'équipe inscrite:</p>
+    <p id="typeCompetInfo" class="centretitre">Type de tournoi:</p>
+    <p id="statutCompetInfo" class="centretitre">Statut:</p>
 </div>
+
 
 <!-- si résultats -->
 <div class="partieResultats">
     <li class="compet-jour">
-        <p class="jour">Mercredi 22 juin</p>
-        <a href="#" class="rectangleCompet lien">
+        <p id="jourInfoCompetResultat" class="jour">Mercredi 22 juin</p>
+        <!-- <a href="#" class="rectangleCompet lien">
             <p>Phase 4 - équipe 1: 3 - équipe 2: 2 - BO5 </p>
         </a>
         <a href="#" class="rectangleCompet lien">
@@ -87,15 +81,21 @@
         </a>
         <a href="#" class="rectangleCompet lien">
             <p>Phase 2  - équipe 1: 1 - équipe 2: 0 - BO1</p>
-        </a>
-    </li>
+        </a>-->
+    </li> 
+    <h2 id="resultatCompetInfo" class="centretitre"></h2>
+    <div id="listeMatchCoompetInfo"></div>
 </div>
 
 <!-- si règlement -->
-<div class="partieReglement">
-    <h4 class="centretitre">Règle 1: tous les membres de chaque équipe doivent posséder discord</h4>
+<div id="reglement" class="partieReglement">
+    <h1 class="centretitre">Reglement</h1>
+    <div>
+        <p id="reglementCompetInfo" class="centretitre"></p>
+    <!-- <h4 class="centretitre">Règle 1: tous les membres de chaque équipe doivent posséder discord</h4>
     <h4 class="centretitre">Règle 2: les équipes sont composées de 5 membres</h4>
-    <h4 class="centretitre">Règle 3: ...</h4>
+    <h4 class="centretitre">Règle 3: ...</h4> -->
+    </div>
 </div>
 
 </body>
