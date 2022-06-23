@@ -87,13 +87,13 @@ body{
 /* style de police */
 
 .semiBold{
-  font-weight:600px;
+  font-weight:600;
 }
 .regular{
-  font-weight:400px;
+  font-weight:400;
 }
 .bold{
-  font-weight:700px;
+  font-weight:700;
 }
 
 /* Menu header */
