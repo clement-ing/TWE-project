@@ -24,6 +24,34 @@ $(document).ready(function(){
         +'<p>Mentions légales</p><p>Politique de confidentialité</p></div>'))
     $('body').append(popup);
 
+
+    //page competResultat : rajout du pseudo de l'utilisateur et email clementV2
+    if (window.location.pathname=="/var/www/html/Projet-web/competResultat.html"){ //adresse à modif en fonction de son serveur local
+        $("#showDate").text("date :" + sessionStorage.getItem('Gagnant'));
+        console.log("info profil");
+        $.ajax({
+            url:"https://mini.tikroko.ovh/~webcent/api/gagnant_compet",
+            data: {"idCompet":"1"},
+            method: "GET",
+            dataType:"json",
+            success: function(response){
+                let data=JSON.stringify(response);
+                console.log(data);
+                // $("#showDate").text("date :" + sessionStorage.getItem('date'));
+                // sessionStorage.setItem("Gagnant :" + data);
+            },
+            error: function(error){
+                console.log("La requête s'est terminée en échec. Infos : " + JSON.stringify(error))
+            },
+            always: function(){
+                console.log("Requête effectuée");
+            }
+        });
+        $("#showDate").text("date :" + sessionStorage.getItem('Gagnant'));
+    }   
+
+
+
     var dialog = $("#popupConnexion").dialog({
         autoOpen: false,
         width: 600,
@@ -146,6 +174,10 @@ $(document).ready(function(){
     });
     
 });
+
+
+
+
 
 $(function(){
 
