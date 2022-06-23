@@ -1,3 +1,5 @@
+var baseURL = "https://mini.tikroko.ovh/~webcent" // Florent
+
 $(document).ready(function(){
     if (sessionStorage.getItem('token')==undefined){
         $('#btnConnexion').show();
@@ -161,6 +163,8 @@ $(document).ready(function(){
     });
     
 });
+
+
 
 $(function(){
 
@@ -391,6 +395,109 @@ $(function(){
         window.location.replace("./index.html")
     })
 })  
+
+// Florent
+    //requet liste compet planning
+    $.ajax({
+        type: "GET",
+        url: baseURL + '/api/liste_compet',
+        success: function(oRep){
+            console.log("récupération liste compet");
+            if(window.location.pathname=="/Projey/planning.html"){ //adresse à modif en fonction du localhost
+                var ini=oRep[0];
+                var date=ini.startDate;
+                var statut=ini.status;
+
+                console.log(date);
+                console.log(statut);
+  
+                if(statut!='2'){
+                    var ligneDate = $('<li class="compet-jour">')
+                        .append('<p class="jour">'+ini.startDate.substr(0,10)+'</p>');
+                    $('body').append(ligneDate);
+                    var lienCompet = $('<a href="competPlanning.html" class="rectangleCompet lien">')
+                        .append('<p>' + ini.name +'-'+ ini.startDate+'-'+ini.type+'/'+ini.capacity+'</p>');
+                    if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
+                    $('body').append(lienCompet);
+                }
+                $.each(oRep, function(i){
+                    if(i!='0'){
+                        if(oRep[i].status!='2'){
+                            var ligneDate = $('<li class="compet-jour">')
+                                .append('<p class="jour">'+ oRep[i].startDate.substr(0,10)+'</p>')
+                            $('body').append(ligneDate);
+                            date=oRep[i].startDate;
+                        }
+                        if(oRep[i].status!='2'){
+                            statut=oRep[i].status;
+                            var lienCompet = $('<a href="competPlanning.html" class="rectangleCompet lien">')
+                                .append('<p>Nom de la compétition : ' + oRep[i].name 
+                                    +'- Heure de début : '+ oRep[i].startDate.substr(10)
+                                    +'- Type de compétition : '+oRep[i].type
+                                    +'- Nombre de places : '+oRep[i].capacity+'</p>');
+                            if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
+                            $('body').append(lienCompet);
+                        } 
+                    }
+                })
+            }
+        },
+        error: function() {
+            console.log("erreur au chargement de la liste des competes");
+        }
+    });
+
+    //Florent
+    //requete pour liste compete resultat
+    $.ajax({
+        type: "GET",
+        url: baseURL + '/api/liste_compet',
+        success: function(oRep){
+            console.log("récupération liste compet");
+            console.log(oRep);
+            if(window.location.pathname=="/Projey/resultats.html"){ //adresse à modif en fonction du localhost
+                var ini=oRep[0];
+                var date=ini.startDate;
+                var statut=ini.status;
+
+                console.log(date);
+                console.log(statut);
+
+                if(statut=='2'){
+                    var ligneDate = $('<li class="compet-jour">')
+                        .append('<p class="jour">'+ini.startDate.substr(0,10)+'</p>');
+                    $('body').append(ligneDate);
+                    var lienCompet = $('<a href="competPlanning.html" class="rectangleCompet lien">')
+                        .append('<p>' + ini.name +'-'+ ini.startDate+'-'+ini.type+'/'+ini.capacity+'</p>');
+                    if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
+                    $('body').append(lienCompet);
+                }
+                $.each(oRep, function(i){
+                    if(i!='0'){
+                        if(oRep[i].status=='2' && oRep[i].startDate.substr(0,17)!=date.substr(0,17)){
+                            var ligneDate = $('<li class="compet-jour">')
+                                .append('<p class="jour">'+ oRep[i].startDate.substr(0,10)+'</p>')
+                            $('body').append(ligneDate);
+                            date=oRep[i].startDate;
+                        }
+                        if(oRep[i].status=='2'){
+                            statut=oRep[i].status;
+                                var lienCompet = $('<a href="competPlanning.html" class="rectangleCompet lien">')
+                                    .append('<p>Nom de la compétition : ' + oRep[i].name 
+                                        +'- Heure de début : '+ oRep[i].startDate.substr(10)
+                                        +'- Type de compétition : '+oRep[i].type
+                                        +'- Nombre de places : '+oRep[i].capacity+'</p>');
+                                if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
+                                $('body').append(lienCompet);
+                            }
+                    }
+                })
+            }
+
+        },
+    });
+    //fin des requetes de Florent
+
 //deconnexion profil emiliev2
 $("#btnDeconnexion").click(function() {
     console.log("click deconnexion");
