@@ -58,7 +58,7 @@
 </div>
 
 <!-- si résumé -->
-<div>
+<div id="resume">
     <p class="centretitre">Date du tournoi : </p>
     <p class="centretitre">Heure du début : </p>
     <p class="centretitre">Nombre de place équipe : </p>
@@ -73,7 +73,7 @@
 </div>
 
 <!-- si résultats -->
-<div>
+<div id="resultats">
     <li class="compet-jour">
         <p class="jour">Mercredi 22 juin</p>
         <a href="#" class="rectangleCompet lien">
@@ -103,9 +103,9 @@
 </div>
 
 <!-- gestion - non admin -->
-<h1 class="centretitre bold">Gestion</h1>
 
 <div id="gestion">
+    <h1 class="centretitre bold">Gestion</h1>
     <div><p class="centretitre">Match en cours : quart de finale</p>
         <p class="centretitre">Equipe adverse : équipe 2</p>
         <p class="centretitre">Heure début : 22h</p>
@@ -122,11 +122,10 @@
 
 <!-- gestion - admin - validation tournoi -->
 
-<h1 class="centretitre bold">Gestion Admin</h1>
-
-<h3 class="centretitre bold">Gestion des paramètres du tournoi</h3>
 
 <div id="gestionAdmin">
+    <h1 class="centretitre bold">Gestion Admin</h1>
+    <h3 class="centretitre bold">Gestion des paramètres du tournoi</h3>
     <p class="centretitre">Date du tournoi : 
         <input type="date" id="dateTournoi">
     </p>
@@ -156,50 +155,57 @@
         <input type="button" value="valider">
         <input type="button" value="annuler">
     </div>
+    <!-- gestion - admin - validation score -->
+    <div>
+        <h3 class="centretitre bold">Gestion des scores</h3>
+        <li class="compet-jour">
+            <a href="#" class="rectangleCompet lien">
+                <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
+            </a>
+            <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
+            <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
+            <div style="text-align: center;">
+                <input type="button" value="ok">
+            </div>
+            <a href="#" class="rectangleCompet lien">
+                <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
+            </a>
+            <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
+            <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
+            <div style="text-align: center;">
+                <input type="button" value="ok">
+            </div>
+            <a href="#" class="rectangleCompet lien">
+                <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
+            </a>
+            <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
+            <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
+            <div style="text-align: center;">
+                <input type="button" value="ok">
+            </div>
+            
+        </li>
+    </div>
 </div>
 
-<!-- gestion - admin - validation score -->
-
-<h3 class="centretitre bold">Gestion des scores</h3>
-
-
-<div>
-    <li class="compet-jour">
-        <a href="#" class="compet lien">
-            <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
-        </a>
-        <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
-        <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
-        <input type="button" value="ok">
-        <a href="#" class="compet lien">
-            <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
-        </a>
-        <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
-        <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
-        <input type="button" value="ok">
-        <a href="#" class="compet lien">
-            <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
-        </a>
-        <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
-        <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
-        <input type="button" value="ok">
-    </li>
-</div>
 
 <!-- inscription -->
 
 
-<div>
-    <p>Equipe existante</p><select><option value="equipe1"></option></select>
-    <h3>ou</h3>
-    <p>Nom equipe</p><input type="text">
-    <p>Joueur 1</p><input type="text">
-    <p>Joueur 2</p><input type="text">
-    <p>Joueur 3</p><input type="text">
-    <p>Joueur 4</p><input type="text">
-    <p>Joueur 5</p><input type="text">
-    <input type="button" value="Inscrire mon equipe">
-    <input type="button" value="Annuler">
+<div id="inscription">
+    <p class="centretitre">Equipe existante : </p>
+    <select><option value="equipe1">Equipe 1</option></select>
+    <h3 class="bold">ou</h3>
+    <p class="centretitre">Nom equipe : <input type="text"></p>
+    <p class="centretitre">Joueur 1 : <input type="text"></p>
+    <p class="centretitre">Joueur 2 : <input type="text"></p>
+    <p class="centretitre">Joueur 3 : <input type="text"></p>
+    <p class="centretitre">Joueur 4 : <input type="text"></p>
+    <p class="centretitre">Joueur 5 : <input type="text"></p>
+    <div style="text-align: center;">
+        <input type="button" value="Inscrire mon equipe">
+        <input type="button" value="Annuler">
+    </div>
     <p class="error">erreur ! le nom d’équipe est déjà pris - joueur 4 et 5 n’existe pas</p>
     <p>attention chaque joueur devra valider sur son profil sa participation- si un joueur refuse ou ne valide pas l’inscription sera supprimée</p>
 </div>
