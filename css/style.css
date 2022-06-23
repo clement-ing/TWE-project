@@ -7,6 +7,7 @@ body{
   list-style-type: none;
   color: white;
   background-color: #1E1824;
+  padding-bottom: 2em;
 }
 
 .flex-container{
@@ -53,6 +54,10 @@ body{
   position:relative;
 }
 
+.mrgLeft{
+  margin-left: 2em;
+}
+
 /*couleur de fond*/
 
 .darkBluebckg{
@@ -87,13 +92,13 @@ body{
 /* style de police */
 
 .semiBold{
-  font-weight:600;
+  font-weight:600px;
 }
 .regular{
-  font-weight:400;
+  font-weight:400px;
 }
 .bold{
-  font-weight:700;
+  font-weight:700px;
 }
 
 /* Menu header */
@@ -108,7 +113,7 @@ body{
 .header{
   margin: 1em 2em 1em 1em;
   justify-content: space-between;
-  width:100%;
+  width:95%;
 }
 
 .texte-accueil{
@@ -194,13 +199,18 @@ body{
 
 /* popup connexion */
 
-#popupConnexion{
+/* popup général */
+
+
+.popup{
   font-size: 30px;
   background-color: #21B9CA;
   border-radius: 40px;
+  padding:1em;
+  padding-top: 0em;
 }
 
-#popupConnexion h2, .creation-compte{
+.popup h2, .creation-compte{
   text-align: center;
 }
 
@@ -209,7 +219,7 @@ body{
   margin-bottom: 0;
 }
 
-#popupConnexion form{
+.popup form{
   position: relative;
   margin-left: 1em;
   margin-right: 1em;
@@ -221,6 +231,7 @@ body{
   font-size: 10px;
   justify-content: center;
   margin-top: 2em;
+  width: 100%;
 }
 .paratext p{
   margin: 1em;
@@ -244,35 +255,8 @@ body{
   left:88%
 }
 /* fin popup connexion */
-
-/* popup général */
-.popup{
-  display:none;
-  font-size: 30px;
-  background-color: #21B9CA;
-  border-radius: 40px;
-  position:fixed;
-  width:70%;
-  left:15%;
-  top:15%;
-  z-index:10;
-  backdrop-filter: blur;
-}
-
-.popup h2{
-  text-align: center;
-}
-
-/* pour flouter derriere le popup */
-.blur-filter { 
-  -webkit-filter: blur(2px);
-  -moz-filter: blur(2px);
-  -o-filter: blur(2px);
-  -ms-filter: blur(2px);
-  filter: blur(2px);
-}
-
 /* fin popup général */
+
 
 /* formulaire inscription */
 .formulaire{
@@ -307,7 +291,7 @@ body{
 
 
 
-.alert{
+.alerte{
   display:block;
   color:red;
   font-weight: 500;
@@ -467,17 +451,11 @@ background-color: #031325;
   align-items: start;
 }*/
 .admin {
-  display: grid;
-  width: 50%;
-  grid-template-columns: 20% 20% 10%;
-  align-items: start;
-  justify-content: space-between;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
 }
-
-.admin :first-child {
-    align-self: center;
-}
-      
 
 .profilNotif{
   display:flex;
@@ -493,7 +471,6 @@ background-color: #031325;
   display:flex;
   justify-content: center;
 }
-
 
 .cerclep{
   background-color:#031325;
@@ -511,8 +488,52 @@ background-color: #031325;
   text-align: center;
 }
 
-/* erreurs */
-.error{
-  color: red;
-  font-family: sans-serif;
+.profilReglage{
+  display:none;
 }
+.profilValidationTournoi{
+  display:none;
+}
+
+#creationTournoi{
+  display:none;
+}
+
+#administrateur{
+  display:none;
+}
+
+.cache{
+  display:none;
+  color:green;
+}
+
+.partieResultats{
+  display: none;
+}
+
+.partieReglement{
+  display: none;
+}
+
+#gestion{
+  display: none
+}
+
+#validationCreationTournoi{
+  display: none;
+}
+
+#validationScore{
+  display: none;
+}
+
+#inscrireEquipe{
+  display: none;
+}
+
+.pointer:hover{
+  cursor: pointer;
+}
+
+

@@ -6,30 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/script.js"></script>
 </head>
 
-<body class="fond">
+<body>
 
 <!-- header -->
     <header class="flex-container header">
         <div class="flex-container">
-            <img src="../images/logo.png" alt="Logo du site" width="10%">
+            <img src="images/logo.png" alt="Logo du site" width="10%">
             <div class="menu">
-                <li><a href="../index.html" class="lien">Accueil</a></li>
+                <li><a href="index.html" class="lien">Accueil</a></li>
                 <li><a href="planning.html" class="lien">Planning</a></li>
                 <li><a href="resultats.html" class="lien">Résultats</a></li>
             </div>
         </div>
 
         <div class="profilNotif">
-        <a href="pages/planning.html" class="profil lien">
+        <a href="planning.html" class="profil lien">
             <p>Profil</p>
-            <img src="../images/pdp.webp" alt="photo de profil" class="pdp">
+            <img src="images/pdp.webp" alt="photo de profil" class="pdp">
             
         </a>
         <p class="notification">2</p>
@@ -38,18 +38,20 @@
 
 <!-- banniere + photo de profil -->
     <div class="ensembleBanniere">
-        <img src="../images/lg.jpg" class="banniere" alt="baniere de joueur">
+        <img src="images/lg.jpg" class="banniere" alt="baniere de joueur">
         
-       <div class="cerclePdp">
+        <div class="cerclePdp">
             <div class="cerclep"> 
-            <img src="../images/pdp.webp" class="pdpBanniere" alt="photo de profil de joueur">
+            <img src="images/pdp.webp" class="pdpBanniere" alt="photo de profil de joueur">
+        </div>
         </div>
     </div>
 
     
-    <div>
+    <div class="mrgLeft">
         <!-- badge si admin -->
-        <input type="button" class="button lightBluebckg black" value="Admin">
+        <input type="button" id="btnAdmin1" class="button lightBluebckg black" value="Admin">
+        <p class="cache"> Modifications effectuées </p>
 
     </div>
 
@@ -63,6 +65,8 @@
                 <div class="piechart">
                     <div class="cercle"></div>
                 </div>
+                <p class="legend lightBluebckg"> Victoires </p>
+                <p class="legend darkBlue2bckg"> Défaites </p>
             </div>
             <input type="button" class="button darkBlue2bckg" id="btnConfirmerTournoi" value="Tournois à confirmer">
         </div>
@@ -71,16 +75,15 @@
             <h2>Infos</h2>
             <p>Pseudo: Player 1</p>
             <p>Email: player.1@hotmail.fr</p>
-            <p>Mot de passe: 123</p>
             <p>Equipe: Aucune</p>
             <p>Prochaine compétition: Aucune</p>
-            <input type="button" class="button darkBlue2bckg" value="Modifier les infos">
-            <input type="button" class="button darkBlue2bckg" value="Creer compétition">
+            <input type="button" class="button darkBlue2bckg" id="btnModif" value="Modifier les infos">
+            <input type="button" class="button darkBlue2bckg" id="btnCrea" value="Creer compétition">
         </div>
     </div>
 
     <!-- zone de paramètrage des infos du compte - accès via le modifier les infos-->
-    <div class ="profilReglage">
+    <div class ="profilReglage mrgLeft">
         <span class="flex-container">
             <p>Nouveau pseudo :</p><input type="text" class="textInputModif" placeholder="Pseudo"> <br/>
         </span>
@@ -94,13 +97,13 @@
             <p>Confirmation mot de passe</p><input type="password" class="textInputModif" placeholder="Confirmer le mot de passe">
         </span>
         <span>
-            <input type="button" class="button darkBlue2bckg" value="Confirmer les modifications">
-            <input type="button" class="button darkBlue2bckg" value="Annuler">
+            <input type="button" class="button darkBlue2bckg btnConfirmation" value="Confirmer les modifications">
+            <input type="button" class="button darkBlue2bckg btnAnnuler" value="Annuler">
         </span>
     </div>
 
 <!-- zone de la validation de tournoi - accès via le bouton tournoi-->
-<div class ="profilValidationTournoi">
+<div class="profilValidationTournoi mrgLeft">
     <li class="compet-jour">
         <a href="#" class="rectangleCompet lien">
             <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
@@ -120,18 +123,18 @@
             <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
         </a>
         <div class="btnChoix">
-        <input type="button" class="button lightBluebckg black marge" value="Accepter">
-        <input type="button" class="button lightBluebckg black" value="Refuser">
+            <input type="button" class="button lightBluebckg black marge" value="Accepter">
+            <input type="button" class="button lightBluebckg black" value="Refuser">
         </div>    
 
     </li>
     <div id="confirmer">
-    <input type="button " class="retourProfilTournoi button lightBluebckg black" value="retour profil">
+        <input type="button" class="button lightBluebckg black btnAnnuler" value="retour profil">
     </div>
 </div>
 
 <!-- zone de création d'un tournoi - accès via le bouton créer un tournoi-->
-<div >
+<div class="mrgLeft"  id="creationTournoi" >
     <p>Nom tournoi</p><input type="text" class="textInputModif">
     <p>type</p>
     <div class="select"><select><option>arbre</option><option>championnat</option> </select></div>
@@ -141,13 +144,13 @@
     <img><p>discord</p><input type="input" class="textInputModif"> <!-- rajouter image-->
     <p>règlement tournoi</p><input type="textarea" class="textInputModif">
     </br></br>
-    <input type="button" value="Confirmer les modifications" class="button lightBluebckg black">
-    <input type="button" value="Annuler" class="button lightBluebckg black">
+    <input type="button" value="Créer le tournoi" class="button lightBluebckg black btnConfirmation">
+    <input type="button" value="Annuler" class="button lightBluebckg black btnAnnuler">
 </div>
 
 
 <!-- zone admin - donner les droits admin à un autre user -->
-<div>
+<div id="administrateur" class="mrgLeft">
     <h2> Donner les droits administrateur</h2>
     <div class="admin">
         <div>
@@ -156,7 +159,7 @@
         <div>
         <input type="button" value="ok" class="button lightBluebckg black"></div>
     </div>
-    <input type="button" value="retour profil" class="button lightBluebckg black">
+    <input type="button" value="retour profil" class="button lightBluebckg black btnAnnuler">
 </div>
 
 
