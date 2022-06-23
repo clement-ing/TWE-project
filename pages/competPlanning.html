@@ -51,7 +51,7 @@
 
 
 <!-- barre nav -->
-<div class="menu centre">
+<div class="menu centre" style="width:30em">
     <li><a href="#" class="lien" onclick="affiche('resume')">Résumé</a></li>
     <li><a href="#resultats" class="lien" onclick="affiche('resultats')">Résultats</a></li>
     <li><a href="#reglement" class="lien" onclick="affiche('reglement')">Règlement</a></li>
@@ -153,6 +153,17 @@
             <option value="Termine"></option>
         </datalist>
     </p>
+    <p class="centretitre">Ajouter une règle :
+        <input type="text"> 
+    </p>
+    <p class="centretitre">Modifier une règle :
+    </p>
+    <select>
+        <option value="regle1">Regle 1</option>
+        <option value="regle1">Regle 2</option>    
+    </select>
+    <input type="text" placeholder="nouvelle regle :">    
+    
     <div style="text-align: center;">
         <input type="button" value="valider">
         <input type="button" value="annuler">
@@ -194,7 +205,8 @@
 <!-- inscription -->
 
 
-<div id="inscription">
+<div id="inscription:">
+    <h1 class="centretitre">Inscription</h1>
     <p class="centretitre">Equipe existante : </p>
     <select><option value="equipe1">Equipe 1</option></select>
     <h3 class="bold">ou</h3>
@@ -227,7 +239,7 @@
         <input type="button" id="confirmerDesinscription" value="Confirmer la désinscription" onclick="toggle(popupDesinscription);">
     </div>
 </div>
-<!-- Fin pop up de connexion -->
+<!-- Fin pop up de desinscription -->
 
 </body>
 </html>
