@@ -27,3 +27,14 @@ $(document).ready(function(){
     });
     
 });
+
+function toggle(refOrId){
+    if (typeof(refOrId)== "string"){
+        var element = document.getElementById(refOrId);
+        if (element.style.display != "block"){
+            element.style.display = "block";
+        }
+        
+    }
+
+}

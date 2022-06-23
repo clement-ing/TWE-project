@@ -247,6 +247,7 @@ body{
 
 /* popup général */
 .popup{
+  display:none;
   font-size: 30px;
   background-color: #21B9CA;
   border-radius: 40px;
@@ -262,13 +263,14 @@ body{
   text-align: center;
 }
 
-/* .blur-filter {
+/* pour flouter derriere le popup */
+.blur-filter { 
   -webkit-filter: blur(2px);
   -moz-filter: blur(2px);
   -o-filter: blur(2px);
   -ms-filter: blur(2px);
   filter: blur(2px);
-} */
+}
 
 /* fin popup général */
 
@@ -509,3 +511,8 @@ background-color: #031325;
   text-align: center;
 }
 
+/* erreurs */
+.error{
+  color: red;
+  font-family: sans-serif;
+}

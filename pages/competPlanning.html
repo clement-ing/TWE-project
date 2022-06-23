@@ -9,9 +9,9 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/stylev1mel.css">
 
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/script.js"></script>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script src="../js/script.js"></script>
 </head>
 
 <body>
@@ -187,6 +187,8 @@
 </div>
 
 <!-- inscription -->
+
+
 <div>
     <p>Equipe existante</p><select><option value="equipe1"></option></select>
     <h3>ou</h3>
@@ -198,12 +200,17 @@
     <p>Joueur 5</p><input type="text">
     <input type="button" value="Inscrire mon equipe">
     <input type="button" value="Annuler">
-    <p>erreur ! le nom d’équipe est déjà pris - joueur 4 et 5 n’existe pas</p>
+    <p class="error">erreur ! le nom d’équipe est déjà pris - joueur 4 et 5 n’existe pas</p>
     <p>attention chaque joueur devra valider sur son profil sa participation- si un joueur refuse ou ne valide pas l’inscription sera supprimée</p>
 </div>
 
 <!-- Pop up de annulation -->
-<div id="popupDesinscription" title="me désinscrire" class="popup blur-filter">
+
+<div style="text-align: center;">
+    <input type="button" value="Desinscription" onclick="toggle(popupDesinscription);">
+</div>
+
+<div id="popupDesinscription" title="me désinscrire" class="popup">
     <h2>Es-tu sûr de te désincrire?</h2>
     <p>Cette annulation est définitive, ton équipe sera supprimé du tournoi et devra se
         réinscrire si elle veut participer de nouveau</p>
