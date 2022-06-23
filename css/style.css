@@ -252,9 +252,9 @@ body{
   background-color: #21B9CA;
   border-radius: 40px;
   position:fixed;
-  width:50%;
-  left:25%;
-  top:25%;
+  width:70%;
+  left:15%;
+  top:15%;
   z-index:10;
   backdrop-filter: blur;
 }

@@ -29,12 +29,23 @@ $(document).ready(function(){
 });
 
 function toggle(refOrId){
-    if (typeof(refOrId)== "string"){
+    if (typeof(refOrId)== "object"){ //c'est une reference
+        console.log(refOrId.style.display);
+        if (refOrId.style.display == "" || refOrId.style.display=="none"){
+            refOrId.style.display = "block";
+        }
+        else{
+            refOrId.style.display = "none";
+        }
+    }
+    else{ //c'est un id
         var element = document.getElementById(refOrId);
-        if (element.style.display != "block"){
+        if (element.style.display == undefined || element.style.display=="none"){
             element.style.display = "block";
         }
-        
+        else{
+            element.style.display = "none";
+        }
     }
 
 }
