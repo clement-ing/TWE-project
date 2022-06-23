@@ -67,7 +67,8 @@ select {
     outline: 0;
     background: white;
     border:none;
-    width: 100%;
+    width: 200px;
+    border-radius: 0.5em;
     height: 100%;
     margin: 0;
     padding: 0 0 0 .5em;
