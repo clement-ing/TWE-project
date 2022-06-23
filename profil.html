@@ -11,11 +11,6 @@
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/script.js"></script>
-    <script>
-        if (sessionStorage.getItem('token')==undefined) {
-            window.location.replace("index.html");
-        }
-    </script>
 </head>
 
 <body>
@@ -37,7 +32,7 @@
             <img src="images/pdp.webp" alt="photo de profil" class="pdp">
             
         </a>
-        <p id="notifHautNombre" class="notification"></p>
+        <p class="notification">2</p>
         </div>
     </header>
 
@@ -55,7 +50,7 @@
     
     <div class="mrgLeft">
         <!-- badge si admin -->
-        <input type="button" id="btnAdmin1" class="button lightBluebckg black" value="Admin"> <!-- emiliev3-->
+        <input type="button" id="btnAdmin1" class="button lightBluebckg black" value="Admin">
         <p class="cache green" id="mssgModif"> Modifications effectuées </p>
     </div>
     
@@ -73,7 +68,7 @@
                 <p class="legend lightBluebckg"> Victoires </p>
                 <p class="legend darkBlue2bckg"> Défaites </p>
             </div>
-            <button class="button darkBlue2bckg" id="btnConfirmerTournoi"> <p id="notifbas" class="alerte">6</p> Tournoi(s) à confirmer</button>
+            <button class="button darkBlue2bckg" id="btnConfirmerTournoi"> <p class="alerte">6</p> Tournoi(s) à confirmer</button>
         </div>
     <!-- zone des infos -->
         <div>
@@ -81,10 +76,11 @@
             <p id="pseudoProfilInfo"></p>  <!-- emiliev2-->
             <p id="emailProfilInfo"></p> <!-- emiliev2-->
             <p id="equipeProfilInfo"></p> <!-- emiliev2-->
-            <p id="competWinProfilInfo"></p><!-- emiliev3-->
+            <p>Prochaine compétition : Aucune</p>
+
             <input type="button" class="button darkBlue2bckg" id="btnModif" value="Modifier les infos">
-            <input type="button" class="button darkBlue2bckg" id="btnCrea" value="Creer compétition">
-            <input type="button" id="btnDeconnexion" class="button darkBlue2bckg" value="Deconnexion">
+            <input type="button" class="button darkBlue2bckg" id="btnCrea" value="Créer compétition">
+            <input type="button" id="btnDeconnexion" class="button darkBlue2bckg" value="Déconnexion">
 
         </div>
     </div>
@@ -93,6 +89,8 @@
     <div class ="profilReglage mrgLeft">
         <span class="flex-container"><p>Nouveau pseudo :</p><input type="text" id="pseudoReglage" class="textInputModif" placeholder="Pseudo"> <br/><!-- emiliev2-->
         </span>
+        <!--Melinav3-->
+        <span id="feedbackRegPseudo"></span>
         <span>
             <input type="button" id="btnConfirmerReglagePseudo" class="button darkBlue2bckg" value="Confirmer les modifications du pseudo"><!-- emiliev2-->
         </span>
@@ -102,12 +100,16 @@
         <span>
             <input type="button" id="btnConfirmerReglageEmail" class="button darkBlue2bckg" value="Confirmer les modifications de l'email"><!-- emiliev2-->
         </span>
+        <!--Melinav3-->
+        <span id="feedbackRegMail"></span>
         <span class="flex-container">
             <p>Nouveau mot de passe :</p><input type="password" id="mdpReglage" class="textInputModif" placeholder="Mot de passe"> <br/><!-- emiliev2-->        
         </span>
         <span class="flex-container">
             <p>Confirmation mot de passe</p><input type="password"  id="mdpConfirmationReglage" class="textInputModif" placeholder="Confirmer le mot de passe"><!-- emiliev2-->        
         </span>
+        <!--Melinav3-->
+        <span id="feedbackRegMdp"></span>
         <span>
             <input type="button" id="btnConfirmerReglageMdp" class="button darkBlue2bckg" value="Confirmer les modifications du mot de passe"><!-- emiliev2-->
             <br><input type="button" class="button darkBlue2bckg btnAnnuler" value="Annuler">        </span>
@@ -115,7 +117,7 @@
 
 <!-- zone de la validation de tournoi - accès via le bouton tournoi-->
 <div class="profilValidationTournoi mrgLeft">
-    <li id="compet-jour" class="compet-jour">
+    <li class="compet-jour">
         <p class="green cache mssgAccepterTournoi">Tournoi confirmé!</p>
         <p class="red cache mssgRefuserTournoi">Tournoi annulé!</p>
         
@@ -166,12 +168,15 @@
     <p>date</p><input id="dateTournoi" type="date" >
     <p>heure (HH:MM:SS)</p><input id="heureTournoi" type="input" class="textInputModif">
     <p>nombre d'equipe</p>
-    <select id="nombreEquipeTournoi"><option value="2">2</option><option value="8">8</option><option value="16">16</option><option value="32">32</option> </select>
+    <div class="select">
+    <select id="nombreEquipeTournoi"><option value="8">8</option><option value="16">16</option><option value="32">32</option> </select>
+    </div>
     <img><p>discord</p><input id="discordTournoi" type="input" class="textInputModif"> <!-- rajouter image-->
     <p>règlement tournoi</p><input id="reglementTournoi" type="textarea"  class="textInputModif">
     <p>BO</p>
     <div class="select"><select id="boTournoi"><option value="1">BO1</option><option value="3">BO3</option><option value="5">BO5</option></select></div>
     </br></br>
+    <span id="feedbackCrea"></span>
     <input type="button" id="btnCreationTournoi" value="Créer le tournoi" class="button lightBluebckg black">
     <input type="button" value="Annuler" class="button lightBluebckg black btnAnnuler">
 </div>
@@ -184,7 +189,10 @@
     <div class="admin">
         <div>
         <p class="equipe">admin</p></div>
-        <div class="select"><select id="listeUser"></select></div>
+        <!--melinav3-->
+        <div class="espace"></div>
+        <div class="select"><select><option>pseudo1</option><option>pseudo2</option></select></div> 
+        <div class="espace"></div>
         <div>
         <input type="button" value="ok" class="button lightBluebckg black" id="btnValidationAdmin"></div>
     </div>
