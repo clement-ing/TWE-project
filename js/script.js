@@ -1,12 +1,20 @@
 $(document).ready(function(){
+    if (sessionStorage.getItem('token')==undefined){
+        $('#btnConnexion').show();
+        $('#btnProfil').hide();
+    }
+    else    {
+        $('#btnConnexion').hide();
+        $('#btnProfil').show();
+    }
 
     var popup = $('<div id="popupConnexion" class="popup">')
     .append('<h2>Connexion</h2>')
     .append($('<img src="./images/cross.jpg" class="croix">'))
-    .append($('<form action="">'
-        + '<input type="text" class="textInputModif" placeholder="Email"><br/>'
-        + '<input type="text" class="textInputModif" placeholder="Mot de passe"><br/>'
-        + '<input type="submit" class="button darkBluebckg" value="Se connecter"></form>'))
+    .append($(/*'<form action="">'
+        +*/'<input type="text" id="login" class="textInputModif" placeholder="Email"><br/>'
+        + '<input type="password" id="motDePasse" class="textInputModif" placeholder="Mot de passe"><br/>'
+        + '<input type="button" id="btnConfirmerConnexion" class="button darkBluebckg" value="Se connecter">'))
     .append($('<div class="creation-compte">'
         + '<p>Pas encore de compte ?</p>'
         + '<a href="inscription.html" class="lien">'
@@ -60,6 +68,82 @@ $(document).ready(function(){
         console.log("click rejoindre");
         dialogAnnulation.dialog("open" ); 
     });
+       //fonction inscription Emilie
+       $("#btnConfirmerConnexion").click(function() {
+        console.log("click confirmer connexion");
+        var login = $("#login").val();
+        var passe = $("#motDePasse").val();
+        var token = false;
+        console.log("login: " + login + " passe: " + passe);
+        //$("#feedback").hide(); //A rajouter si on a le temps
+        $.ajax({
+            type: "POST",
+            url: "https://mini.tikroko.ovh/~webcent/api/authentification",
+            data: {"pseudo": login, "mdp": passe},
+            success: function (oRep) {
+                console.log(oRep);
+                token = oRep.hash;
+                sessionStorage.setItem('token', token);
+                sessionStorage.setItem('idUser', oRep.id);
+
+                $('#btnConnexion').hide();
+                $('#btnProfil').show();
+                $('#popupConnexion').hide();
+            },
+            error: function () {
+                console.log("erreur");
+            },
+            dataType: "json"
+        });
+    });
+
+    //creer un nouvel utilisateur - inscription - Emilie
+    $("#btnInscriptionConfirmation").click(function() {
+        console.log("click confirmer inscription");
+        var pseudo = $("#pseudoInscription").val();
+        var email = $("#emailInscription").val();
+        var mdp = $("#mdpInscription").val();
+        var mdpConfirmation = $("#mdpConfirmationInscription").val();
+        var etatCheckBox = document.getElementById("cdUtilisations").checked;
+        console.log("pseudo: " + pseudo + " mail: " + email + " mdp: " + mdp + " mdp Conf: " + mdpConfirmation + " check : " + etatCheckBox);
+        if (!etatCheckBox){
+            console.log("checkbox pas coché"); //rajouter feedback erreur
+            return false;
+        }
+        else if (mdp != mdpConfirmation) {
+            console.log("mdp different mdpConfirmation"); //rajouter feedback erreur
+            return false;
+        }
+        else if (pseudo == "" || pseudo == " ") {
+            console.log("pseudo vide"); //rajouter feedback erreur
+            return false;
+        }
+        else if (email == "" || email == " ") {
+            console.log("email vide"); //rajouter feedback erreur
+            return false;
+        }
+        else if (mdp == "" || mdp == " ") {
+            console.log("mdp vide"); //rajouter feedback erreur
+            return false;
+        }
+        //$("#feedback").hide(); //A rajouter si on a le temps
+        console.log("avant requête ajax")
+        $.ajax({
+            type: "POST",
+            url: "https://mini.tikroko.ovh/~webcent/api/inscription",
+            data: {"pseudo": pseudo, "email": email, "mdp": mdp},
+            success: function (oRep) {
+                console.log(oRep);
+                sessionStorage.setItem('token', oRep.hash);
+                sessionStorage.setItem('idUser', oRep.id);
+                window.location.replace("index.html"); //redirection accueil avec popup connexion ouvert
+            },
+            error: function () {
+                console.log("erreur, pseudo ou email deja existant");
+            },
+            dataType: "json"
+        });
+    });
     
 });
 
@@ -71,7 +155,8 @@ $(function(){
     $validation=$('.profilValidationTournoi');
     $creation=$('#creationTournoi');
     $administrateur=$('#administrateur');
-    $messageConfirmation=$('.cache');
+    $messageConfirmation=$('#mssgModif');
+
 
 
     $('#btnAdmin1').click(function(){
@@ -123,7 +208,7 @@ $(function(){
         $administrateur.hide();
         $messageConfirmation.fadeIn().delay(2000).fadeOut();})
 
-    var $resume, $resultats, $reglement, $gestion, $inscription, $valideScore, $valideCreation;
+    var $resume, $resultats, $reglement, $gestion, $inscription, $valideScore, $valideCreation,$messageInscription,$messageDesinscription,$popupdes;
     $resume=$('.partieResume');
     $reglement=$('.partieReglement');
     $resultats=$('.partieResultats');
@@ -131,7 +216,16 @@ $(function(){
     $valideCreation=$('#validationCreationTournoi');
     $valideScore=$('#validationScore');
     $inscription=$('#inscrireEquipe');
-    
+    $messageInscription=$('#mssgInscription');
+    $messageDesinscription=$('#mssgDesinscription');
+    $popupdes=$('#popupDesinscription');
+    $messageScore1=$('#mssgScore1');
+    $messageScore2=$('#mssgScore2');
+    $messageScore3=$('#mssgScore3');
+    $compet1=$('#compet1');
+    $compet2=$('#compet2');
+    $compet3=$('#compet3');
+    $messageAdmin=$('#mssgAdmin')
 
     $('.lienResume').click(function(){
         console.log("resume");
@@ -220,4 +314,63 @@ $(function(){
         $valideScore.hide();
         $inscription.hide();
     })
-})
+    $('#btnInscription').click(function(){
+        console.log("inscription équipe confirmée");
+        $resume.show();
+        $resultats.hide();
+        $reglement.hide();
+        $gestion.hide();
+        $valideCreation.hide();
+        $valideScore.hide();
+        $inscription.hide();
+        $messageInscription.fadeIn().delay(2000).fadeOut();
+
+    })
+    $('#confirmerDesinscription').click(function(){
+        console.log("inscription équipe confirmée");
+        $resume.show();
+        $resultats.hide();
+        $reglement.hide();
+        $gestion.hide();
+        $valideCreation.hide();
+        $valideScore.hide();
+        $inscription.hide();
+        $popupdes.hide()
+        $messageDesinscription.fadeIn().delay(2000).fadeOut();
+
+    })
+    $('#btnOk1').click(function(){
+        $messageScore1.fadeIn().delay(2000).fadeOut();
+        $compet1.hide();
+
+    })
+    $('#btnOk2').click(function(){
+        $messageScore2.fadeIn().delay(2000).fadeOut();
+        $compet2.hide();
+
+    })
+    $('#btnOk3').click(function(){
+        $messageScore3.fadeIn().delay(2000).fadeOut();
+        $compet3.hide();
+    })
+    $('#btnValidationAdmin').click(function(){
+        $messageAdmin.fadeIn().delay(2000).fadeOut();
+    })
+
+    var $messageAccepterTournoi,$messageRefuserTournoi,$competition;
+    $messageAccepterTournoi=$('.mssgAccepterTournoi');
+    $messageRefuserTournoi=$('.mssgRefuserTournoi');
+    $competition=$('.competitionValide')
+
+    $('#btnAccepterTournoi').click(function(){
+        $messageAccepterTournoi.fadeIn().delay(2000).fadeOut();
+        $competition.hide();
+    })
+    $('#btnRefuserTournoi').click(function(){
+        $messageRefuserTournoi.fadeIn().delay(2000).fadeOut();
+        $competition.hide()
+    })
+    $('.logo').click(function(){
+        window.location.replace("./index.html")
+    })
+})  

@@ -21,25 +21,23 @@
             <input type="button" class="button darkBlue2bckg" value="Annuler">
         </a>
     </div>
-
     <div class="formulaire">
-        <form action="">
-            <div>
-                <p class="lightBlue">Comment souhaites-tu être appelé ?</p>
-                <input type="text" class="textInputModif" name="pseudo" placeholder="Pseudo">
-            </div>
-            <div>
-                <p class="lightBlue">Tes identifiants (à garder précieusement)</p>
-                <input type="text" class="textInputModif" name="Email" placeholder="Pseudo"> <br/>
-                <input type="text" class="textInputModif" name="mdp" placeholder="Mot de passe"> <br/>
-                <input type="text"  class="textInputModif" name="mdpConfirme" placeholder="Confirmer le mot de passe"> <br/>
-                <input type="checkbox" name="conditionsUtilisations" id="cdUtilisations">
-                <label for="conditionsUtilisations">J'ai lu et j'accepte les conditions générales d'utilisations</label>
-            </div> 
-            <p class="paratext">*Tu pourras compléter ton profil avec d'autres informations plus tard !</p>
-            <span style="display:flex; justify-content:center;"><input type="submit" class="button lightBluebckg" value="Créer mon compte"></span>
-        </form>
-    </div>
+        <div>
+            <p class="lightBlue">Comment souhaites-tu être appelé ?</p>
+            <input type="text" id="pseudoInscription" class="textInputModif" name="pseudo" placeholder="Pseudo">
+        </div>
+        <div>
+            <p class="lightBlue">Tes identifiants (à garder précieusement)</p>
+            <input type="text" id="emailInscription" id class="textInputModif" name="Email" placeholder="Email"> <br/>
+            <input type="password" id="mdpInscription" class="textInputModif" name="mdp" placeholder="Mot de passe"> <br/>
+            <input type="password" id="mdpConfirmationInscription"  class="textInputModif" name="mdpConfirme" placeholder="Confirmer le mot de passe"> <br/>
+            <input type="checkbox" name="conditionsUtilisations" id="cdUtilisations">
+            <label for="conditionsUtilisations">J'ai lu et j'accepte les conditions générales d'utilisations</label>
+        </div> 
+        <p class="paratext">*Tu pourras compléter ton profil avec d'autres informations plus tard !</p>
+        <span style="display:flex; justify-content:center;"><input type="button" id="btnInscriptionConfirmation" class="button lightBluebckg" value="Créer mon compte"></span>
+</div>
+
 
 
     <img src="images/gwen.png" alt="image de gwen" class="gwen">

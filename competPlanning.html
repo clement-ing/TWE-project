@@ -19,14 +19,14 @@
 <!-- header -->
 <header class="flex-container header">
     <div class="flex-container">
-        <img src="images/logo.png" alt="Logo du site" width="10%">
+        <img src="images/logo.png" alt="Logo du site" width="10%" class="logo">
         <div class="menu">
             <li><a href="index.html" class="lien">Accueil</a></li>
             <li><a href="planning.html" class="lien lightBlue">Planning</a></li>
             <li><a href="resultats.html" class="lien">Résultats</a></li>
         </div>
     </div>
-    <a href="planning.html" class="profil lien">
+    <a href="./profil.html" class="profil lien" id="btnProfil">
         <p>Profil</p>
         <img src="images/pdp.webp" alt="photo de profil" class="pdp">
     </a>
@@ -57,6 +57,10 @@
     <li><p class="lienGestion pointer">Gestion</p></li>
 </div>
 
+<!--messages-->
+<div><p class="centretitre cache green" id="mssgInscription">Votre équipe est inscrite!</p>
+    <p class="centretitre cache green" id="mssgDesinscription">Votre désinscription est confirmée</p>
+</div>
 <!-- si résumé -->
 <div class="partieResume">
     <p class="centretitre">Date du tournoi : </p>
@@ -166,25 +170,39 @@
 <!-- gestion - admin - validation score -->
 <div id="validationScore">
     <h3 class="centretitre bold">Gestion des scores</h3>
+    
     <li class="compet-jour">
+
+        <p class="green cache" id="mssgScore1">Score validé</p>
+        <div id="compet1">
         <a href="#" class="rectangleCompet lien">
             <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
         </a>
         <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
         <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
-        <input type="button" value="ok">
+        <input type="button" value="ok" class="button lightBluebckg" id="btnOk1">
+        </div>
+
+        <p class="green cache" id="mssgScore2">Score validé</p>
+        <div id="compet2">
         <a href="#" class="rectangleCompet lien">
             <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
         </a>
         <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
         <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
-        <input type="button" value="ok">
-        <a href="#" class="rectangleCompet lien">
+        <input type="button" value="ok" class="button lightBluebckg" id="btnOk2">
+        </div>
+
+    
+        <p class=" green cache" id="mssgScore3">Score validé</p>
+        <div id="compet3">    
+            <a href="#" class="rectangleCompet lien">
             <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
-        </a>
-        <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
-        <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
-        <input type="button" id="okScore" class="button lightBluebckg" value="ok">
+            </a>
+            <p>Equipe 1</p><select><option>score1</option><option>score2</option></select>
+            <p>Equipe 2</p><select><option>score1</option><option>score2</option></select>
+            <input type="button" id="okScore" class="button lightBluebckg" value="ok" id="btnOk3">
+        </div>
     </li>
 </div>
 
@@ -198,9 +216,9 @@
     <p>Joueur 3</p><input type="text" class="textInputModif">
     <p>Joueur 4</p><input type="text" class="textInputModif">
     <p>Joueur 5</p><input type="text" class="textInputModif">
-    <input type="button" class="button darkBlue2bckg" value="Inscrire mon equipe">
+    <input type="button" class="button darkBlue2bckg" value="Inscrire mon equipe" id="btnInscription">
     <input type="button"  id="btnAnnulerInscription" class="button darkBlue2bckg" value="Annuler">
-    <p class="alerte">Erreur ! le nom d’équipe est déjà pris - joueur 4 et 5 n’existe pas</p>
+    <p class="alerte cache">Erreur ! le nom d’équipe est déjà pris - joueur 4 et 5 n’existe pas</p>
     <p>Attention chaque joueur devra valider sur son profil sa participation- si un joueur refuse ou ne valide pas l’inscription sera supprimée</p>
 </div>
 

@@ -18,7 +18,7 @@
 <!-- header -->
     <header class="flex-container header">
         <div class="flex-container">
-            <img src="images/logo.png" alt="Logo du site" width="10%">
+            <img src="images/logo.png" alt="Logo du site" width="10%" class="logo">
             <div class="menu">
                 <li><a href="index.html" class="lien">Accueil</a></li>
                 <li><a href="planning.html" class="lien">Planning</a></li>
@@ -27,7 +27,7 @@
         </div>
 
         <div class="profilNotif">
-        <a href="planning.html" class="profil lien">
+        <a href="./profil.html" class="profil lien" id="btnProfil">
             <p>Profil</p>
             <img src="images/pdp.webp" alt="photo de profil" class="pdp">
             
@@ -51,7 +51,7 @@
     <div class="mrgLeft">
         <!-- badge si admin -->
         <input type="button" id="btnAdmin1" class="button lightBluebckg black" value="Admin">
-        <p class="cache"> Modifications effectuées </p>
+        <p class="cache green" id="mssgModif"> Modifications effectuées </p>
 
     </div>
 
@@ -79,6 +79,8 @@
             <p>Prochaine compétition: Aucune</p>
             <input type="button" class="button darkBlue2bckg" id="btnModif" value="Modifier les infos">
             <input type="button" class="button darkBlue2bckg" id="btnCrea" value="Creer compétition">
+            <input type="button" class="button darkBlue2bckg btnDeconnexion"value="Deconnexion">
+
         </div>
     </div>
 
@@ -105,13 +107,22 @@
 <!-- zone de la validation de tournoi - accès via le bouton tournoi-->
 <div class="profilValidationTournoi mrgLeft">
     <li class="compet-jour">
+        <p class="green cache mssgAccepterTournoi">Tournoi confirmé!</p>
+        <p class="red cache mssgRefuserTournoi">Tournoi annulé!</p>
+        
+         <!--jquery qui marche-->
+
+        <div id="competitionvalide">
         <a href="#" class="rectangleCompet lien">
             <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
         </a>
         <div class="btnChoix">
-            <input type="button" class="button lightBluebckg black marge" value="Accepter">
-            <input type="button" class="button lightBluebckg black" value="Refuser">
+            <input type="button" class="button lightBluebckg black marge" value="Accepter" id="btnAccepterTournoi">
+            <input type="button" class="button lightBluebckg black" value="Refuser" id="btnRefuserTournoi">
         </div>
+        </div>
+        <!--fin jquery valide-->
+        <div id="competitionvalide">
         <a href="#" class="rectangleCompet lien">
             <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
         </a>
@@ -119,6 +130,9 @@
         <input type="button" class="button lightBluebckg black marge" value="Accepter">
         <input type="button"class="button lightBluebckg black" value="Refuser">
         </div>
+        </div>
+
+        <div class="competitionValide">
         <a href="#" class="rectangleCompet lien">
             <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
         </a>
@@ -126,8 +140,10 @@
             <input type="button" class="button lightBluebckg black marge" value="Accepter">
             <input type="button" class="button lightBluebckg black" value="Refuser">
         </div>    
+        </div>
 
     </li>
+
     <div id="confirmer">
         <input type="button" class="button lightBluebckg black btnAnnuler" value="retour profil">
     </div>
@@ -152,12 +168,13 @@
 <!-- zone admin - donner les droits admin à un autre user -->
 <div id="administrateur" class="mrgLeft">
     <h2> Donner les droits administrateur</h2>
+    <p class="green cache" id="mssgAdmin"> Administrateur ajouté </p>
     <div class="admin">
         <div>
         <p class="equipe">admin</p></div>
         <div class="select"><select><option>pseudo1</option><option>pseudo2</option></select></div> 
         <div>
-        <input type="button" value="ok" class="button lightBluebckg black"></div>
+        <input type="button" value="ok" class="button lightBluebckg black" id="btnValidationAdmin"></div>
     </div>
     <input type="button" value="retour profil" class="button lightBluebckg black btnAnnuler">
 </div>
