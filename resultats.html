@@ -16,7 +16,7 @@
 <body>
     <header class="flex-container header">
         <div class="flex-container">
-            <img src="images/logo.png" alt="Logo du site" width="10%">
+            <img src="images/logo.png" alt="Logo du site" width="10%" class="logo">
             <div class="menu">
               <li><a href="index.html" class="lien">Accueil</a></li>
               <li><a href="planning.html" class="lien">Planning</a></li>
@@ -27,24 +27,27 @@
                 <input type="button" id="btnConnexion" class="button darkBlue2bckg" value="S'inscrire/Se connecter"/>
         
                 <!-- onglet profil si connecté -->
-                <!-- <a href="pages/profil.html" class="profil lien">
-                    <p>Profil</p>
-                    <img src="../images/pdp.webp" alt="photo de profil" class="pdp">
-                </a> -->  
+               <a href="./profil.html" class="profil lien" id="btnProfil">
+                <p>Profil</p>
+                <img src="images/pdp.webp" alt="photo de profil" class="pdp">
+            
+        </a> 
     </header>
-    <div class="mrgLeft">
+
+    <!-- Florent -->
+    <!-- <div class="mrgLeft">
         <p>Filtrer par :</p>
         <div class="select">
             <select name="filtreCompet" id="filtreCompet">
                 <option value="date">Date</option>
                 <option value="equipe">Equipe</option>
                 </select>
-        </div>      
+        </div>       -->
     </div>
 
 
 <!-- debut bloc listing compet pour un jour donné -->
-    <li class="compet-jour">
+    <!-- <li class="compet-jour">
         <p class="jour">Dimanche 19 juin</p>
         <a href="competResultat.html" class="rectangleCompet lien">
             <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits - Vainqueur</p>
@@ -52,11 +55,11 @@
         <a href="competResultat.html" class="rectangleCompet lien ">
             <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits - Vainqueur</p>
         </a>
-    </li>
+    </li> -->
 <!-- fin bloc listing compet pour un jour donné -->
 
 <!-- debut bloc listing compet pour un jour donné -->
-    <li class="compet-jour">
+    <!-- <li class="compet-jour">
         <p class="jour">Samedi 18 juin</p>
         <a href="#" class="rectangleCompet lien">
             <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits - Vainqueur</p>
@@ -70,11 +73,11 @@
         <a href="#" class="rectangleCompet lien">
             <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits - Vainqueur</p>
         </a>
-    </li>
+    </li> -->
 <!-- fin bloc listing compet pour un jour donné -->
 
 <!-- debut bloc listing compet pour un jour donné -->
-    <li class="compet-jour">
+    <!-- <li class="compet-jour">
         <p class="jour">Vendredi 17 juin</p>
         <a href="#" class="rectangleCompet lien">
             <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits - Vainqueur</p>
@@ -85,7 +88,7 @@
         <a href="#" class="rectangleCompet lien">
             <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits - Vainqueur</p>
         </a>
-    </li>
+    </li> -->
 <!-- fin bloc listing compet pour un jour donné -->
 
 

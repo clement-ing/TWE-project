@@ -88,7 +88,13 @@ body{
   color:black;
 }
 
+.green{
+  color:green;
+}
 
+.red{
+  color:red;
+}
 /* style de police */
 
 .semiBold{
@@ -473,10 +479,9 @@ background-color: #031325;
 }
 
 .cerclep{
-  background-color:#031325;
+  background-color:#1E1824;
   width: 7em;
   height:7em;
-  z-index: 4;
   position: absolute;
   clip-path:ellipse(50% 50%);
   left: 45%;
@@ -505,7 +510,6 @@ background-color: #031325;
 
 .cache{
   display:none;
-  color:green;
 }
 
 .partieResultats{
