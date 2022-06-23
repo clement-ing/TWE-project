@@ -187,12 +187,12 @@ select {
 /* style de police */
 
 .SemiBold{
-    font-weight:600px;
+    font-weight:600;
 }
 .Regular{
-    font-weight:400px;
+    font-weight:400;
 }
 .Bold{
-    font-weight:700px;
+    font-weight:700;
 }
 

@@ -33,85 +33,136 @@
 </header>
 
 <!-- banniere + photo de profil tournoi - rajouter css -->
-<span>
-        <img src="../images/lg.jpg" class="banniere">
-</span>
 
-<img src="../images/pdp.webp">
-<h2>Nom compétition</h2>
+<div class="ensembleBanniere">
+    <img src="../images/lg.jpg" class="banniere" alt="baniere de joueur">
+
+   
+    <div class="cerclePdp">
+        <div class="cerclep"> 
+        <img src="../images/pdp.webp" class="pdpBanniere" alt="photo de profil de joueur">
+    </div>
+    </div>
+
+</div>
+
+<div class="centretitre"><h2>Nom compétition</h2></div>
+
 
 <!-- barre nav -->
-<div class="menu">
+<div class="menu centre">
     <li><a href="#" class="lien">Résumé</a></li>
-    <li><a href="#" class="lien">Résultats</a></li>
-    <li><a href="#" class="lien">Règlement</a></li>
-    <li><a href="#" class="lien">Gestion</a></li>
+    <li><a href="#resultats" class="lien">Résultats</a></li>
+    <li><a href="#reglement" class="lien">Règlement</a></li>
+    <li><a href="#gestion" class="lien">Gestion</a></li>
 </div>
 
 <!-- si résumé -->
 <div>
-    <p>Date du tournoi</p>
-    <p>Heure du début</p>
-    <p>Nombre de place équipe</p>
-    <p>Place restante</p>
-    <p>Type de tournoi</p>
-    <p>statut</p>
-    <input type="button" value="inscrire/annuler inscription">
+    <p class="centretitre">Date du tournoi : </p>
+    <p class="centretitre">Heure du début : </p>
+    <p class="centretitre">Nombre de place équipe : </p>
+    <p class="centretitre">Place restante : </p>
+    <p class="centretitre">Type de tournoi : </p>
+    <p class="centretitre">Statut : </p>
+    <div style = "text-align: center;">
+        <!-- choisir le bouton en fonction de l'utilisateur : est-il dans une équipe inscrite? -->
+        <input type="button" class = "centre" value="Inscrire mon équipe">
+        <input type="button" class = "centre" value="Annuler mon inscription"> 
+    </div>
 </div>
 
 <!-- si résultats -->
 <div>
     <li class="compet-jour">
         <p class="jour">Mercredi 22 juin</p>
-        <a href="#" class="compet lien">
+        <a href="#" class="rectangleCompet lien">
             <p>Phase 1 - équipe 1 - équipe 2 - BO1 - Heure approximative du début : 20h</p>
         </a>
-        <a href="#" class="compet lien">
+        <a href="#" class="rectangleCompet lien">
             <p>Phase 1 - équipe 1 - équipe 2 - BO1 - Heure approximative du début : 20h</p>
         </a>
-        <a href="#" class="compet lien">
+        <a href="#" class="rectangleCompet lien">
             <p>Phase 1 - équipe 1 - équipe 2 - BO1 - Heure approximative du début : 20h</p>
         </a>
-        <a href="#" class="compet lien">
+        <a href="#" class="rectangleCompet lien">
             <p>Phase 1 - équipe 1 - équipe 2 - BO1 - Heure approximative du début : 20h</p>
         </a>
     </li>
 </div>
 
+
 <!-- si règlement -->
-<div>
-    <h1>Reglement</h1>
-    <p>a completer</p>
+<div id="reglement">
+    <h1 class="centretitre">Reglement</h1>
+    <div>
+        <h4 class="centretitre">Règle 1: tous les membres de chaque équipe doivent posséder discord</h4>
+        <h4 class="centretitre">Règle 2: les équipes sont composées de 5 membres</h4>
+        <h4 class="centretitre">Règle 3: ...</h4>
+    </div>
 </div>
 
 <!-- gestion - non admin -->
-<div>
-    <div><p>Match en cours : quart de finale</p>
-        <p>Equipe adverse : équipe 2</p>
-        <p>Heure début : 22h</p>
-        <p>discord (obligatoire) :</p></div>
-    <div><p>Match en cours : quart de finale</p>
-        <p>Equipe adverse : équipe 2</p>
-        <p>Heure début : 22h</p>
-    <p>discord (obligatoire) :</p></div>
-    <div><p>vous avez perdu,</p>
-        <p>dommage :’(</p>
-        <p>n’hésitez pas à retenter votre chance sur un autre tournoi et à revenir plut tard pour découvrir le grand gagnant !</p></div>
+<h1 class="centretitre bold">Gestion</h1>
+
+<div id="gestion">
+    <div><p class="centretitre">Match en cours : quart de finale</p>
+        <p class="centretitre">Equipe adverse : équipe 2</p>
+        <p class="centretitre">Heure début : 22h</p>
+        <p class="centretitre">discord (obligatoire) :</p></div>
+    <div><p class="centretitre">Match en cours : quart de finale</p>
+        <p class="centretitre">Equipe adverse : équipe 2</p>
+        <p class="centretitre">Heure début : 22h</p>
+    <p class="centretitre">discord (obligatoire) :</p></div>
+    <div><p class="centretitre">vous avez perdu,</p>
+        <p class="centretitre">dommage :’(</p>
+        <p class="centretitre">n’hésitez pas à retenter votre chance sur un autre tournoi 
+        et à revenir plus tard pour découvrir le grand gagnant !</p></div>
 </div>
 
 <!-- gestion - admin - validation tournoi -->
-<div>
-    <p>Date du tournoi</p>
-    <p>Heure du début</p>
-    <p>Nombre de place équipe</p>
-    <p>Place restante</p>
-    <p>Type de tournoi</p>
-    <p>statut</p>
-    <input type="button" value="valider">
-    <input type="button" value="annuler">
+
+<h1 class="centretitre bold">Gestion Admin</h1>
+
+<h3 class="centretitre bold">Gestion des paramètres du tournoi</h3>
+
+<div id="gestionAdmin">
+    <p class="centretitre">Date du tournoi : 
+        <input type="date" id="dateTournoi">
+    </p>
+    <p class="centretitre">Heure du début :
+        <input type="time" id="heureDebutTournoi">
+    </p>
+    <p class="centretitre">Nombre de place équipe :
+        <input type="number"> 
+    </p>
+    <p class="centretitre">Type de tournoi : 
+        <input list="type" id="typeTournoi">
+        <datalist id="type">
+            <option value="B01"></option>
+            <option value="B03"></option>
+            <option value="B05"></option>
+        </datalist>
+    </p>
+    <p class="centretitre">Statut : 
+        <input list="statut" id="statutTournoi">
+        <datalist id="statut">
+            <option value="A venir"></option>
+            <option value="En cours"></option>
+            <option value="Termine"></option>
+        </datalist>
+    </p>
+    <div style="text-align: center;">
+        <input type="button" value="valider">
+        <input type="button" value="annuler">
+    </div>
 </div>
 
 <!-- gestion - admin - validation score -->
+
+<h3 class="centretitre bold">Gestion des scores</h3>
+
+
 <div>
     <li class="compet-jour">
         <a href="#" class="compet lien">
@@ -152,11 +203,14 @@
 </div>
 
 <!-- Pop up de annulation -->
-<div id="" title="">
-    <h2>Es-tu sûr ?</h2>
-    <p>cette annulation est définitive, ton équipe sera supprimé du tournoi et devra se
-        ré inscrire si elle veut participer de nouveau</p>
-    <input type="button" id="btnFermeInscription" value="Fermer">
+<div id="popupDesinscription" title="me désinscrire" class="popup blur-filter">
+    <h2>Es-tu sûr de te désincrire?</h2>
+    <p>Cette annulation est définitive, ton équipe sera supprimé du tournoi et devra se
+        réinscrire si elle veut participer de nouveau</p>
+    <div style="text-align: center;">
+        <input type="button" id="annulerDesinscription" value="Annuler">
+        <input type="button" id="confirmerDesinscription" value="Confirmer la désinscription">
+    </div>
 </div>
 <!-- Fin pop up de connexion -->
 

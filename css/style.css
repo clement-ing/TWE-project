@@ -245,6 +245,33 @@ body{
 }
 /* fin popup connexion */
 
+/* popup général */
+.popup{
+  font-size: 30px;
+  background-color: #21B9CA;
+  border-radius: 40px;
+  position:fixed;
+  width:50%;
+  left:25%;
+  top:25%;
+  z-index:10;
+  backdrop-filter: blur;
+}
+
+.popup h2{
+  text-align: center;
+}
+
+/* .blur-filter {
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -o-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+} */
+
+/* fin popup général */
+
 /* formulaire inscription */
 .formulaire{
   font-size: 25px;
@@ -464,6 +491,7 @@ background-color: #031325;
   display:flex;
   justify-content: center;
 }
+
 
 .cerclep{
   background-color:#031325;
