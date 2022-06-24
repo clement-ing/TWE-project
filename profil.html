@@ -65,8 +65,8 @@
     <!-- zone du palmares -->
         <div class="palmares">
             <h2>Palmares</h2>
-            <div> 
-                <div id="piechartmatchs" class="piechart">
+            <div  id="piechartmatchs"> 
+                <div class="piechart">
                     <div class="cercle"></div>
                 </div>
                 <p class="legend lightBluebckg"> Victoires </p>
@@ -121,13 +121,13 @@
 
 <!-- zone de la validation de tournoi - accès via le bouton tournoi-->
 <div class="profilValidationTournoi mrgLeft">
-    <li id="compet-jour" class="compet-jour">
+    <div id="compet-jour" class="compet-jour">
         <p class="green cache mssgAccepterTournoi">Tournoi confirmé!</p>
         <p class="red cache mssgRefuserTournoi">Tournoi annulé!</p>
         
          <!--jquery qui marche-->
 
-        <div id="competitionvalide">
+        <!-- <div id="competitionvalide">
         <a href="#" class="rectangleCompet lien">
             <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
         </a>
@@ -135,9 +135,9 @@
             <input type="button" class="button lightBluebckg black marge" value="Accepter" id="btnAccepterTournoi">
             <input type="button" class="button lightBluebckg black" value="Refuser" id="btnRefuserTournoi">
         </div>
-        </div>
+        </div> -->
         <!--fin jquery valide-->
-        <div id="competitionvalide">
+        <!-- <div id="competitionvalide">
         <a href="#" class="rectangleCompet lien">
             <p>Nom de la compétition - Heure de début - Format/Nb d’inscrits</p>
         </a>
@@ -154,10 +154,10 @@
         <div class="btnChoix">
             <input type="button" class="button lightBluebckg black marge" value="Accepter">
             <input type="button" class="button lightBluebckg black" value="Refuser">
-        </div>    
-        </div>
+        </div>    <div class="piechartmatchs">
+        </div> -->
 
-    </li>
+    </div>
 
     <div id="confirmer">
         <input type="button" class="button lightBluebckg black btnAnnuler" value="retour profil">

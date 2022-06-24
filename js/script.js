@@ -20,7 +20,7 @@ $(document).ready(function(){
     }
 
     //Florent V2
-    if (window.location.pathname=="/Applications/MAMP/htdocs/2H14/TWE-project/competPlanning.html"){ //adresse à modif en fonction de son serveur local
+    if (window.location.pathname=="/competPlanning.html"){ //adresse à modif en fonction de son serveur local
         console.log("info profil");
         $("#nomCompetitionCompetPlanning").text(sessionStorage.getItem('nomTournoi'));
         $("#dateCompetInfo").text("Date : " + sessionStorage.getItem('dateTournoi').substring(0,10));
@@ -31,7 +31,7 @@ $(document).ready(function(){
         $("#statutCompetInfo").text("Statut : " + sessionStorage.getItem('statutTournoi'));
     }
 
-    if (window.location.pathname=="/Applications/MAMP/htdocs/2H14/TWE-project/competResultat.html"){ //adresse à modif en fonction de son serveur local
+    if (window.location.pathname=="/competResultat.html"){ //adresse à modif en fonction de son serveur local
         console.log("info profil");
         $("#nomCompetitionCompetPlanning").text(sessionStorage.getItem('nomTournoi'));
         $("#gagnantTournoi").text("Equipe gagnante : " + sessionStorage.getItem('gagnantTournoi'));
@@ -44,7 +44,7 @@ $(document).ready(function(){
     
          
     //page profil : rajout du pseudo de l'utilisateur et email emiliev2
-    if (window.location.pathname=="/Applications/MAMP/htdocs/2H14/TWE-project/profil.html"){ //adresse à modif en fonction de son serveur local
+    if (window.location.pathname=="/profil.html"){ //adresse à modif en fonction de son serveur local
         console.log("info profil");
         $("#pseudoProfilInfo").text("Pseudo : " + sessionStorage.getItem('pseudo'));
         $("#emailProfilInfo").text("Email : " + sessionStorage.getItem('email'));
@@ -315,7 +315,7 @@ $(document).ready(function(){
         }
         
         //page competResultat : rajout du pseudo de l'utilisateur et email clementV2
-        if (window.location.pathname=="/Applications/MAMP/htdocs/2H14/TWE-project/competResultat.html"){ //adresse à modif en fonction de son serveur local
+        if (window.location.pathname=="/competResultat.html"){ //adresse à modif en fonction de son serveur local
             $("#showDate").text("date :" + sessionStorage.getItem('Gagnant'));
             console.log("info profil");
             $.ajax({
@@ -594,7 +594,40 @@ $(function(){
         $profil.hide();
         $validation.show();
         $creation.hide();
-        $administrateur.hide();})
+        $administrateur.hide();
+        $.ajax({
+            type: "GET",
+            url: "https://mini.tikroko.ovh/~webcent/api/liste_compet",
+            data: {"idUtilisateur": sessionStorage.getItem('idUser'), "attenteValid": true},
+            success: function (oRep) {
+                console.log("attente validation" + (oRep));
+                if (oRep!=false){
+                    console.log(oRep.length);
+                    $('#notifhaut').show();
+                    $('#notifhaut').text(oRep.length);
+                    sessionStorage.setItem('notifnombre', oRep.length);
+                    sessionStorage.setItem('notif', oRep);
+                    var competValide = $('<div class="competitionvalide">')
+                    $.each(oRep, function(i){
+                            competValide.append($('<input type="button" name='+ oRep[i].id+' class="rectangleCompet lien" value="Nom de la compétition : ' + oRep[i].name 
+                            +'- Heure de début : '+ oRep[i].startDate.substr(10)
+                            +'- Type de compétition : '+oRep[i].type
+                            +" - Nombre maximale d'équipes :"+oRep[i].capacity+'>'));
+                            competValide.append('<div class="btnChoix">'
+                            +'<input type="button" class="button lightBluebckg black marge" value="Accepter" id="btnAccepterTournoi">'
+                            +' <input type="button" class="button lightBluebckg black" value="Refuser" id="btnRefuserTournoi">'
+                            +' </div>');
+                    });
+                    $('#compet-jour').html(enregistre);
+                }
+            },
+            error: function () {
+                console.log("erreur recup notif");
+
+            },
+            dataType: "json"
+        });
+    })
 
     $('.btnAnnuler').click(function(){
         console.log("annulation");
@@ -649,7 +682,7 @@ $(function(){
     })
 
     // Florent v2
-    if(sessionStorage.getItem('isAdmin')=='1'){
+    if(sessionStorage.getItem('isAdmin')=='1' || sessionStorage.getItem('isAdmin')==sessionStorage.getItem('idAdminTournoi')){
         $('#btnAdmin2').show();
     }
     
@@ -669,7 +702,7 @@ $(function(){
             url: baseURL + '/api/competition/liste_matchs',
             data:{'idCompet':sessionStorage.getItem('idTournoi')},
             success: function(oRep){
-                if(window.location.pathname=="/Applications/MAMP/htdocs/2H14/TWE-project/competPlanning.html"){//adresse à modif en fonction du localhost
+                if(window.location.pathname=="/competPlanning.html"){//adresse à modif en fonction du localhost
                     console.log(oRep)
                     console.log("ok")
                     if(!oRep){
@@ -700,24 +733,20 @@ $(function(){
         $valideScore.show();
         $inscription.hide();
         $planning.hide();
-
         $.ajax({
             type: "GET",
             url: baseURL + '/api/competition/liste_matchs',
             data:{'idCompet':sessionStorage.getItem('idTournoi')},
             success: function(oRep){
-                if(window.location.pathname=="/Applications/MAMP/htdocs/2H14/TWE-project/competPlanning.html"){//adresse à modif en fonction du localhost
+                if(window.location.pathname=="/competPlanning.html"){//adresse à modif en fonction du localhost
                     console.log(oRep)
                     console.log("ok")
                     console.log(sessionStorage.getItem('idTournoi'))
-
-                    var liste= $('<li class="compet-jour">')
-                        .append('<p class="jour">'+sessionStorage.getItem('startDate')+'</p>')
-                    $('body').append(liste)
-
+                    $('#jourInfoCompetResultat').text(sessionStorage.getItem('dateTournoi').substring(0,10))
                     if(!oRep){
                         $('#planningCompetInfo').text('Plus de matchs prévus pour cette compétition !');
                     } else{
+                        var enregistre = $('<div>');
                         $.each(oRep, function(i){
                             var match=oRep[i];
                             var rectangleMatch = $('<input type="button" name='+ match.id+' class="btnMatch rectangleCompet lien'
@@ -726,8 +755,9 @@ $(function(){
                                 +'<p>Equipe 1</p><input type="text">'
                                 +'<p>Equipe 2</p><input type="text">'
                                 +'<input type="button" class="okScore button lightBluebckg" value="ok"></div>')
-                            $('body').append(rectangleMatch);
+                                enregistre.append(rectangleMatch);
                         });
+                        $('#validationScore').html(enregistre);
                     }
                 }
             }
@@ -796,7 +826,7 @@ $(function(){
             url: baseURL + '/api/competition/liste_matchs',
             data:{'idCompet':sessionStorage.getItem('idTournoi')},
             success: function(oRep){
-                if(window.location.pathname=="/Applications/MAMP/htdocs/2H14/TWE-project/competResultat.html"){//adresse à modif en fonction du localhost
+                if(window.location.pathname=="/competResultat.html"){//adresse à modif en fonction du localhost
                     console.log(oRep)
                     console.log("ok")
                     if(!oRep){
@@ -807,7 +837,7 @@ $(function(){
                         $.each(oRep, function(i){
                             var match=oRep[i];
                             var rectangleMatch = $('<input type="button" name='+ match.id+' class="btnMatch rectangleCompet lien"'
-                            +'value=Phase :'+match.id+'-'+match+'>');
+                            +'value=Phase :'+match.id+' - >');
                             enregistre.append(rectangleMatch);
                         });
                         $('#listeMatchCoompetInfo').html(enregistre);
@@ -854,48 +884,6 @@ $(function(){
         $valideScore.hide();
         $inscription.show();
         $planning.hide();
-        $.ajax({
-            type: "GET",
-            url: "https://mini.tikroko.ovh/~webcent/api/utilisateur/equipes",
-            data: {"idUtilisateur": sessionStorage.getItem('idUser')},
-            success: function (oRep) {
-                console.log("liste equipe");
-                console.log(oRep);
-                if (oRep==false){ //ne pas afficher cette possibilité pour les joueurs n'ayant pas d'equipe
-                    $("#equipeExistante").hide();
-                }
-                for (i = 1; i < oRep.length; i++) {
-                    //console.log(oRep[i].pseudo);
-                    $("#inscrireEquipeJoueur").append("<option value=" + i + ">" + oRep[i].nom + "</option>"); //a check
-                }
-            },
-            error: function () {
-                console.log("erreur liste user");
-            },
-            dataType: "json"
-        });
-        $.ajax({
-            type: "GET",
-            url: "https://mini.tikroko.ovh/~webcent/api/liste_utilisateurs",
-            data: {"debutPseudo": ""},
-            success: function (oRep) {
-                console.log("liste user");
-                for (i = 1; i < oRep.length; i++) {
-                    //console.log(oRep[i].pseudo);
-                    $("#inscrireJoueur1").append("<option value=" + oRep[i].pseudo + ">" + oRep[i].pseudo + "</option>");
-                    $("#inscrireJoueur2").append("<option value=" + oRep[i].pseudo + ">" + oRep[i].pseudo + "</option>");
-                    $("#inscrireJoueur3").append("<option value=" + oRep[i].pseudo + ">" + oRep[i].pseudo + "</option>");
-                    $("#inscrireJoueur4").append("<option value=" + oRep[i].pseudo + ">" + oRep[i].pseudo + "</option>");
-                    $("#inscrireJoueur5").append("<option value=" + oRep[i].pseudo + ">" + oRep[i].pseudo + "</option>");
-                }
-            },
-            error: function () {
-                console.log("erreur liste user");
-            },
-            dataType: "json"
-        });
-
-
     })
 
     $('#btnAnnulerInscription').click(function(){
@@ -934,7 +922,8 @@ $(function(){
 
 
     $('#btnInscription').click(function(){
-        console.log("inscription en cours");
+        console.log("inscription équipe confirmée");
+        $resume.show();
         $resultats.hide();
         $reglement.hide();
         $gestion.hide();
@@ -942,34 +931,9 @@ $(function(){
         $valideScore.hide();
         $inscription.hide();
         $planning.hide();
-        var nom = $("#nomTournoi").val();
-        var joueur1 = $("#inscrireJoueur1").val();
-        var joueur2 = $("#inscrireJoueur2").val();
-        var joueur3 = $("#inscrireJoueur3").val();
-        var joueur4 = $("#inscrireJoueur4").val();
-        var joueur5 = $("#inscrireJoueur5").val();
-        if ($("#nomTournoi").val().replace(/^\s+|\s+$/g, "").length == 0) {
-            console.log("nom vide");
-            //$('#feedbackCrea').append('<p class="alerte"> *Nom du tournoi manquant </p>');
-            return false;
-        }
-        $.ajax({
-            type: "POST",
-            url: "https://mini.tikroko.ovh/~webcent/api/inscription/nouvelle_equipe",
-            data: {"hash": sessionStorage.getItem('token'), "pseudo1": joueur1, "pseudo2": joueur2, "pseudo3": joueur3, "pseudo4": joueur4, "pseudo5": joueur5, "nomEquipe": nom, "idCompet": sessionStorage.getItem('idTournoi')},
-            success: function () {
-                console.log("success");
-                $resume.show();
-                $planning.hide();
-                $messageInscription.fadeIn().delay(2000).fadeOut();
-            },
-            error: function () {
-                console.log("erreur inscription");
-            },
-            dataType: "json"
-        });
-    })
+        $messageInscription.fadeIn().delay(2000).fadeOut();
 
+    })
     $('#confirmerDesinscription').click(function(){
         console.log("désinscription équipe confirmée");
         $resume.show();
@@ -1044,7 +1008,7 @@ $(function(){
         url: baseURL + '/api/liste_compet',
         success: function(oRep){
             console.log("récupération liste compet");
-            if(window.location.pathname=="/Applications/MAMP/htdocs/2H14/TWE-project/planning.html"){ //adresse à modif en fonction du localhost
+            if(window.location.pathname=="/planning.html"){ //adresse à modif en fonction du localhost
                 var ini=oRep[0];
                 var date=ini.startDate;
                 var statut=ini.status;
@@ -1059,8 +1023,7 @@ $(function(){
 
                     var lienCompet = $('<input type="button" name='+ ini.id+' value="Nom de la compétition : '+ini.name 
                     +'- Heure de début : '+ ini.startDate
-                    +' - Type de compétition : '+ini.type
-                    +" - Nombre maximale d'équipes :"+ini.capacity+'" class="rectangleCompet lien"' 
+                    +" - Nb max d'équipes :"+ini.capacity+'" class="rectangleCompet lien"' 
                     +'onclick="setIdTournoi(this.name,' + "'competPlanning.html')" +';">');
                     if(statut=='1') lienCompet.append('<p class="en-cours">En cours</p>');
                     $('body').append(lienCompet);
@@ -1077,8 +1040,7 @@ $(function(){
                             statut=oRep[i].status;
                             var lienCompet=$('<input type="button" name='+ oRep[i].id+' class="rectangleCompet lien" value="Nom de la compétition : ' + oRep[i].name 
                             +'- Heure de début : '+ oRep[i].startDate.substr(10)
-                            +'- Type de compétition : '+oRep[i].type
-                            +" - Nombre maximale d'équipes :"+oRep[i].capacity+'" onclick="setIdTournoi(this.name,' + "'competPlanning.html')" +';">');
+                            +" - Nb max d'équipes :"+oRep[i].capacity+'" onclick="setIdTournoi(this.name,' + "'competPlanning.html')" +';">');
                             if(statut=='1') {
                                 lienCompet.value+='- En cours ';
                                 lienCompet.className+="en-cours";
@@ -1102,7 +1064,7 @@ $(function(){
         success: function(oRep){
             console.log("récupération liste compet");
             console.log(oRep);
-            if(window.location.pathname=="/Applications/MAMP/htdocs/2H14/TWE-project/resultats.html"){ //adresse à modif en fonction du localhost
+            if(window.location.pathname=="/resultats.html"){ //adresse à modif en fonction du localhost
                 var ini=oRep[0];
                 var date=ini.startDate;
                 var statut=ini.status;
@@ -1115,9 +1077,8 @@ $(function(){
                         .append('<p class="jour">'+ini.startDate.substr(0,10)+'</p>');
                     $('body').append(ligneDate);
                     var lienCompet = $('<input type="button" name='+ ini.id+' value="Nom de la compétition : '+ini.name 
-                        +'- Heure de début : '+ ini.startDate
-                        +' - Type de compétition : '+ini.type
-                        +" - Nombre maximale d'équipes :"+ini.capacity+'" class="rectangleCompet lien"' 
+                        +'- Heure de début : '+ ini.startDate.substr(11)
+                        +" - Nb max d'équipes :"+ini.capacity+'" class="rectangleCompet lien"' 
                         +'onclick="setIdTournoi(this.name,' + "'competResultat.html')" +';">');
                     $('body').append(lienCompet);
                 }
@@ -1133,7 +1094,7 @@ $(function(){
                             var lienCompet=$('<input type="button" name='+ oRep[i].id+' class="rectangleCompet lien" value="Nom de la compétition : ' + oRep[i].name 
                             +' - Heure de début : '+ oRep[i].startDate.substr(10)
                             +' - Type de compétition : '+oRep[i].type
-                            +" - Nombre maximale d'équipes :"+oRep[i].capacity+'" onclick="setIdTournoi(this.name,' + "'competResultat.html')" +';">');
+                            +" - Nb max d'équipes :"+oRep[i].capacity+'" onclick="setIdTournoi(this.name,' + "'competResultat.html')" +';">');
                             $('body').append(lienCompet);
                         }
                     }

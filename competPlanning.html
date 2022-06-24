@@ -181,11 +181,11 @@
 
 <!-- florent v2 -->
 <!-- gestion - admin - validation score -->
-<!-- <div id="validationScore">
+<div id="validationScore">
     <h3 class="centretitre bold">Gestion des scores</h3>
     <li class="compet-jour">
-
-        <p class="green cache" id="mssgScore1">Score validé</p>
+        <p id="jourInfoCompetResultat" class="jour">Mercredi 22 juin</p>
+        <!-- <p class="green cache" id="mssgScore1">Score validé</p>
         <div id="compet1">
             
         <a href="#" class="rectangleCompet lien">
@@ -216,28 +216,20 @@
             <p>Equipe 2</p><input type="text">
             <input type="button" class="okScore button lightBluebckg" value="ok">
         </div>
-        
-    </li>
-</div> -->
+         -->
+    </li> 
+</div>
 
 <!-- inscription -->
 <div id="inscrireEquipe" class="mrgLeft">
-    <div id="equipeExistante">
-    <p>Equipe existante</p>
-    <div class="select"><select id="inscrireEquipeJoueur"></select></div>
+    <p>Equipe existante</p><select><option value="equipe1"></option></select>
     <h3>ou</h3>
-    </div>
-    <p>Nom equipe</p><input id="nomTournoi" type="text" class="textInputModif">
-    <p>Joueur 1</p>
-    <div class="select"><select id="inscrireJoueur1"></select></div>
-    <p>Joueur 2</p>
-    <div class="select"><select id="inscrireJoueur2"></select></div>
-    <p>Joueur 3</p>
-    <div class="select"><select id="inscrireJoueur3"></select></div>
-    <p>Joueur 4</p>
-    <div class="select"><select id="inscrireJoueur4"></select></div>
-    <p>Joueur 5</p>
-    <div class="select"><select id="inscrireJoueur5"></select></div>
+    <p>Nom equipe</p><input type="text" class="textInputModif">
+    <p>Joueur 1</p><input type="text" class="textInputModif">
+    <p>Joueur 2</p><input type="text" class="textInputModif">
+    <p>Joueur 3</p><input type="text" class="textInputModif">
+    <p>Joueur 4</p><input type="text" class="textInputModif">
+    <p>Joueur 5</p><input type="text" class="textInputModif">
     <input type="button" class="button darkBlue2bckg" value="Inscrire mon equipe" id="btnInscription">
     <input type="button"  id="btnAnnulerInscription" class="button darkBlue2bckg" value="Annuler">
     <p class="alerte cache">Erreur ! le nom d’équipe est déjà pris - joueur 4 et 5 n’existe pas</p>
