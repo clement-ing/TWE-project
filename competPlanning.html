@@ -19,17 +19,26 @@
 <!-- header -->
 <header class="flex-container header">
     <div class="flex-container">
-        <img src="images/logo.png" alt="Logo du site" width="10%">
+        <img src="images/logo.png" alt="Logo du site" width="10%"  class="logo">
         <div class="menu">
             <li><a href="index.html" class="lien">Accueil</a></li>
             <li><a href="planning.html" class="lien lightBlue">Planning</a></li>
             <li><a href="resultats.html" class="lien">Résultats</a></li>
         </div>
     </div>
-    <a href="profil.html" class="profil lien">
-        <p>Profil</p>
-        <img src="images/pdp.webp" alt="photo de profil" class="pdp">
-    </a>
+    
+    <!-- btn connexion si pas connecté -->
+    <input type="button" id="btnConnexion" class="button darkBlue2bckg" value="S'inscrire/Se connecter"/>
+
+    <!-- onglet profil si connecté -->
+    <div class="profilNotif">
+        <a href="./profil.html" class="profil lien" id="btnProfil">
+            <p>Profil</p>
+            <img src="images/pdp.webp" alt="photo de profil" class="pdp">
+
+        </a>
+        <p id="notifHautNombre" class="notification"></p>
+    </div>
 </header>
 
 <!-- banniere + photo de profil tournoi - rajouter css -->
@@ -55,6 +64,11 @@
     <li><p class="lienPlanning pointer">Planning</p></li>
     <li><p class="lienReglement pointer">Règlement</p></li>
     <li><p class="lienGestion pointer">Gestion</p></li>
+</div>
+
+<!--messages-->
+<div><p class="centretitre cache green" id="mssgInscription">Votre équipe est inscrite!</p>
+    <p class="centretitre cache green" id="mssgDesinscription">Votre désinscription est confirmée</p>
 </div>
 
 <!-- si résumé -->
@@ -170,6 +184,10 @@
 <!-- <div id="validationScore">
     <h3 class="centretitre bold">Gestion des scores</h3>
     <li class="compet-jour">
+
+        <p class="green cache" id="mssgScore1">Score validé</p>
+        <div id="compet1">
+            
         <a href="#" class="rectangleCompet lien">
             <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
         </a>
@@ -178,6 +196,8 @@
             <p>Equipe 2</p><input type="text">
             <input type="button" class="okScore button lightBluebckg" value="ok">
         </div>
+        <p class="green cache" id="mssgScore1">Score validé</p>
+        <div id="compet1">
         <a href="#" class="rectangleCompet lien">
             <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
         </a>
@@ -186,6 +206,8 @@
             <p>Equipe 2</p><input type="text">
             <input type="button" class="okScore button lightBluebckg" value="ok">
         </div>
+        <p class=" green cache" id="mssgScore3">Score validé</p>
+        <div id="compet3">   
         <a href="#" class="rectangleCompet lien">
             <p>Match phase 3 - équipe 1 - équipe 2 - BO3 </p>
         </a>
@@ -200,17 +222,25 @@
 
 <!-- inscription -->
 <div id="inscrireEquipe" class="mrgLeft">
-    <p>Equipe existante</p><select><option value="equipe1"></option></select>
+    <div id="equipeExistante">
+    <p>Equipe existante</p>
+    <div class="select"><select id="inscrireEquipeJoueur"></select></div>
     <h3>ou</h3>
-    <p>Nom equipe</p><input type="text" class="textInputModif">
-    <p>Joueur 1</p><input type="text" class="textInputModif">
-    <p>Joueur 2</p><input type="text" class="textInputModif">
-    <p>Joueur 3</p><input type="text" class="textInputModif">
-    <p>Joueur 4</p><input type="text" class="textInputModif">
-    <p>Joueur 5</p><input type="text" class="textInputModif">
-    <input type="button" class="button darkBlue2bckg" value="Inscrire mon equipe">
+    </div>
+    <p>Nom equipe</p><input id="nomTournoi" type="text" class="textInputModif">
+    <p>Joueur 1</p>
+    <div class="select"><select id="inscrireJoueur1"></select></div>
+    <p>Joueur 2</p>
+    <div class="select"><select id="inscrireJoueur2"></select></div>
+    <p>Joueur 3</p>
+    <div class="select"><select id="inscrireJoueur3"></select></div>
+    <p>Joueur 4</p>
+    <div class="select"><select id="inscrireJoueur4"></select></div>
+    <p>Joueur 5</p>
+    <div class="select"><select id="inscrireJoueur5"></select></div>
+    <input type="button" class="button darkBlue2bckg" value="Inscrire mon equipe" id="btnInscription">
     <input type="button"  id="btnAnnulerInscription" class="button darkBlue2bckg" value="Annuler">
-    <p class="alerte">Erreur ! le nom d’équipe est déjà pris - joueur 4 et 5 n’existe pas</p>
+    <p class="alerte cache">Erreur ! le nom d’équipe est déjà pris - joueur 4 et 5 n’existe pas</p>
     <p>Attention chaque joueur devra valider sur son profil sa participation- si un joueur refuse ou ne valide pas l’inscription sera supprimée</p>
 </div>
 
